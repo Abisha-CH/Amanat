@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amanat - Treasurer Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+  <div class="app-shell">
+
+    <!-- BEGIN: Sidebar -->
+    <aside class="app-sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarLabel">
+      <div class="offcanvas-header">
+        <span class="brand-logo" id="sidebarLabel">
+          <span class="logo-urdu">امانت</span>
+          <span class="app-brand-role">Treasurer</span>
+        </span>
+        <button class="btn-close" type="button" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="sidebar-inner">
+          <div>
+            <div class="app-brand d-none d-lg-block">
+              <a class="d-flex align-items-center gap-2 text-decoration-none" href="../index.html">
+                <span class="logo-urdu">امانت</span>
+                <span class="app-brand-role">Treasurer</span>
+              </a>
+            </div>
+            <nav class="app-nav" aria-label="Sidebar Navigation">
+              <span class="sidebar-label">Verification Desk</span>
+              <a class="sidebar-link" href="#overview"><i class="bi bi-house-door"></i><span>Overview</span></a>
+              <a class="sidebar-link active" aria-current="page" href="#verifications"><i class="bi bi-shield-check"></i><span>Payment Verification</span></a>
+              <a class="sidebar-link" href="#verifications"><i class="bi bi-check2-square"></i><span>Verified Contributions</span></a>
+              <a class="sidebar-link" href="#submit-expense-section"><i class="bi bi-plus-circle"></i><span>Submit Expense</span></a>
+              <a class="sidebar-link js-demo-link" data-demo-message="Expense history is part of the interactive demo." href="#"><i class="bi bi-cash-stack"></i><span>Expense History</span></a>
+              <a class="sidebar-link js-demo-link" data-demo-message="Receipt archive is part of the interactive demo." href="#"><i class="bi bi-receipt"></i><span>Receipts</span></a>
+              <a class="sidebar-link js-demo-link" data-demo-message="Settings are part of the interactive demo." href="#"><i class="bi bi-gear"></i><span>Settings</span></a>
+
+              <span class="sidebar-label">Ledgers</span>
+              <a class="sidebar-link" href="ledger.html"><i class="bi bi-journal-text"></i><span>Cashbook Ledger</span></a>
+              <a class="sidebar-link" href="../public/institutional-ledger.html"><i class="bi bi-bank"></i><span>Institutional Ledger</span></a>
+              <a class="sidebar-link" href="../campaigns.html"><i class="bi bi-megaphone"></i><span>Campaigns</span></a>
+            </nav>
+          </div>
+          <div class="app-sidebar-footer">
+            <a class="sidebar-link danger" href="../index.html"><i class="bi bi-box-arrow-left"></i><span>Logout</span></a>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <!-- END: Sidebar -->
+
+    <!-- BEGIN: Main Content Area -->
+    <main class="app-main">
+
+      <header class="app-topbar">
+        <div class="d-flex align-items-center gap-2 flex-grow-1">
+          <button class="btn btn-outline-forest btn-sm d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-label="Open menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <div class="topbar-search">
+            <i class="bi bi-search"></i>
+            <input class="form-control" type="text" aria-label="Search transactions" placeholder="Search transactions...">
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 gap-sm-3">
+          <button class="notif-btn js-demo-link" data-demo-message="You have no new notifications." type="button" aria-label="Notifications">
+            <i class="bi bi-bell"></i><span class="notif-dot"></span>
+          </button>
+          <div class="vr d-none d-sm-block text-secondary opacity-25"></div>
+          <div class="dropdown">
+            <button class="profile-chip dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="avatar">TS</span>
+              <span class="d-none d-sm-block">
+                <span class="name d-block">Tariq Saeed</span>
+                <span class="role d-block">Treasurer</span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="font-size: 0.82rem;">
+              <li><a class="dropdown-item js-demo-link" data-demo-message="Profile settings are part of the interactive demo." href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="ledger.html">Cashbook Ledger</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <div class="app-content" id="overview">
+
+        <div class="mb-4">
+          <h1 class="page-heading">Payment Verification</h1>
+          <p class="page-subheading mb-0">Review and verify contributions.</p>
+        </div>
+
+        <!-- BEGIN: Metric Summary Cards -->
+        <section class="row g-3 mb-4">
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-label"><i class="bi bi-cash-coin" style="color:#2563EB;"></i> Total Received</div>
+              <div class="stat-value stat-value-sm mt-3">PKR 285,000</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-label"><i class="bi bi-hourglass-split" style="color:#D97706;"></i> Pending Verifications</div>
+              <div class="stat-value mt-3" style="color: var(--amanat-amber);">12</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-label"><i class="bi bi-wallet2" style="color:#E11D48;"></i> Total Expenses</div>
+              <div class="stat-value stat-value-sm mt-3">PKR 120,000</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-label"><i class="bi bi-patch-check" style="color:#059669;"></i> Approved Expenses</div>
+              <div class="stat-value stat-value-sm mt-3">PKR 95,000</div>
+            </div>
+          </div>
+        </section>
+        <!-- END: Metric Summary Cards -->
+
+        <!-- BEGIN: Pending Verifications Section -->
+        <section class="panel mb-4" id="verifications">
+          <div class="panel-header d-flex align-items-center justify-content-between">
+            <h2 class="panel-title">Pending Verifications</h2>
+            <a class="small fw-semibold text-forest text-decoration-none js-demo-link"
+              data-demo-message="Full verification queue is part of the interactive demo." href="#">View All &rarr;</a>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-amanat" id="verification-table">
+              <thead>
+                <tr>
+                  <th scope="col">Contributor</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Transaction Ref</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" class="text-end">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cell-title">Ali Raza</td>
+                  <td class="fw-medium">PKR 5,000</td>
+                  <td class="cell-mono">TRX78452</td>
+                  <td><span class="badge-amanat badge-pending js-status">Pending</span></td>
+                  <td class="text-end"><button class="btn btn-forest btn-sm js-verify-btn" data-label="Ali Raza's contribution" type="button">Verify</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-title">Sara Khan</td>
+                  <td class="fw-medium">PKR 10,000</td>
+                  <td class="cell-mono">TRX78451</td>
+                  <td><span class="badge-amanat badge-pending js-status">Pending</span></td>
+                  <td class="text-end"><button class="btn btn-forest btn-sm js-verify-btn" data-label="Sara Khan's contribution" type="button">Verify</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-title">Ahmed Raza</td>
+                  <td class="fw-medium">PKR 2,500</td>
+                  <td class="cell-mono">TRX78450</td>
+                  <td><span class="badge-amanat badge-pending js-status">Pending</span></td>
+                  <td class="text-end"><button class="btn btn-forest btn-sm js-verify-btn" data-label="Ahmed Raza's contribution" type="button">Verify</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-title">Fatima Noor</td>
+                  <td class="fw-medium">PKR 15,000</td>
+                  <td class="cell-mono">TRX78449</td>
+                  <td><span class="badge-amanat badge-pending js-status">Pending</span></td>
+                  <td class="text-end"><button class="btn btn-forest btn-sm js-verify-btn" data-label="Fatima Noor's contribution" type="button">Verify</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <!-- END: Pending Verifications Section -->
+
+        <!-- BEGIN: Submit Expense Form -->
+        <section class="panel p-4" id="submit-expense-section">
+          <div class="border-bottom border-amanat pb-3 mb-4">
+            <h2 class="panel-title">Submit New Campaign Expense</h2>
+            <p class="panel-subtitle mb-0">Record and attach audit proof for outgoing campaign expenditures for organizer approval.</p>
+          </div>
+          <form class="needs-validation" data-form="expense" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold" for="campaign-select">Select Campaign *</label>
+                <select class="form-select bg-surface" id="campaign-select" required>
+                  <option value="education-for-all">Education for All</option>
+                  <option value="clean-water">Clean Water Initiative</option>
+                  <option value="medical-aid">Medical Aid Fund</option>
+                </select>
+                <div class="invalid-feedback">Please select a campaign.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold" for="expense-amount">Expense Amount (PKR) *</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-surface fw-medium">PKR</span>
+                  <input class="form-control bg-surface" id="expense-amount" type="number" min="1" placeholder="25,000" required>
+                  <div class="invalid-feedback">Please enter the expense amount.</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-semibold" for="payee-name">Vendor / Payee Name *</label>
+                <input class="form-control bg-surface" id="payee-name" type="text"
+                  placeholder="e.g. Al-Madina Book Depot / National Waterworks" required>
+                <div class="invalid-feedback">Please enter the vendor or payee name.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-semibold" for="expense-desc">Description of Goods / Services *</label>
+                <textarea class="form-control bg-surface" id="expense-desc" rows="3"
+                  placeholder="Detail reason of expenditure, invoice reference, and intended utility..." required></textarea>
+                <div class="invalid-feedback">Please describe the expense.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-semibold" for="file-upload">Receipt Upload (Proof of Payment) *</label>
+                <label class="avatar-upload d-block" for="file-upload">
+                  <i class="bi bi-cloud-arrow-up fs-2 text-muted-amanat"></i>
+                  <div class="mt-2 small text-muted-amanat">
+                    <span class="fw-semibold text-forest">Upload invoice or bank receipt slip</span> or drag and drop
+                  </div>
+                  <p class="text-muted-amanat mb-0" style="font-size: 0.68rem;">PNG, JPG, PDF up to 10MB</p>
+                  <input class="visually-hidden" id="file-upload" type="file" accept=".png,.jpg,.jpeg,.pdf">
+                </label>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end pt-4">
+              <button class="btn btn-forest w-100 w-sm-auto" type="submit">Submit for Organizer Approval</button>
+            </div>
+          </form>
+        </section>
+        <!-- END: Submit Expense Form -->
+
+      </div>
+
+      <footer class="text-center text-muted-amanat small py-3 border-top border-amanat bg-white mt-auto">
+        &copy; 2025 Amanat Community Transparency. All rights reserved.
+      </footer>
+    </main>
+    <!-- END: Main Content Area -->
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

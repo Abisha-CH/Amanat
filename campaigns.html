@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Campaigns | AMANAT (امانت) - Community Fund Transparency</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- BEGIN: MainNavbar -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-amanat">
+      <div class="container">
+        <a class="brand-logo" href="index.html">
+          <span class="logo-urdu">امانت</span>
+          <div class="brand-meta">
+            <strong>AMANAT</strong>
+            <small>Fund Transparency</small>
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+          aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="campaigns.html">Campaigns</a></li>
+            <li class="nav-item"><a class="nav-link" href="public/institutional-ledger.html">Institutional Ledger</a></li>
+          </ul>
+          <div class="navbar-auth d-flex align-items-center gap-2 flex-wrap pt-2 pt-lg-0">
+            <a class="text-decoration-none text-forest fw-semibold px-2 py-2" href="login.html">Login</a>
+            <a class="btn btn-forest btn-forest-pill" href="signup.html">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- END: MainNavbar -->
+
+  <main class="flex-grow-1 bg-surface">
+
+    <!-- BEGIN: HeroSearchBanner -->
+    <section class="listing-hero">
+      <div class="container">
+        <div style="max-width: 46rem;">
+          <span class="hero-badge mb-3">
+            <span class="pulse-dot"></span> Public Registry
+          </span>
+          <h1 class="hero-title mb-3">Explore Active Community Initiatives</h1>
+          <p class="text-muted-amanat fs-6 mb-0">
+            All campaigns feature 100% itemized public expense ledgers and external bank-matched receipts
+            in Pakistani Rupees (PKR).
+          </p>
+        </div>
+        <div class="mt-4 pt-4 border-top border-amanat d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-between gap-3">
+          <div class="search-shell flex-grow-1" style="max-width: 42rem;">
+            <i class="bi bi-search"></i>
+            <label class="visually-hidden" for="campaign-search">Search campaigns</label>
+            <input class="search-input" id="campaign-search" type="text"
+              placeholder="Search by campaign title, student club, or cause...">
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <label class="text-muted-amanat fw-medium text-nowrap mb-0" for="sort-filter" style="font-size: 0.74rem;">Sort By:</label>
+            <select class="form-select form-select-sm" id="sort-filter" style="min-width: 11rem;">
+              <option value="featured">Featured</option>
+              <option value="raised">Highest Funded</option>
+              <option value="newest">Most Recent</option>
+              <option value="deadline">Goal Deadline</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-3 d-flex align-items-center gap-2 overflow-auto pb-2" aria-label="Category Filters">
+          <button class="filter-pill active" type="button" aria-pressed="true" data-category-filter="all">All Categories</button>
+          <button class="filter-pill" type="button" aria-pressed="false" data-category-filter="Education">Education</button>
+          <button class="filter-pill" type="button" aria-pressed="false" data-category-filter="Healthcare">Healthcare</button>
+          <button class="filter-pill" type="button" aria-pressed="false" data-category-filter="Clean Water">Clean Water</button>
+          <button class="filter-pill" type="button" aria-pressed="false" data-category-filter="Campus Welfare">Campus Welfare</button>
+          <button class="filter-pill" type="button" aria-pressed="false" data-category-filter="Community Aid">Community Aid</button>
+        </div>
+        <div class="ledger-strip">
+          <span><i class="bi bi-broadcast me-1"></i> Live public registry — receipts matched to bank statements</span>
+          <span class="fw-semibold" id="campaign-count">4 campaigns</span>
+        </div>
+      </div>
+    </section>
+    <!-- END: HeroSearchBanner -->
+
+    <!-- BEGIN: CampaignGridSection -->
+    <section class="container py-4 py-lg-5">
+      <div class="row g-4" id="campaign-grid">
+
+        <!-- CARD 1 -->
+        <div class="col-md-6">
+          <article class="card-amanat card-hover campaign-card"
+            data-campaign
+            data-title="Clean Water Initiative"
+            data-org="Environmental Student Society"
+            data-category="Clean Water"
+            data-raised="75000"
+            data-date="2025-10-01"
+            data-deadline="2025-12-31">
+            <div class="campaign-thumb campaign-thumb-lg">
+              <img src="assets/images/campaign-water.jpg" alt="Clean Water Initiative Campus Project">
+              <span class="thumb-category">Infrastructure</span>
+              <span class="thumb-badge badge-amanat badge-forest" style="background: var(--amanat-forest); color:#fff; border:0;">
+                <span class="badge-dot bg-light-green"></span> Active
+              </span>
+            </div>
+            <div class="card-body">
+              <div>
+                <p class="text-sage fw-medium text-uppercase letter-wide mb-1" style="font-size: 0.66rem;">Environmental Student Society</p>
+                <h2 class="h5 fw-bold text-ink mb-2">Clean Water Initiative</h2>
+                <p class="text-muted-amanat small mb-0">
+                  Installing commercial reverse-osmosis filtration units in underprivileged student resident
+                  sectors with live water test reports.
+                </p>
+                <div class="mt-4">
+                  <div class="d-flex justify-content-between align-items-baseline small mb-2">
+                    <span class="fw-bold text-forest">PKR 75,000 <span class="text-muted-amanat fw-normal" style="font-size: 0.7rem;">raised</span></span>
+                    <span class="text-muted-amanat fw-semibold" style="font-size: 0.7rem;">Goal: PKR 100,000 (75%)</span>
+                  </div>
+                  <div class="progress progress-thick">
+                    <div class="progress-bar" style="width: 75%"></div>
+                  </div>
+                </div>
+                <div class="row g-2 mt-3 pt-3 border-top border-amanat small text-muted-amanat">
+                  <div class="col-6 d-flex align-items-center gap-2">
+                    <i class="bi bi-people text-forest"></i><span><strong>142</strong> Contributors</span>
+                  </div>
+                  <div class="col-6 d-flex align-items-center gap-2 justify-content-end">
+                    <i class="bi bi-patch-check text-sage"></i><span><strong>8</strong> Bills Approved</span>
+                  </div>
+                </div>
+                <div class="ledger-strip">
+                  <span class="fw-medium">PKR 48,000 Disbursed to Vendors</span>
+                  <span class="fw-bold text-uppercase letter-wide text-sage" style="font-size: 0.62rem;">Ledger Live</span>
+                </div>
+              </div>
+              <div class="mt-4">
+                <a class="btn btn-forest w-100 d-inline-flex align-items-center justify-content-center gap-2" href="campaign-details.html">
+                  <span>View Public Ledger &amp; Details</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="col-md-6">
+          <article class="card-amanat card-hover campaign-card"
+            data-campaign
+            data-title="Education for All"
+            data-org="FAST Civic Action Club"
+            data-category="Education"
+            data-raised="150000"
+            data-date="2025-09-15"
+            data-deadline="2025-11-30">
+            <div class="campaign-thumb campaign-thumb-lg">
+              <img src="assets/images/campaign-education.jpg" alt="Education for All Initiative">
+              <span class="thumb-category">Education</span>
+              <span class="thumb-badge badge-amanat badge-forest" style="background: var(--amanat-forest); color:#fff; border:0;">
+                <span class="badge-dot bg-light-green"></span> Active
+              </span>
+            </div>
+            <div class="card-body">
+              <div>
+                <p class="text-sage fw-medium text-uppercase letter-wide mb-1" style="font-size: 0.66rem;">FAST Civic Action Club</p>
+                <h2 class="h5 fw-bold text-ink mb-2">Education for All</h2>
+                <p class="text-muted-amanat small mb-0">
+                  Direct sponsorship of textbook bundles, classroom desk rehabilitation, and tuition aid for
+                  underprivileged children.
+                </p>
+                <div class="mt-4">
+                  <div class="d-flex justify-content-between align-items-baseline small mb-2">
+                    <span class="fw-bold text-forest">PKR 150,000 <span class="text-muted-amanat fw-normal" style="font-size: 0.7rem;">raised</span></span>
+                    <span class="text-muted-amanat fw-semibold" style="font-size: 0.7rem;">Goal: PKR 250,000 (60%)</span>
+                  </div>
+                  <div class="progress progress-thick">
+                    <div class="progress-bar" style="width: 60%"></div>
+                  </div>
+                </div>
+                <div class="row g-2 mt-3 pt-3 border-top border-amanat small text-muted-amanat">
+                  <div class="col-6 d-flex align-items-center gap-2">
+                    <i class="bi bi-people text-forest"></i><span><strong>210</strong> Contributors</span>
+                  </div>
+                  <div class="col-6 d-flex align-items-center gap-2 justify-content-end">
+                    <i class="bi bi-patch-check text-sage"></i><span><strong>12</strong> Invoices Cleared</span>
+                  </div>
+                </div>
+                <div class="ledger-strip">
+                  <span class="fw-medium">School supplies &amp; desk repairs audited</span>
+                  <span class="fw-bold text-uppercase letter-wide text-sage" style="font-size: 0.62rem;">Ledger Live</span>
+                </div>
+              </div>
+              <div class="mt-4">
+                <a class="btn btn-forest w-100 d-inline-flex align-items-center justify-content-center gap-2" href="campaign-details.html">
+                  <span>View Public Ledger &amp; Details</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="col-md-6">
+          <article class="card-amanat card-hover campaign-card"
+            data-campaign
+            data-title="Medical Aid Fund"
+            data-org="Red Crescent Youth Chapter"
+            data-category="Healthcare"
+            data-raised="95000"
+            data-date="2025-10-20"
+            data-deadline="2025-12-15">
+            <div class="campaign-thumb campaign-thumb-lg">
+              <img src="assets/images/campaign-medical.jpg" alt="Medical Aid Fund">
+              <span class="thumb-category">Healthcare</span>
+              <span class="thumb-badge badge-amanat badge-forest" style="background: var(--amanat-forest); color:#fff; border:0;">
+                <span class="badge-dot bg-light-green"></span> Active
+              </span>
+            </div>
+            <div class="card-body">
+              <div>
+                <p class="text-sage fw-medium text-uppercase letter-wide mb-1" style="font-size: 0.66rem;">Red Crescent Youth Chapter</p>
+                <h2 class="h5 fw-bold text-ink mb-2">Medical Aid Fund</h2>
+                <p class="text-muted-amanat small mb-0">
+                  Emergency hospitalization grants and life-saving prescription coverage for non-teaching
+                  campus staff and workers.
+                </p>
+                <div class="mt-4">
+                  <div class="d-flex justify-content-between align-items-baseline small mb-2">
+                    <span class="fw-bold text-forest">PKR 95,000 <span class="text-muted-amanat fw-normal" style="font-size: 0.7rem;">raised</span></span>
+                    <span class="text-muted-amanat fw-semibold" style="font-size: 0.7rem;">Goal: PKR 120,000 (79%)</span>
+                  </div>
+                  <div class="progress progress-thick">
+                    <div class="progress-bar" style="width: 79%"></div>
+                  </div>
+                </div>
+                <div class="row g-2 mt-3 pt-3 border-top border-amanat small text-muted-amanat">
+                  <div class="col-6 d-flex align-items-center gap-2">
+                    <i class="bi bi-people text-forest"></i><span><strong>88</strong> Contributors</span>
+                  </div>
+                  <div class="col-6 d-flex align-items-center gap-2 justify-content-end">
+                    <i class="bi bi-patch-check text-sage"></i><span><strong>5</strong> Verified Receipts</span>
+                  </div>
+                </div>
+                <div class="ledger-strip">
+                  <span class="fw-medium">Direct Pharmacy Wire Settlements</span>
+                  <span class="fw-bold text-uppercase letter-wide text-sage" style="font-size: 0.62rem;">Ledger Live</span>
+                </div>
+              </div>
+              <div class="mt-4">
+                <a class="btn btn-forest w-100 d-inline-flex align-items-center justify-content-center gap-2" href="campaign-details.html">
+                  <span>View Public Ledger &amp; Details</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="col-md-6">
+          <article class="card-amanat card-hover campaign-card"
+            data-campaign
+            data-title="Community Library Project"
+            data-org="Literary &amp; Debating Guild"
+            data-category="Campus Welfare"
+            data-raised="45000"
+            data-date="2025-08-01"
+            data-deadline="2025-10-31">
+            <div class="campaign-thumb campaign-thumb-lg">
+              <img src="assets/images/campaign-library.jpg" alt="Community Library Project">
+              <span class="thumb-category">Campus Welfare</span>
+              <span class="thumb-badge badge-amanat badge-forest" style="background: var(--amanat-forest); color:#fff; border:0;">
+                <span class="badge-dot bg-light-green"></span> Active
+              </span>
+            </div>
+            <div class="card-body">
+              <div>
+                <p class="text-sage fw-medium text-uppercase letter-wide mb-1" style="font-size: 0.66rem;">Literary &amp; Debating Guild</p>
+                <h2 class="h5 fw-bold text-ink mb-2">Community Library Project</h2>
+                <p class="text-muted-amanat small mb-0">
+                  Procurement of reference manuals, open-access study terminals, and solar inverter backup
+                  for public hall.
+                </p>
+                <div class="mt-4">
+                  <div class="d-flex justify-content-between align-items-baseline small mb-2">
+                    <span class="fw-bold text-forest">PKR 45,000 <span class="text-muted-amanat fw-normal" style="font-size: 0.7rem;">raised</span></span>
+                    <span class="text-muted-amanat fw-semibold" style="font-size: 0.7rem;">Goal: PKR 50,000 (90%)</span>
+                  </div>
+                  <div class="progress progress-thick">
+                    <div class="progress-bar" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="row g-2 mt-3 pt-3 border-top border-amanat small text-muted-amanat">
+                  <div class="col-6 d-flex align-items-center gap-2">
+                    <i class="bi bi-people text-forest"></i><span><strong>65</strong> Contributors</span>
+                  </div>
+                  <div class="col-6 d-flex align-items-center gap-2 justify-content-end">
+                    <i class="bi bi-patch-check text-sage"></i><span><strong>4</strong> Equipment Invoices</span>
+                  </div>
+                </div>
+                <div class="ledger-strip">
+                  <span class="fw-medium">Direct Supplier Payment Slips</span>
+                  <span class="fw-bold text-uppercase letter-wide text-sage" style="font-size: 0.62rem;">Ledger Live</span>
+                </div>
+              </div>
+              <div class="mt-4">
+                <a class="btn btn-forest w-100 d-inline-flex align-items-center justify-content-center gap-2" href="campaign-details.html">
+                  <span>View Public Ledger &amp; Details</span>
+                  <i class="bi bi-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div>
+
+      <div class="text-center py-5 d-none" id="campaign-empty">
+        <span class="icon-square bg-forest-soft mb-3"><i class="bi bi-search fs-4"></i></span>
+        <h3 class="h5 fw-bold text-forest">No campaigns match your filters</h3>
+        <p class="text-muted-amanat small mb-0">Try a different keyword or category.</p>
+      </div>
+    </section>
+    <!-- END: CampaignGridSection -->
+
+    <!-- BEGIN: TrustMetricStrip -->
+    <section class="container pb-5">
+      <div class="card-amanat p-4 p-md-5 d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
+        <div class="d-flex align-items-center gap-3">
+          <span class="icon-square bg-light-soft text-forest flex-shrink-0"><i class="bi bi-shield-check fs-5"></i></span>
+          <div>
+            <h4 class="h6 fw-bold text-ink mb-1">Dual-Treasurer Verified Signoff</h4>
+            <p class="small text-muted-amanat mb-0">
+              100% of receipts verified by dual-treasurer signoff before public archival.
+            </p>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap align-items-center gap-2">
+          <span class="badge-amanat badge-cream">Audit Standard ISO 26000</span>
+          <span class="badge-amanat badge-blush">Bank-Matched</span>
+        </div>
+      </div>
+    </section>
+    <!-- END: TrustMetricStrip -->
+
+  </main>
+
+  <!-- BEGIN: MainFooter -->
+  <footer class="footer-amanat">
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="logo-urdu text-forest" style="font-size: 1.9rem;">امانت</span>
+            <span class="fw-bold text-forest letter-wide border-start ps-2" style="font-size: 0.68rem;">Community Fund Transparency</span>
+          </div>
+          <p class="small mb-0" style="max-width: 24rem;">
+            Eliminating opacity in community and campus crowdfunding through real-time financial tracking,
+            itemized receipt validation, and dual-custody approval.
+          </p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h5 class="mb-3">Navigation</h5>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+            <li><a class="footer-link" href="index.html">Home Overview</a></li>
+            <li><a class="footer-link" href="campaigns.html">Active Campaigns</a></li>
+            <li><a class="footer-link" href="about.html">Audit Methodology</a></li>
+            <li><a class="footer-link" href="login.html">Treasurer Portal</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3">
+          <h5 class="mb-3">Integrity &amp; Policies</h5>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+            <li><a class="footer-link js-demo-link" data-demo-message="Public Ledger Terms are part of the interactive demo." href="#">Public Ledger Terms</a></li>
+            <li><a class="footer-link js-demo-link" data-demo-message="Voucher Verification Policy is part of the interactive demo." href="#">Voucher Verification Policy</a></li>
+            <li><a class="footer-link js-demo-link" data-demo-message="Whistleblower Support is part of the interactive demo." href="#">Whistleblower Support</a></li>
+            <li><a class="footer-link js-demo-link" data-demo-message="Contact Oversight Board is part of the interactive demo." href="#">Contact Oversight Board</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-4 pt-4 border-top border-amanat d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3 small footer-muted">
+        <p class="mb-0">&copy; 2025 AMANAT (امانت). All public donation ledgers cryptographically verified.</p>
+        <p class="mb-0">Built for transparent student societies, community trusts, and collective welfare.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- END: MainFooter -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

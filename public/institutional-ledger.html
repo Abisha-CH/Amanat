@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institutional Ledger | AMANAT (امانت) - Community Fund Transparency</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- BEGIN: MainNavbar -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-amanat">
+      <div class="container">
+        <a class="brand-logo" href="../index.html">
+          <span class="logo-urdu">امانت</span>
+          <div class="brand-meta">
+            <strong>AMANAT</strong>
+            <small>Fund Transparency</small>
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+          aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="../campaigns.html">Campaigns</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="institutional-ledger.html">Institutional Ledger</a></li>
+          </ul>
+          <div class="navbar-auth d-flex align-items-center gap-2 flex-wrap pt-2 pt-lg-0">
+            <a class="text-decoration-none text-forest fw-semibold px-2 py-2" href="../login.html">Login</a>
+            <a class="btn btn-forest btn-forest-pill" href="../signup.html">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- END: MainNavbar -->
+
+  <main class="flex-grow-1 bg-surface">
+
+    <!-- BEGIN: LedgerHero -->
+    <section class="listing-hero">
+      <div class="container">
+        <div class="row g-4 align-items-end">
+          <div class="col-lg-8">
+            <span class="hero-badge mb-3">
+              <span class="pulse-dot"></span> Public Archive &middot; Read-Only
+            </span>
+            <h1 class="hero-title mb-3">Institutional Ledger</h1>
+            <p class="text-muted-amanat fs-6 mb-0" style="max-width: 46rem;">
+              Every community fund registered with AMANAT publishes its consolidated inflow, approved
+              disbursements, and independently verified audit seals here. No registration required.
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <div class="ledger-toolbar d-flex flex-wrap align-items-center justify-content-lg-end gap-2">
+              <span class="d-inline-flex align-items-center gap-2 rounded-3 bg-surface px-3 py-2 small fw-semibold text-ink">
+                <i class="bi bi-calendar3 text-forest"></i> FY 2025 &ndash; Q1
+              </span>
+              <span class="sync-chip"><span class="sync-dot"></span> Verified 09:14 AM</span>
+            </div>
+          </div>
+        </div>
+        <div class="ledger-strip">
+          <span><i class="bi bi-broadcast me-1"></i> Snapshots are immutable once sealed and published</span>
+          <span class="fw-semibold">5 institutional funds</span>
+        </div>
+      </div>
+    </section>
+    <!-- END: LedgerHero -->
+
+    <section class="container py-4 py-lg-5">
+
+      <!-- BEGIN: Consolidated Metrics -->
+      <div class="row g-3 g-lg-4 mb-4">
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="metric-tile">
+            <span class="metric-label">Consolidated Inflow</span>
+            <div class="metric-value mt-2">PKR 3.42M</div>
+            <div class="metric-footer">
+              <span class="fw-semibold text-forest"><i class="bi bi-arrow-down-left me-1"></i>Verified credits</span>
+              <span>142 receipts</span>
+            </div>
+            <div class="metric-strip" style="background: var(--amanat-forest);"></div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="metric-tile">
+            <span class="metric-label">Approved Outflow</span>
+            <div class="metric-value mt-2">PKR 2.18M</div>
+            <div class="metric-footer">
+              <span class="fw-semibold"><i class="bi bi-receipt me-1"></i>Dual-signed</span>
+              <span>96 vouchers</span>
+            </div>
+            <div class="metric-strip" style="background: var(--amanat-sage);"></div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="metric-tile">
+            <span class="metric-label">Cash Reserves</span>
+            <div class="metric-value mt-2">PKR 1.24M</div>
+            <div class="metric-footer">
+              <span class="fw-semibold text-forest"><i class="bi bi-bank me-1"></i>Bank matched</span>
+              <span>0 unmatched rows</span>
+            </div>
+            <div class="metric-strip" style="background: var(--amanat-light);"></div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="metric-tile">
+            <span class="metric-label">Receipt Coverage</span>
+            <div class="metric-value mt-2">100%</div>
+            <div class="metric-footer">
+              <span class="fw-semibold text-forest"><i class="bi bi-patch-check me-1"></i>Itemized proof</span>
+              <span>ISO 26000</span>
+            </div>
+            <div class="metric-strip" style="background: var(--amanat-blush);"></div>
+          </div>
+        </div>
+      </div>
+      <!-- END: Consolidated Metrics -->
+
+      <!-- BEGIN: Institutional Ledger Table -->
+      <section class="ledger-panel mb-4" id="institutions">
+        <div class="panel-head d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+          <div>
+            <div class="d-flex align-items-center gap-2">
+              <h2 class="h6 fw-bold text-forest mb-0">Registered Institutional Funds</h2>
+              <span class="badge-amanat badge-soft">Immutable Journal</span>
+            </div>
+            <span class="text-muted-amanat" style="font-size: 0.72rem;">
+              Consolidated fund-level totals &middot; each row links to its underlying campaign receipts
+            </span>
+          </div>
+          <div class="d-flex flex-wrap align-items-center gap-2">
+            <div class="position-relative">
+              <i class="bi bi-funnel position-absolute text-muted-amanat" style="left: .65rem; top: 50%; transform: translateY(-50%); font-size: .8rem;"></i>
+              <select class="form-select form-select-sm bg-surface border-amanat ps-4" id="ledger-category-filter" aria-label="Filter institutional funds by focus area">
+                <option value="all">All Focus Areas</option>
+                <option value="education">Education</option>
+                <option value="water">Clean Water</option>
+                <option value="health">Healthcare</option>
+                <option value="welfare">Campus Welfare</option>
+                <option value="aid">Community Aid</option>
+              </select>
+            </div>
+            <button class="btn btn-outline-forest btn-sm js-copy-btn" data-copy="https://amanat.example/public/institutional-ledger.html" type="button">
+              <i class="bi bi-link-45deg me-1"></i>Copy Ledger Link
+            </button>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-ledger align-middle">
+            <thead>
+              <tr>
+                <th scope="col">Institution / Fund</th>
+                <th scope="col">Focus Area</th>
+                <th scope="col" class="text-end">Verified Inflow</th>
+                <th scope="col" class="text-end">Approved Outflow</th>
+                <th scope="col" class="text-end">Net Reserve</th>
+                <th scope="col">Audit Seal</th>
+                <th scope="col" class="text-end">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ledger-row data-category="education">
+                <td>
+                  <div class="fw-semibold text-forest">Oakridge STEM Initiative</div>
+                  <div class="text-muted-amanat mono" style="font-size: 0.64rem;">Fund ID #OK-2025-419</div>
+                </td>
+                <td><span class="badge-amanat badge-neutral">Education</span></td>
+                <td class="text-end money-in">PKR 31,840.00</td>
+                <td class="text-end money-out">PKR 18,420.00</td>
+                <td class="text-end fw-bold">PKR 13,420.00</td>
+                <td class="text-nowrap" style="font-size: 0.7rem;">
+                  <i class="bi bi-shield-lock text-forest me-1"></i><span class="mono">9c02...e3bb4</span>
+                </td>
+                <td class="text-end"><span class="badge-amanat badge-verified"><span class="badge-dot"></span> Sealed</span></td>
+              </tr>
+              <tr data-ledger-row data-category="water">
+                <td>
+                  <div class="fw-semibold text-forest">Green Crescent Water Trust</div>
+                  <div class="text-muted-amanat mono" style="font-size: 0.64rem;">Fund ID #GC-2025-118</div>
+                </td>
+                <td><span class="badge-amanat badge-neutral">Clean Water</span></td>
+                <td class="text-end money-in">PKR 1,120,000.00</td>
+                <td class="text-end money-out">PKR 742,600.00</td>
+                <td class="text-end fw-bold">PKR 377,400.00</td>
+                <td class="text-nowrap" style="font-size: 0.7rem;">
+                  <i class="bi bi-shield-lock text-forest me-1"></i><span class="mono">4f81...a72c</span>
+                </td>
+                <td class="text-end"><span class="badge-amanat badge-verified"><span class="badge-dot"></span> Sealed</span></td>
+              </tr>
+              <tr data-ledger-row data-category="health">
+                <td>
+                  <div class="fw-semibold text-forest">Al-Noor Medical Relief Fund</div>
+                  <div class="text-muted-amanat mono" style="font-size: 0.64rem;">Fund ID #AN-2025-204</div>
+                </td>
+                <td><span class="badge-amanat badge-neutral">Healthcare</span></td>
+                <td class="text-end money-in">PKR 890,500.00</td>
+                <td class="text-end money-out">PKR 610,250.00</td>
+                <td class="text-end fw-bold">PKR 280,250.00</td>
+                <td class="text-nowrap" style="font-size: 0.7rem;">
+                  <i class="bi bi-shield-lock text-forest me-1"></i><span class="mono">b310...07df</span>
+                </td>
+                <td class="text-end"><span class="badge-amanat badge-verified"><span class="badge-dot"></span> Sealed</span></td>
+              </tr>
+              <tr data-ledger-row data-category="welfare">
+                <td>
+                  <div class="fw-semibold text-forest">Bright Futures Scholarship Fund</div>
+                  <div class="text-muted-amanat mono" style="font-size: 0.64rem;">Fund ID #BF-2025-076</div>
+                </td>
+                <td><span class="badge-amanat badge-neutral">Campus Welfare</span></td>
+                <td class="text-end money-in">PKR 645,000.00</td>
+                <td class="text-end money-out">PKR 418,900.00</td>
+                <td class="text-end fw-bold">PKR 226,100.00</td>
+                <td class="text-nowrap" style="font-size: 0.7rem;">
+                  <i class="bi bi-shield-lock text-forest me-1"></i><span class="mono">7e29...910c</span>
+                </td>
+                <td class="text-end"><span class="badge-amanat badge-pending"><span class="badge-dot"></span> In Review</span></td>
+              </tr>
+              <tr data-ledger-row data-category="aid">
+                <td>
+                  <div class="fw-semibold text-forest">Neighbourhood Community Aid Pool</div>
+                  <div class="text-muted-amanat mono" style="font-size: 0.64rem;">Fund ID #NA-2025-331</div>
+                </td>
+                <td><span class="badge-amanat badge-neutral">Community Aid</span></td>
+                <td class="text-end money-in">PKR 428,700.00</td>
+                <td class="text-end money-out">PKR 389,100.00</td>
+                <td class="text-end fw-bold">PKR 39,600.00</td>
+                <td class="text-nowrap" style="font-size: 0.7rem;">
+                  <i class="bi bi-shield-lock text-forest me-1"></i><span class="mono">2d94...5b81</span>
+                </td>
+                <td class="text-end"><span class="badge-amanat badge-verified"><span class="badge-dot"></span> Sealed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-head d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2" style="border-bottom: 0; border-top: 1px solid #EEF1EE;">
+          <span class="text-muted-amanat" style="font-size: 0.7rem;">
+            Showing <span id="ledger-visible-count">5</span> of 5 institutional funds
+          </span>
+          <span class="text-muted-amanat" style="font-size: 0.7rem;">
+            Last public snapshot: 14 Mar 2025, 09:14 AM PKT
+          </span>
+        </div>
+      </section>
+      <!-- END: Institutional Ledger Table -->
+
+      <div class="row g-4">
+
+        <!-- BEGIN: Verification Steps -->
+        <div class="col-lg-7">
+          <div class="card-amanat h-100 p-4 p-lg-5">
+            <h2 class="h5 fw-bold text-ink mb-1">How to independently verify a fund</h2>
+            <p class="text-muted-amanat small mb-4">
+              No account, no fee, and no intermediary. Verification is designed to be repeated by any donor
+              or community auditor.
+            </p>
+            <div class="d-flex flex-column gap-4">
+              <div class="d-flex gap-3">
+                <span class="icon-square bg-forest-soft text-forest flex-shrink-0 fw-bold">1</span>
+                <div>
+                  <h3 class="h6 fw-bold text-ink mb-1">Open the sealed audit certificate</h3>
+                  <p class="small text-muted-amanat mb-0">
+                    Each fund row exposes its SHA-256 digest. Compare the digest against the treasurer-published
+                    certificate before reviewing individual vouchers.
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex gap-3">
+                <span class="icon-square bg-forest-soft text-forest flex-shrink-0 fw-bold">2</span>
+                <div>
+                  <h3 class="h6 fw-bold text-ink mb-1">Match receipts to bank statements</h3>
+                  <p class="small text-muted-amanat mb-0">
+                    Every outflow links to an itemized receipt and a dual-treasurer signature. Inflows must match
+                    the published bank credit line.
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex gap-3">
+                <span class="icon-square bg-forest-soft text-forest flex-shrink-0 fw-bold">3</span>
+                <div>
+                  <h3 class="h6 fw-bold text-ink mb-1">Report discrepancies publicly</h3>
+                  <p class="small text-muted-amanat mb-0">
+                    Any mismatch can be raised through the Oversight Board channel. Disputed entries remain visible
+                    in the journal until resolved and re-sealed.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 pt-4 border-top border-amanat d-flex flex-wrap align-items-center gap-2">
+              <a class="btn btn-forest" href="../campaigns.html">
+                Browse Campaign Ledgers <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+              <a class="btn btn-outline-forest" href="../about.html">Read Audit Methodology</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- BEGIN: Public Audit Seal -->
+        <div class="col-lg-5">
+          <div class="audit-seal h-100">
+            <div class="position-relative d-flex flex-column h-100">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="text-uppercase fw-bold" style="font-size: 0.62rem; letter-spacing: 0.14em; color: #B7EED5;">Public Verification</span>
+                <i class="bi bi-shield-lock" style="color: #9AF5C6;"></i>
+              </div>
+              <h2 class="h5 fw-bold mb-2">Latest Consolidated Audit Seal</h2>
+              <p class="mb-3" style="font-size: 0.76rem; color: #D7EADF;">
+                A single snapshot covering all five registered institutional funds as of Q1 2025.
+              </p>
+              <div class="seal-digest d-flex flex-column gap-2 mb-3">
+                <div class="d-flex align-items-center justify-content-between gap-2">
+                  <span>SHA-256 Digest:</span>
+                  <span class="mono text-truncate" style="font-size: 0.62rem; max-width: 9rem;">9c02a7be...e3bb4</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span>Seal Validity:</span>
+                  <span class="fw-semibold">30 Days (Publicly Discoverable)</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                  <span>Signers:</span>
+                  <span class="fw-semibold">2-of-2 Treasurers</span>
+                </div>
+              </div>
+              <button class="btn btn-blush w-100 fw-bold js-copy-btn mb-2" data-copy="9c02a7be4d1f8c63a52e0b9d7f41c8e2a6b05d39f7c1e4a8b2d6903c7f51e3bb4" type="button">
+                <i class="bi bi-clipboard-check me-1"></i>Copy Full Digest
+              </button>
+              <p class="mb-0 mt-auto" style="font-size: 0.66rem; color: #B7EED5;">
+                <i class="bi bi-info-circle me-1"></i>Certificates are re-issued after every multisig clearing.
+              </p>
+            </div>
+            <div class="seal-ring" aria-hidden="true"><i class="bi bi-safe2"></i></div>
+          </div>
+        </div>
+        <!-- END: Public Audit Seal -->
+
+      </div>
+
+      <!-- BEGIN: Transparency Note -->
+      <div class="card-amanat-soft mt-4 p-4 d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+        <div class="d-flex align-items-start gap-3">
+          <span class="icon-square bg-light-soft text-forest flex-shrink-0"><i class="bi bi-journal-text"></i></span>
+          <div>
+            <h3 class="h6 fw-bold text-ink mb-1">Civic Transparency Bylaw #4</h3>
+            <p class="small text-muted-amanat mb-0">
+              All expenditures exceeding PKR 100 are published here within 48 hours of treasurer multisig clearing.
+            </p>
+          </div>
+        </div>
+        <span class="badge-amanat badge-cream text-nowrap">ISO 26000 &middot; Bank-Matched</span>
+      </div>
+      <!-- END: Transparency Note -->
+
+    </section>
+
+  </main>
+
+  <!-- BEGIN: MainFooter -->
+  <footer class="footer-amanat">
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="logo-urdu text-forest" style="font-size: 1.9rem;">امانت</span>
+            <span class="fw-bold text-forest letter-wide border-start ps-2" style="font-size: 0.68rem;">Community Fund Transparency</span>
+          </div>
+          <p class="small mb-0" style="max-width: 24rem;">
+            Eliminating opacity in community and campus crowdfunding through real-time financial tracking,
+            itemized receipt validation, and dual-custody approval.
+          </p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h5 class="mb-3">Navigation</h5>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+            <li><a class="footer-link" href="../index.html">Home Overview</a></li>
+            <li><a class="footer-link" href="../campaigns.html">Active Campaigns</a></li>
+            <li><a class="footer-link" href="../about.html">Audit Methodology</a></li>
+            <li><a class="footer-link" href="../login.html">Treasurer Portal</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3">
+          <h5 class="mb-3">Integrity &amp; Policies</h5>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+            <li><a class="footer-link js-demo-link" data-demo-message="Public Ledger Terms are part of the interactive demo." href="#">Public Ledger Terms</a></li>
+            <li><a class="footer-link js-demo-link" data-demo-message="Voucher Verification Policy is part of the interactive demo." href="#">Voucher Verification Policy</a></li>
+            <li><a class="footer-link js-demo-link" data-demo-message="Whistleblower Support is part of the interactive demo." href="#">Whistleblower Support</a></li>
+            <li><a class="footer-link js-demo-link" data-demo-message="Contact Oversight Board is part of the interactive demo." href="#">Contact Oversight Board</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-4 pt-4 border-top border-amanat d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3 small footer-muted">
+        <p class="mb-0">&copy; 2025 AMANAT (امانت). All public donation ledgers cryptographically verified.</p>
+        <p class="mb-0">Built for transparent student societies, community trusts, and collective welfare.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- END: MainFooter -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

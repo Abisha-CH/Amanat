@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amanat - Login to Your Account</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="auth-page">
+
+  <main class="auth-shell" aria-label="Login split wrapper">
+
+    <!-- BEGIN: LeftHeroPanel -->
+    <section class="auth-brand col-lg-5">
+      <div class="position-absolute bg-white bg-opacity-10 rounded-circle" style="width: 14rem; height: 14rem; top: -5rem; left: -5rem; filter: blur(40px);"></div>
+      <div class="position-absolute rounded-circle" style="width: 16rem; height: 16rem; bottom: -4rem; right: -4rem; background: rgba(123,174,127,0.14); filter: blur(48px);"></div>
+
+      <header class="position-relative" style="z-index: 1;">
+        <a class="text-decoration-none d-inline-flex align-items-center gap-3" href="index.html" title="Go to Amanat Homepage">
+          <span class="logo-urdu" style="font-size: 2.6rem;">امانت</span>
+        </a>
+      </header>
+
+      <div class="position-relative my-4" style="z-index: 1;">
+        <h1 class="font-display fw-bold lh-tight mb-3" style="font-size: clamp(1.9rem, 3vw, 2.4rem);">
+          Welcome Back<br>
+          <span style="color: #A2CCA6;">to Transparency</span>
+        </h1>
+        <p class="mb-0" style="color: rgba(255,255,255,0.8); max-width: 22rem;">
+          Together, we can build a more accountable and generous community.
+        </p>
+      </div>
+
+      <div class="position-relative mt-auto pt-3" style="z-index: 1;">
+        <div class="auth-photo">
+          <img src="assets/images/auth-colonnade.jpg" alt="Colonnaded historic community institution building">
+          <span class="auth-photo-caption">Civic Trust &amp; Accountability</span>
+        </div>
+      </div>
+    </section>
+    <!-- END: LeftHeroPanel -->
+
+    <!-- BEGIN: RightFormPanel -->
+    <section class="auth-form-panel col-lg-7">
+      <div class="mx-auto w-100" style="max-width: 26rem;">
+        <header class="mb-4">
+          <h2 class="h3 fw-bold text-ink mb-1">Login to Your Account</h2>
+          <p class="text-muted-amanat small mb-0">Enter your credentials to access your civic dashboard.</p>
+        </header>
+
+        <div class="mb-4">
+          <label class="section-kicker mb-2">Select Access Role</label>
+          <div class="role-selector" role="radiogroup" aria-label="Role selection">
+            <button class="role-pill" type="button" data-role="Organizer" aria-pressed="false">Organizer</button>
+            <button class="role-pill" type="button" data-role="Treasurer" aria-pressed="false">Treasurer</button>
+            <button class="role-pill active" type="button" data-role="Contributor" aria-pressed="true">Contributor</button>
+          </div>
+        </div>
+
+        <form class="needs-validation vstack gap-3" id="login-form" data-form="login" novalidate>
+          <div>
+            <label class="form-label small fw-medium" for="email">Email Address</label>
+            <div class="input-icon-shell">
+              <i class="bi bi-envelope"></i>
+              <input class="form-control" id="email" name="email" type="email"
+                placeholder="name@community.org" autocomplete="email" required>
+              <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+          </div>
+          <div>
+            <label class="form-label small fw-medium" for="password">Password</label>
+            <div class="input-icon-shell">
+              <i class="bi bi-lock"></i>
+              <input class="form-control" id="password" name="password" type="password"
+                placeholder="••••••••" autocomplete="current-password" required style="padding-right: 2.5rem;">
+              <button class="password-toggle" type="button" data-toggle-password="#password" aria-label="Show password">
+                <i class="bi bi-eye"></i>
+              </button>
+              <div class="invalid-feedback">Please enter your password.</div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-between small pt-1">
+            <label class="d-inline-flex align-items-center gap-2 text-muted-amanat mb-0" style="cursor: pointer;">
+              <input class="form-check-input mt-0" id="remember" name="remember" type="checkbox">
+              <span>Remember me</span>
+            </label>
+            <a class="text-muted-amanat fw-medium text-decoration-none js-demo-link"
+              data-demo-message="Password recovery is part of the interactive demo." href="#">Forgot password?</a>
+          </div>
+          <button class="btn btn-forest w-100" type="submit">Sign In</button>
+        </form>
+
+        <div class="auth-divider my-4">or</div>
+
+        <a class="btn btn-outline-secondary w-100 fw-semibold" href="signup.html"
+          style="border-color:#D1D5DB; color:#1F2937; background:#fff;">Create an account</a>
+
+        <p class="text-center text-muted-amanat mt-3 mb-0" style="font-size: 0.68rem;">
+          Protected by Amanat civic transparency and cryptographic audit logs.
+        </p>
+      </div>
+    </section>
+    <!-- END: RightFormPanel -->
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

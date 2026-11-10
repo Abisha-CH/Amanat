@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amanat - Contributor Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+  <div class="app-shell">
+
+    <!-- BEGIN: LeftSidebarNavigation -->
+    <aside class="app-sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarLabel">
+      <div class="offcanvas-header">
+        <span class="brand-logo" id="sidebarLabel">
+          <span class="logo-urdu">امانت</span>
+          <span class="app-brand-role">Contributor</span>
+        </span>
+        <button class="btn-close" type="button" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="sidebar-inner">
+          <div>
+            <div class="app-brand d-none d-lg-block">
+              <a class="d-flex align-items-center gap-2 text-decoration-none" href="../index.html">
+                <span class="logo-urdu">امانت</span>
+                <span class="app-brand-role">Contributor</span>
+              </a>
+            </div>
+            <nav class="app-nav" aria-label="Main Navigation">
+              <span class="sidebar-label">My Portal</span>
+              <a class="sidebar-link" href="#overview"><i class="bi bi-house-door"></i><span>Overview</span></a>
+              <a class="sidebar-link" href="../campaigns.html"><i class="bi bi-search"></i><span>Explore Campaigns</span></a>
+              <a class="sidebar-link active" aria-current="page" href="#pledges"><i class="bi bi-shield-check"></i><span>My Pledges</span></a>
+              <a class="sidebar-link" href="#record-reference-section"><i class="bi bi-journal-check"></i><span>Payment References</span></a>
+              <a class="sidebar-link" href="#history-section"><i class="bi bi-clock-history"></i><span>Contribution History</span></a>
+              <a class="sidebar-link js-demo-link" data-demo-message="Settings are part of the interactive demo." href="#"><i class="bi bi-gear"></i><span>Settings</span></a>
+
+              <span class="sidebar-label">Public Site</span>
+              <a class="sidebar-link" href="../campaign-details.html"><i class="bi bi-file-earmark-text"></i><span>Campaign Details</span></a>
+              <a class="sidebar-link" href="../public/institutional-ledger.html"><i class="bi bi-bank"></i><span>Institutional Ledger</span></a>
+            </nav>
+          </div>
+          <div class="app-sidebar-footer">
+            <a class="sidebar-link danger" href="../index.html"><i class="bi bi-box-arrow-left"></i><span>Logout</span></a>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <!-- END: LeftSidebarNavigation -->
+
+    <!-- BEGIN: MainContentArea -->
+    <main class="app-main">
+
+      <header class="app-topbar">
+        <div class="d-flex align-items-center gap-2 flex-grow-1">
+          <button class="btn btn-outline-forest btn-sm d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-label="Open menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <div class="topbar-search" style="max-width: 26rem;">
+            <i class="bi bi-search"></i>
+            <input class="form-control" type="search" aria-label="Search campaigns" placeholder="Search campaigns...">
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 gap-sm-3">
+          <button class="notif-btn js-demo-link" data-demo-message="You have no new notifications." type="button" aria-label="Notifications">
+            <i class="bi bi-bell"></i><span class="notif-dot"></span>
+          </button>
+          <div class="vr d-none d-sm-block text-secondary opacity-25"></div>
+          <div class="dropdown">
+            <button class="profile-chip dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="avatar">HR</span>
+              <span class="d-none d-sm-block">
+                <span class="name d-block">Hamza Raza</span>
+                <span class="role d-block">Contributor</span>
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="font-size: 0.82rem;">
+              <li><a class="dropdown-item js-demo-link" data-demo-message="Profile settings are part of the interactive demo." href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="#history-section">Contribution History</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <div class="app-content" id="overview">
+
+        <div class="mb-4">
+          <h1 class="page-heading">Welcome, Hamza Raza</h1>
+          <p class="page-subheading mb-0">Track your pledges and contributions.</p>
+        </div>
+
+        <!-- BEGIN: MetricCardsGrid -->
+        <section class="row g-3 mb-4">
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-label"><i class="bi bi-cash-stack text-forest"></i> Total Pledged</div>
+              <div class="stat-value stat-value-sm mt-3">PKR 25,000</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-label"><i class="bi bi-check2-circle" style="color:#047857;"></i> Total Contributed</div>
+              <div class="stat-value stat-value-sm mt-3">PKR 18,000</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-label"><i class="bi bi-hourglass-split" style="color:#B45309;"></i> Pending Payments</div>
+              <div class="stat-value stat-value-sm mt-3" style="color: var(--amanat-amber);">PKR 7,000</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="stat-label"><i class="bi bi-collection text-forest"></i> Active Pledges</div>
+              <div class="stat-value mt-3">2</div>
+            </div>
+          </div>
+        </section>
+        <!-- END: MetricCardsGrid -->
+
+        <!-- BEGIN: ActivePledgesSection -->
+        <section class="mb-4" id="pledges">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h2 class="h5 fw-bold text-ink mb-0">Featured &amp; Active Pledges</h2>
+            <a class="small fw-semibold text-forest text-decoration-none d-inline-flex align-items-center gap-1" href="../campaigns.html">
+              View All <i class="bi bi-chevron-right"></i>
+            </a>
+          </div>
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <article class="card-amanat h-100 p-4 d-flex flex-column justify-content-between">
+                <div class="d-flex flex-column flex-sm-row gap-3">
+                  <img class="rounded-3 border border-amanat flex-shrink-0" style="width: 100%; height: 7rem; object-fit: cover; max-width: 9rem;"
+                    src="../assets/images/thumb-water.jpg" alt="Clean Water Initiative community well construction">
+                  <div class="flex-grow-1">
+                    <div class="d-flex align-items-start justify-content-between gap-2">
+                      <h3 class="h6 fw-bold text-ink mb-0">Clean Water Initiative</h3>
+                      <span class="badge-amanat badge-verified">Verified</span>
+                    </div>
+                    <p class="text-muted-amanat mt-1 mb-2 clamp-2" style="font-size: 0.72rem;">
+                      Providing clean drinking water for underserved communities.
+                    </p>
+                    <div class="d-flex align-items-baseline justify-content-between" style="font-size: 0.72rem;">
+                      <span class="text-muted-amanat fw-medium">PKR 75,000 raised</span>
+                      <span class="text-muted-amanat">Target: PKR 100,000</span>
+                    </div>
+                    <div class="progress progress-thin mt-2"><div class="progress-bar bg-forest" style="width: 75%"></div></div>
+                    <span class="d-inline-block text-forest fw-semibold mt-1" style="font-size: 0.68rem;">75% Funded</span>
+                  </div>
+                </div>
+                <div class="mt-3 pt-3 border-top border-amanat d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 bg-surface p-3 rounded-3">
+                  <div>
+                    <p class="mb-0 fw-semibold text-ink" style="font-size: 0.72rem;">Your Pledge: PKR 10,000</p>
+                    <p class="mb-0 fw-medium d-flex align-items-center gap-1" style="font-size: 0.68rem; color:#15803D;">
+                      <i class="bi bi-check2"></i> Paid: PKR 10,000 (Fully Settled)
+                    </p>
+                  </div>
+                  <a class="btn btn-outline-forest btn-sm" href="../campaign-details.html">View Campaign Ledger</a>
+                </div>
+              </article>
+            </div>
+            <div class="col-lg-6">
+              <article class="card-amanat h-100 p-4 d-flex flex-column justify-content-between">
+                <div class="d-flex flex-column flex-sm-row gap-3">
+                  <img class="rounded-3 border border-amanat flex-shrink-0" style="width: 100%; height: 7rem; object-fit: cover; max-width: 9rem;"
+                    src="../assets/images/thumb-education.jpg" alt="Education for All classroom refurbishment">
+                  <div class="flex-grow-1">
+                    <div class="d-flex align-items-start justify-content-between gap-2">
+                      <h3 class="h6 fw-bold text-ink mb-0">Education for All</h3>
+                      <span class="badge-amanat badge-pending">Pending Due</span>
+                    </div>
+                    <p class="text-muted-amanat mt-1 mb-2 clamp-2" style="font-size: 0.72rem;">
+                      Supporting quality education and classroom supplies for every child.
+                    </p>
+                    <div class="d-flex align-items-baseline justify-content-between" style="font-size: 0.72rem;">
+                      <span class="text-muted-amanat fw-medium">PKR 150,000 raised</span>
+                      <span class="text-muted-amanat">Target: PKR 250,000</span>
+                    </div>
+                    <div class="progress progress-thin mt-2"><div class="progress-bar bg-forest" style="width: 60%"></div></div>
+                    <span class="d-inline-block text-forest fw-semibold mt-1" style="font-size: 0.68rem;">60% Funded</span>
+                  </div>
+                </div>
+                <div class="mt-3 pt-3 border-top border-amanat d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 bg-surface p-3 rounded-3">
+                  <div>
+                    <p class="mb-0 fw-semibold text-ink" style="font-size: 0.72rem;">Your Pledge: PKR 15,000</p>
+                    <p class="mb-0 fw-medium" style="font-size: 0.68rem; color:#B45309;">
+                      Paid: PKR 8,000 &bull; <span class="fw-semibold">Remaining: PKR 7,000</span>
+                    </p>
+                  </div>
+                  <a class="btn btn-forest btn-sm" href="#record-reference-section">+ Record Reference</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+        <!-- END: ActivePledgesSection -->
+
+        <!-- BEGIN: RecordPaymentReferenceForm -->
+        <section class="panel p-4 mb-4" id="record-reference-section">
+          <div class="border-bottom border-amanat pb-3 mb-4">
+            <div class="d-flex align-items-center gap-2">
+              <span class="rounded-circle bg-forest" style="width: 0.6rem; height: 0.6rem;"></span>
+              <h2 class="h5 fw-bold text-ink mb-0">Record Payment Reference</h2>
+            </div>
+            <p class="text-muted-amanat small mb-0 mt-1">
+              Transferred funds via Bank Transfer, Raast, or JazzCash/Easypaisa? Submit your transaction ID
+              for treasurer verification.
+            </p>
+          </div>
+          <form class="needs-validation" data-form="pledge" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase letter-wide" for="campaign-select">Select Pledge / Campaign</label>
+                <select class="form-select bg-surface" id="campaign-select" name="campaign">
+                  <option value="edu-01" selected>Education for All (Remaining Due: PKR 7,000)</option>
+                  <option value="water-02">Clean Water Initiative (General Contribution)</option>
+                  <option value="med-03">Medical Aid Fund</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase letter-wide" for="amount-input">Amount Transferred (PKR)</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-surface fw-bold text-muted-amanat">PKR</span>
+                  <input class="form-control bg-surface fw-semibold" id="amount-input" name="amount" type="number" min="1" placeholder="e.g. 7000" value="7000" required>
+                  <div class="invalid-feedback">Please enter the amount transferred.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase letter-wide" for="trx-id">Bank Reference / Raast TRX ID</label>
+                <input class="form-control bg-surface mono" id="trx-id" name="transaction_id" type="text" placeholder="e.g. TRX7849201" required>
+                <div class="invalid-feedback">Please enter your transaction reference.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold text-uppercase letter-wide" for="date-sent">Date Sent</label>
+                <input class="form-control bg-surface" id="date-sent" name="date_sent" type="date" value="2023-10-24">
+              </div>
+              <div class="col-12">
+                <label class="form-label small fw-bold text-uppercase letter-wide" for="notes">Notes or Depositor Name (Optional)</label>
+                <input class="form-control bg-surface" id="notes" name="notes" type="text"
+                  placeholder="e.g. Paid via Meezan Raast app from Hamza Raza Account">
+              </div>
+            </div>
+            <div class="d-flex justify-content-end pt-4">
+              <button class="btn btn-forest d-inline-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto" type="submit">
+                <i class="bi bi-check2"></i> Submit Reference for Verification
+              </button>
+            </div>
+          </form>
+        </section>
+        <!-- END: RecordPaymentReferenceForm -->
+
+        <!-- BEGIN: ContributionHistoryTable -->
+        <section class="panel" id="history-section">
+          <div class="panel-header d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div>
+              <h2 class="panel-title">My Contribution History</h2>
+              <p class="panel-subtitle mb-0">Complete record of receipts and verification progress.</p>
+            </div>
+            <span class="badge-amanat badge-neutral">Total Records: 3</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-amanat">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Campaign</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">TRX ID</th>
+                  <th scope="col">Verification Status</th>
+                  <th scope="col" class="text-end">Receipt</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-muted-amanat text-nowrap">Oct 20, 2023</td>
+                  <td class="cell-title text-nowrap">Clean Water Initiative</td>
+                  <td class="fw-bold text-nowrap">PKR 10,000</td>
+                  <td class="cell-mono text-nowrap">TRX78452</td>
+                  <td class="text-nowrap"><span class="badge-amanat badge-verified"><span class="badge-dot"></span> Verified by Treasurer</span></td>
+                  <td class="text-end text-nowrap">
+                    <a class="small fw-medium text-forest text-decoration-none js-demo-link" data-demo-message="Receipt preview is part of the interactive demo." href="#">
+                      <i class="bi bi-eye"></i> View
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-muted-amanat text-nowrap">Oct 12, 2023</td>
+                  <td class="cell-title text-nowrap">Education for All</td>
+                  <td class="fw-bold text-nowrap">PKR 8,000</td>
+                  <td class="cell-mono text-nowrap">TRX78419</td>
+                  <td class="text-nowrap"><span class="badge-amanat badge-verified"><span class="badge-dot"></span> Verified by Treasurer</span></td>
+                  <td class="text-end text-nowrap">
+                    <a class="small fw-medium text-forest text-decoration-none js-demo-link" data-demo-message="Receipt preview is part of the interactive demo." href="#">
+                      <i class="bi bi-eye"></i> View
+                    </a>
+                  </td>
+                </tr>
+                <tr style="background: rgba(255,247,237,0.35);">
+                  <td class="text-muted-amanat text-nowrap">Oct 24, 2023</td>
+                  <td class="cell-title text-nowrap">Education for All</td>
+                  <td class="fw-bold text-nowrap">PKR 7,000</td>
+                  <td class="cell-mono text-nowrap">TRX78492</td>
+                  <td class="text-nowrap"><span class="badge-amanat badge-pending"><span class="badge-dot"></span> Under Review</span></td>
+                  <td class="text-end text-nowrap"><span class="text-muted-amanat fst-italic" style="font-size: 0.72rem;">Pending</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <!-- END: ContributionHistoryTable -->
+
+      </div>
+
+      <footer class="mt-auto py-3 px-4 border-top border-amanat bg-white">
+        <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2 small text-muted-amanat">
+          <p class="mb-0">&copy; 2023 AMANAT (امانت) - Community Fund Transparency. All rights reserved.</p>
+          <div class="d-flex flex-wrap gap-3 fw-medium">
+            <a class="footer-link js-demo-link" data-demo-message="Privacy Policy is part of the interactive demo." href="#">Privacy Policy</a>
+            <a class="footer-link js-demo-link" data-demo-message="Terms of Trust are part of the interactive demo." href="#">Terms of Trust</a>
+            <a class="footer-link js-demo-link" data-demo-message="Help &amp; Audits are part of the interactive demo." href="#">Help &amp; Audits</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+    <!-- END: MainContentArea -->
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>
