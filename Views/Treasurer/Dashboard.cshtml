@@ -1,0 +1,107 @@
+@model Amanat.ViewModels.TreasurerDashboardViewModel
+@{ Layout = "_DashboardLayout"; ViewData["Shell"] = Model.Shell; }
+
+<div class="mb-4">
+  <h1 class="page-heading">Payment Verification</h1>
+  <p class="page-subheading mb-0">Review and verify contributions.</p>
+</div>
+
+<section class="row g-3 mb-4">
+  @foreach (var stat in Model.Stats)
+  {
+    @await Html.PartialAsync("_StatCard", stat)
+  }
+</section>
+
+<section class="panel mb-4" id="verifications">
+  <div class="panel-header d-flex align-items-center justify-content-between">
+    <h2 class="panel-title">Pending Verifications</h2>
+    <a class="small fw-semibold text-forest text-decoration-none js-demo-link"
+      data-demo-message="Full verification queue is part of the interactive demo." href="#">View All &rarr;</a>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-amanat" id="verification-table">
+      <thead>
+        <tr>
+          <th scope="col">Contributor</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Transaction Ref</th>
+          <th scope="col">Status</th>
+          <th scope="col" class="text-end">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var verification in Model.Verifications)
+        {
+          @await Html.PartialAsync("_VerificationRow", verification)
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="panel p-4" id="submit-expense-section">
+  <div class="border-bottom border-amanat pb-3 mb-4">
+    <h2 class="panel-title">Submit New Campaign Expense</h2>
+    <p class="panel-subtitle mb-0">Record and attach audit proof for outgoing campaign expenditures for organizer approval.</p>
+  </div>
+  @if (TempData["ExpenseMessage"] is string message)
+  {
+    <p class="alert alert-success py-2 small">@message</p>
+  }
+  <form method="post" asp-controller="Treasurer" asp-action="SubmitExpense" novalidate>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label small fw-semibold" for="campaign-select">Select Campaign *</label>
+        <select class="form-select bg-surface" id="campaign-select" name="Campaign" required>
+          <option value="education-for-all">Education for All</option>
+          <option value="clean-water">Clean Water Initiative</option>
+          <option value="medical-aid">Medical Aid Fund</option>
+        </select>
+        <div class="invalid-feedback">Please select a campaign.</div>
+        @Html.ValidationMessage("Campaign", new { @class = "text-danger small" })
+      </div>
+      <div class="col-md-6">
+        <label class="form-label small fw-semibold" for="expense-amount">Expense Amount (PKR) *</label>
+        <div class="input-group">
+          <span class="input-group-text bg-surface fw-medium">PKR</span>
+          <input class="form-control bg-surface" id="expense-amount" name="Amount" type="number" min="1" placeholder="25,000" required>
+          <div class="invalid-feedback">Please enter the expense amount.</div>
+        </div>
+        @Html.ValidationMessage("Amount", new { @class = "text-danger small" })
+      </div>
+      <div class="col-12">
+        <label class="form-label small fw-semibold" for="payee-name">Vendor / Payee Name *</label>
+        <input class="form-control bg-surface" id="payee-name" name="PayeeName" type="text"
+          placeholder="e.g. Al-Madina Book Depot / National Waterworks" required>
+        <div class="invalid-feedback">Please enter the vendor or payee name.</div>
+        @Html.ValidationMessage("PayeeName", new { @class = "text-danger small" })
+      </div>
+      <div class="col-12">
+        <label class="form-label small fw-semibold" for="expense-desc">Description of Goods / Services *</label>
+        <textarea class="form-control bg-surface" id="expense-desc" name="Description" rows="3"
+          placeholder="Detail reason of expenditure, invoice reference, and intended utility..." required></textarea>
+        <div class="invalid-feedback">Please describe the expense.</div>
+        @Html.ValidationMessage("Description", new { @class = "text-danger small" })
+      </div>
+      <div class="col-12">
+        <label class="form-label small fw-semibold" for="file-upload">Receipt Upload (Proof of Payment) *</label>
+        <label class="avatar-upload d-block" for="file-upload">
+          <i class="bi bi-cloud-arrow-up fs-2 text-muted-amanat"></i>
+          <div class="mt-2 small text-muted-amanat">
+            <span class="fw-semibold text-forest">Upload invoice or bank receipt slip</span> or drag and drop
+          </div>
+          <p class="text-muted-amanat mb-0" style="font-size: 0.68rem;">PNG, JPG, PDF up to 10MB</p>
+          <input class="visually-hidden" id="file-upload" type="file" accept=".png,.jpg,.jpeg,.pdf">
+        </label>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end pt-4">
+      <button class="btn btn-forest w-100 w-sm-auto" type="submit">Submit for Organizer Approval</button>
+    </div>
+  </form>
+</section>
+
+<footer class="text-center text-muted-amanat small py-3 border-top border-amanat bg-white mt-auto">
+  &copy; 2025 Amanat Community Transparency. All rights reserved.
+</footer>

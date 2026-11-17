@@ -1,0 +1,86 @@
+@model IReadOnlyList<Amanat.Models.Campaign>
+
+    <!-- BEGIN: HeroSearchBanner -->
+    <section class="listing-hero">
+      <div class="container">
+        <div style="max-width: 46rem;">
+          <span class="hero-badge mb-3">
+            <span class="pulse-dot"></span> Public Registry
+          </span>
+          <h1 class="hero-title mb-3">Explore Active Community Initiatives</h1>
+          <p class="text-muted-amanat fs-6 mb-0">
+            All campaigns feature 100% itemized public expense ledgers and external bank-matched receipts
+            in Pakistani Rupees (PKR).
+          </p>
+        </div>
+        <div class="mt-4 pt-4 border-top border-amanat d-flex flex-column flex-md-row align-items-stretch align-items-md-center justify-content-between gap-3">
+          <div class="search-shell flex-grow-1" style="max-width: 42rem;">
+            <i class="bi bi-search"></i>
+            <label class="visually-hidden" for="campaign-search">Search campaigns</label>
+            <input class="search-input" id="campaign-search" type="text"
+              placeholder="Search by campaign title, student club, or cause...">
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <label class="text-muted-amanat fw-medium text-nowrap mb-0" for="sort-filter" style="font-size: 0.74rem;">Sort By:</label>
+            <select class="form-select form-select-sm" id="sort-filter" style="min-width: 11rem;">
+              <option value="featured">Featured</option>
+              <option value="raised">Highest Funded</option>
+              <option value="newest">Most Recent</option>
+              <option value="deadline">Goal Deadline</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-3 d-flex align-items-center gap-2 overflow-auto pb-2" aria-label="Category Filters">
+          <button class="filter-pill active" type="button" aria-pressed="true" data-category-filter="all">All Categories</button>
+          <button class="filter-pill" type="button" aria-pressed="false" data-category-filter="Education">Education</button>
+          <button class="filter-pill" type="button" aria-pressed="false" data-category-filter="Healthcare">Healthcare</button>
+          <button class="filter-pill" type="button" aria-pressed="false" data-category-filter="Clean Water">Clean Water</button>
+          <button class="filter-pill" type="button" aria-pressed="false" data-category-filter="Campus Welfare">Campus Welfare</button>
+          <button class="filter-pill" type="button" aria-pressed="false" data-category-filter="Community Aid">Community Aid</button>
+        </div>
+        <div class="ledger-strip">
+          <span><i class="bi bi-broadcast me-1"></i> Live public registry — receipts matched to bank statements</span>
+          <span class="fw-semibold" id="campaign-count">4 campaigns</span>
+        </div>
+      </div>
+    </section>
+    <!-- END: HeroSearchBanner -->
+
+    <!-- BEGIN: CampaignGridSection -->
+    <section class="container py-4 py-lg-5">
+      <div class="row g-4" id="campaign-grid">
+
+        @foreach (var campaign in Model)
+        {
+          @await Html.PartialAsync("_CampaignCard", campaign)
+        }
+
+      </div>
+
+      <div class="text-center py-5 d-none" id="campaign-empty">
+        <span class="icon-square bg-forest-soft mb-3"><i class="bi bi-search fs-4"></i></span>
+        <h3 class="h5 fw-bold text-forest">No campaigns match your filters</h3>
+        <p class="text-muted-amanat small mb-0">Try a different keyword or category.</p>
+      </div>
+    </section>
+    <!-- END: CampaignGridSection -->
+
+    <!-- BEGIN: TrustMetricStrip -->
+    <section class="container pb-5">
+      <div class="card-amanat p-4 p-md-5 d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
+        <div class="d-flex align-items-center gap-3">
+          <span class="icon-square bg-light-soft text-forest flex-shrink-0"><i class="bi bi-shield-check fs-5"></i></span>
+          <div>
+            <h4 class="h6 fw-bold text-ink mb-1">Dual-Treasurer Verified Signoff</h4>
+            <p class="small text-muted-amanat mb-0">
+              100% of receipts verified by dual-treasurer signoff before public archival.
+            </p>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap align-items-center gap-2">
+          <span class="badge-amanat badge-cream">Audit Standard ISO 26000</span>
+          <span class="badge-amanat badge-blush">Bank-Matched</span>
+        </div>
+      </div>
+    </section>
+    <!-- END: TrustMetricStrip -->

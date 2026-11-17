@@ -1,0 +1,45 @@
+@model string
+@{
+    var active = Model;
+    string LinkClass(string name) => "nav-link" + (active == name ? " active" : "");
+    string Current(string name) => active == name ? "page" : null!;
+}
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-amanat">
+    <div class="container">
+      <a class="brand-logo" asp-controller="Home" asp-action="Index">
+        <span class="logo-urdu">امانت</span>
+        <div class="brand-meta">
+          <strong>AMANAT</strong>
+          <small>Fund Transparency</small>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="@LinkClass("Home")" aria-current="@Current("Home")" asp-controller="Home" asp-action="Index">Home</a></li>
+          <li class="nav-item"><a class="@LinkClass("About")" aria-current="@Current("About")" asp-controller="Home" asp-action="About">About</a></li>
+          <li class="nav-item"><a class="@LinkClass("Campaigns")" aria-current="@Current("Campaigns")" asp-controller="Campaigns" asp-action="Index">Campaigns</a></li>
+          <li class="nav-item"><a class="@LinkClass("Ledger")" aria-current="@Current("Ledger")" asp-controller="Public" asp-action="Ledger">Institutional Ledger</a></li>
+        </ul>
+        <div class="navbar-auth d-flex align-items-center gap-2 flex-wrap pt-2 pt-lg-0">
+          @if (User.Identity?.IsAuthenticated == true)
+          {
+            <a class="text-decoration-none text-forest fw-semibold px-2 py-2" asp-controller="@(User.IsInRole(AmanatRoles.Treasurer) ? "Treasurer" : User.IsInRole(AmanatRoles.Organizer) ? "Organizer" : "Contributor")" asp-action="Dashboard">My Dashboard</a>
+            <form asp-area="Identity" asp-page="/Account/Logout" method="post" class="d-inline">
+              <button class="btn btn-forest btn-forest-pill" type="submit">Logout</button>
+            </form>
+          }
+          else
+          {
+            <a class="text-decoration-none text-forest fw-semibold px-2 py-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="btn btn-forest btn-forest-pill" asp-area="Identity" asp-page="/Account/Register">Sign Up</a>
+          }
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

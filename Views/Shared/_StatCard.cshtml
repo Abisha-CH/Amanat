@@ -1,0 +1,21 @@
+@model StatCard
+@{
+    var iconClass = Model.IconColor.StartsWith("text-", StringComparison.Ordinal) ? Model.IconColor : string.Empty;
+    var iconStyle = iconClass.Length == 0 ? $"color: {Model.IconColor};" : string.Empty;
+}
+<div class="col-6 col-lg-3">
+  <div class="stat-card">
+    <div class="stat-label"><i class="bi @Model.Icon @iconClass" style="@iconStyle"></i> @Model.Label</div>
+    @if (!string.IsNullOrEmpty(Model.BadgeText))
+    {
+      <div class="d-flex align-items-center justify-content-between mt-3 gap-2">
+        <span class="stat-value" style="@Model.ValueStyle">@Model.Value</span>
+        <span class="badge-amanat @Model.BadgeClass">@Model.BadgeText</span>
+      </div>
+    }
+    else
+    {
+      <div class="stat-value @(Model.SmallValue ? "stat-value-sm" : "") mt-3" style="@Model.ValueStyle">@Model.Value</div>
+    }
+  </div>
+</div>

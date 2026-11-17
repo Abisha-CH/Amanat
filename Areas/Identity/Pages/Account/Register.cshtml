@@ -1,0 +1,149 @@
+@page
+@model RegisterModel
+
+  <main class="auth-shell auth-shell-wide" aria-label="Signup split wrapper">
+
+    <section class="auth-brand col-lg-5">
+      <div class="position-relative" style="z-index: 1;">
+        <div class="d-flex align-items-center mb-4">
+          <span class="logo-urdu" style="font-size: 2.6rem;">امانت</span>
+        </div>
+        <h1 class="font-display fw-bold mb-2" style="font-size: clamp(1.9rem, 3vw, 2.3rem);">Join Amanat</h1>
+        <p class="mb-0" style="color: rgba(209,250,229,0.9); max-width: 20rem;">
+          Be part of a transparent and trusted community.
+        </p>
+      </div>
+
+      <div class="position-relative mt-4" style="z-index: 1;">
+        <div class="auth-photo auth-photo-square">
+          <img src="~/assets/images/auth-civic-building.jpg" alt="Civic and institutional building representing community integrity">
+        </div>
+        <div class="mt-3 d-flex align-items-center justify-content-center gap-2 text-uppercase letter-wide" style="font-size: 0.66rem; color: rgba(209,250,229,0.75);">
+          <span class="rounded-circle bg-light-green" style="width: 0.4rem; height: 0.4rem;"></span>
+          <span>Open Governance &amp; Full Transparency</span>
+        </div>
+      </div>
+
+      <div class="position-relative mt-4 d-flex justify-content-between" style="z-index: 1; font-size: 0.66rem; color: rgba(167,243,208,0.65);">
+        <span>&copy; 2024 Amanat Transparency Fund</span>
+        <span>Verified Public Ledger</span>
+      </div>
+      <div class="position-absolute rounded-circle" style="width: 18rem; height: 18rem; bottom: -6rem; left: -6rem; background: rgba(5,150,105,0.2); filter: blur(48px);"></div>
+      <div class="position-absolute rounded-circle" style="width: 14rem; height: 14rem; top: 0; right: 0; background: rgba(52,211,153,0.1); filter: blur(40px);"></div>
+    </section>
+
+    <section class="auth-form-panel col-lg-7">
+      <div class="mx-auto w-100" style="max-width: 28rem;">
+        <div class="mb-4">
+          <h2 class="h3 fw-bold text-ink mb-1">Create Your Account</h2>
+          <p class="text-muted-amanat small mb-0">Empower community projects with complete financial clarity.</p>
+        </div>
+
+        <form method="post" class="vstack gap-3">
+          <div asp-validation-summary="All" class="text-danger small"></div>
+
+          <div class="input-icon-shell">
+            <i class="bi bi-person"></i>
+            <label class="visually-hidden" for="fullName">Full Name</label>
+            <input class="form-control" asp-for="Input.FullName" id="fullName" type="text" placeholder="Full Name"
+              autocomplete="name">
+            <div class="invalid-feedback">Please enter your full name.</div>
+            <span asp-validation-for="Input.FullName" class="text-danger small"></span>
+          </div>
+
+          <div class="input-icon-shell">
+            <i class="bi bi-envelope"></i>
+            <label class="visually-hidden" for="email">Email Address</label>
+            <input class="form-control" asp-for="Input.Email" id="email" type="email" placeholder="Email Address"
+              autocomplete="email">
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+            <span asp-validation-for="Input.Email" class="text-danger small"></span>
+          </div>
+
+          <div class="input-icon-shell">
+            <i class="bi bi-telephone"></i>
+            <label class="visually-hidden" for="phone">Phone Number</label>
+            <input class="form-control" asp-for="Input.PhoneNumber" id="phone" type="tel" placeholder="Phone Number"
+              autocomplete="tel">
+            <span asp-validation-for="Input.PhoneNumber" class="text-danger small"></span>
+          </div>
+
+          <div class="input-icon-shell">
+            <i class="bi bi-lock"></i>
+            <label class="visually-hidden" for="password">Password</label>
+            <input class="form-control" asp-for="Input.Password" id="password" type="password" placeholder="Password"
+              autocomplete="new-password" style="padding-right: 2.5rem;">
+            <button class="password-toggle" type="button" data-toggle-password="#password" aria-label="Show password">
+              <i class="bi bi-eye"></i>
+            </button>
+            <div class="invalid-feedback">Password must be at least 8 characters.</div>
+            <span asp-validation-for="Input.Password" class="text-danger small"></span>
+          </div>
+
+          <div class="input-icon-shell">
+            <i class="bi bi-shield-check"></i>
+            <label class="visually-hidden" for="confirm-password">Confirm Password</label>
+            <input class="form-control" asp-for="Input.ConfirmPassword" id="confirm-password" type="password"
+              placeholder="Confirm Password" autocomplete="new-password" style="padding-right: 2.5rem;">
+            <button class="password-toggle" type="button" data-toggle-password="#confirm-password" aria-label="Show password">
+              <i class="bi bi-eye"></i>
+            </button>
+            <div class="invalid-feedback">Passwords do not match.</div>
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
+          </div>
+
+          <div class="pt-1">
+            <span class="section-kicker mb-2">Select Role:</span>
+            <div class="row g-2">
+              <div class="col-4">
+                <label class="role-card h-100">
+                  <span class="d-flex align-items-center gap-2">
+                    <input class="form-check-input mt-0" type="radio" asp-for="Input.Role" value="@AmanatRoles.Organizer">
+                    <span class="small fw-semibold text-ink">Organizer</span>
+                  </span>
+                  <span class="d-none d-sm-block mt-1 text-muted-amanat" style="font-size: 0.64rem;">Initiate &amp; lead campaigns</span>
+                </label>
+              </div>
+              <div class="col-4">
+                <label class="role-card h-100">
+                  <span class="d-flex align-items-center gap-2">
+                    <input class="form-check-input mt-0" type="radio" asp-for="Input.Role" value="@AmanatRoles.Treasurer">
+                    <span class="small fw-semibold text-ink">Treasurer</span>
+                  </span>
+                  <span class="d-none d-sm-block mt-1 text-muted-amanat" style="font-size: 0.64rem;">Audit &amp; verify receipts</span>
+                </label>
+              </div>
+              <div class="col-4">
+                <label class="role-card h-100">
+                  <span class="d-flex align-items-center gap-2">
+                    <input class="form-check-input mt-0" type="radio" asp-for="Input.Role" value="@AmanatRoles.Contributor">
+                    <span class="small fw-semibold text-ink">Contributor</span>
+                  </span>
+                  <span class="d-none d-sm-block mt-1 text-muted-amanat" style="font-size: 0.64rem;">Pledge &amp; track funds</span>
+                </label>
+              </div>
+            </div>
+            <span asp-validation-for="Input.Role" class="text-danger small"></span>
+          </div>
+
+          <div class="d-flex align-items-start pt-1">
+            <input class="form-check-input mt-1" asp-for="Input.Terms" id="terms" type="checkbox">
+            <label class="form-check-label small text-muted-amanat ms-2" for="terms">
+              I agree to the
+              <a class="fw-medium text-forest js-demo-link" data-demo-message="Terms and Conditions are part of the interactive demo." href="#">Terms and Conditions</a>
+              and Civic Transparency Charter.
+            </label>
+          </div>
+          <span asp-validation-for="Input.Terms" class="text-danger small"></span>
+
+          <button class="btn btn-forest w-100" type="submit">Create Account</button>
+        </form>
+
+        <p class="text-center small text-muted-amanat mt-4 mb-0">
+          Already have an account?
+          <a class="fw-semibold text-forest text-decoration-none" asp-area="Identity" asp-page="/Account/Login">Sign In</a>
+        </p>
+      </div>
+    </section>
+
+  </main>

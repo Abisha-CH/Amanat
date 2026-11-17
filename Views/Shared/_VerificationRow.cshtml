@@ -1,0 +1,8 @@
+@model VerificationRow
+<tr>
+  <td class="cell-title">@Model.Contributor</td>
+  <td class="fw-medium">@Model.AmountText</td>
+  <td class="cell-mono">@Model.Reference</td>
+  <td><span class="badge-amanat badge-pending js-status">Pending</span></td>
+  <td class="text-end"><button class="btn btn-forest btn-sm js-verify-btn" data-label="@Model.Contributor's contribution" type="button">Verify</button></td>
+</tr>

@@ -1,0 +1,23 @@
+@model CashbookEntry
+<tr data-ledger-row data-category="@Model.CategoryKey">
+  <td class="text-nowrap">
+    <div class="fw-bold">@Model.DateText</div>
+    <div class="mono text-muted-amanat" style="font-size: 0.62rem;">@Model.Reference</div>
+  </td>
+  <td>
+    <div class="fw-semibold text-forest">@Model.Party</div>
+    <div class="text-muted-amanat" style="font-size: 0.66rem;">@Model.Detail</div>
+  </td>
+  <td class="text-nowrap"><span class="badge-amanat @(Model.CategoryKey == "civic" ? "badge-soft" : "badge-neutral")">@Model.Category</span></td>
+  <td class="text-end text-nowrap money-in">@Model.InflowText</td>
+  <td class="text-end text-nowrap money-out">@Model.OutflowText</td>
+  <td class="text-center text-nowrap">
+    <button class="proof-btn js-demo-link" data-demo-message="Document preview is part of the interactive demo." type="button">
+      <i class="bi @Model.ProofIcon"></i> @Model.ProofFile
+    </button>
+  </td>
+  <td class="text-nowrap" style="font-size: 0.7rem;">
+    <i class="bi @(Model.IsPending ? "bi-arrow-repeat" : "bi-patch-check-fill") text-forest me-1"></i>@Model.AuditStamp
+  </td>
+  <td class="text-end text-nowrap"><span class="badge-amanat @(Model.IsPending ? "badge-pending" : "badge-verified")"><span class="badge-dot"></span> @Model.Status</span></td>
+</tr>

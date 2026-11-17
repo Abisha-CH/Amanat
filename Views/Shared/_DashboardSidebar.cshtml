@@ -1,0 +1,88 @@
+@model DashboardShell
+<aside class="app-sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarLabel">
+  <div class="offcanvas-header">
+    <span class="brand-logo" id="sidebarLabel">
+      <span class="logo-urdu">امانت</span>
+      <span class="app-brand-role">@Model.Role</span>
+    </span>
+    <button class="btn-close" type="button" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="sidebar-inner">
+      <div>
+        <div class="app-brand d-none d-lg-block">
+          @if (Model.ShowRoleHeaderLink)
+          {
+            <a class="d-flex align-items-center gap-2 text-decoration-none" asp-controller="Home" asp-action="Index">
+              <span class="logo-urdu">امانت</span>
+              <span class="app-brand-role">@Model.Role</span>
+            </a>
+          }
+          else
+          {
+            <div class="d-flex align-items-center gap-2">
+              <span class="logo-urdu">امانت</span>
+              <span class="app-brand-role">@Model.Role</span>
+            </div>
+            <p class="text-muted-amanat text-uppercase letter-wide mb-0 mt-2" style="font-size: 0.55rem;">Community Fund Transparency</p>
+          }
+        </div>
+        <nav class="app-nav" aria-label="Main Navigation">
+          @if (Model.Role == AmanatRoles.Contributor)
+          {
+            <span class="sidebar-label">My Portal</span>
+            <a class="sidebar-link" href="#overview"><i class="bi bi-house-door"></i><span>Overview</span></a>
+            <a class="sidebar-link" asp-controller="Campaigns" asp-action="Index"><i class="bi bi-search"></i><span>Explore Campaigns</span></a>
+            <a class="sidebar-link @(Model.ActiveLink == "pledges" ? "active" : "")" aria-current="@(Model.ActiveLink == "pledges" ? "page" : null)" href="#pledges"><i class="bi bi-shield-check"></i><span>My Pledges</span></a>
+            <a class="sidebar-link" href="#record-reference-section"><i class="bi bi-journal-check"></i><span>Payment References</span></a>
+            <a class="sidebar-link" href="#history-section"><i class="bi bi-clock-history"></i><span>Contribution History</span></a>
+            <a class="sidebar-link js-demo-link" data-demo-message="Settings are part of the interactive demo." href="#"><i class="bi bi-gear"></i><span>Settings</span></a>
+
+            <span class="sidebar-label">Public Site</span>
+            <a class="sidebar-link" asp-controller="Campaigns" asp-action="Details" asp-route-id="education-for-all"><i class="bi bi-file-earmark-text"></i><span>Campaign Details</span></a>
+            <a class="sidebar-link" asp-controller="Public" asp-action="Ledger"><i class="bi bi-bank"></i><span>Institutional Ledger</span></a>
+          }
+          else if (Model.Role == AmanatRoles.Organizer)
+          {
+            <span class="sidebar-label">Workspace</span>
+            <a class="sidebar-link active" href="#overview"><i class="bi bi-house-door"></i><span>Overview</span></a>
+            <a class="sidebar-link js-demo-link" data-demo-message="Campaign management is part of the interactive demo." href="#"><i class="bi bi-collection"></i><span>My Campaigns</span></a>
+            <a class="sidebar-link js-demo-link" data-demo-message="Campaign creation is part of the interactive demo." href="#"><i class="bi bi-plus-circle"></i><span>Create Campaign</span></a>
+            <a class="sidebar-link" href="#approvals">
+              <i class="bi bi-check2-circle"></i><span>Expense Approvals</span>
+              <span class="badge-amanat badge-pending">2</span>
+            </a>
+            <a class="sidebar-link js-demo-link" data-demo-message="Reports are part of the interactive demo." href="#"><i class="bi bi-bar-chart"></i><span>Reports</span></a>
+            <a class="sidebar-link js-demo-link" data-demo-message="Audit history is part of the interactive demo." href="#"><i class="bi bi-clock-history"></i><span>Audit History</span></a>
+            <a class="sidebar-link js-demo-link" data-demo-message="Settings are part of the interactive demo." href="#"><i class="bi bi-gear"></i><span>Settings</span></a>
+
+            <span class="sidebar-label">Public Site</span>
+            <a class="sidebar-link" asp-controller="Campaigns" asp-action="Index"><i class="bi bi-megaphone"></i><span>Campaigns</span></a>
+            <a class="sidebar-link" asp-controller="Public" asp-action="Ledger"><i class="bi bi-journal-text"></i><span>Institutional Ledger</span></a>
+          }
+          else
+          {
+            <span class="sidebar-label">Verification Desk</span>
+            <a class="sidebar-link" href="#overview"><i class="bi bi-house-door"></i><span>Overview</span></a>
+            <a class="sidebar-link active" aria-current="page" href="#verifications"><i class="bi bi-shield-check"></i><span>Payment Verification</span></a>
+            <a class="sidebar-link" href="#verifications"><i class="bi bi-check2-square"></i><span>Verified Contributions</span></a>
+            <a class="sidebar-link" href="#submit-expense-section"><i class="bi bi-plus-circle"></i><span>Submit Expense</span></a>
+            <a class="sidebar-link js-demo-link" data-demo-message="Expense history is part of the interactive demo." href="#"><i class="bi bi-cash-stack"></i><span>Expense History</span></a>
+            <a class="sidebar-link js-demo-link" data-demo-message="Receipt archive is part of the interactive demo." href="#"><i class="bi bi-receipt"></i><span>Receipts</span></a>
+            <a class="sidebar-link js-demo-link" data-demo-message="Settings are part of the interactive demo." href="#"><i class="bi bi-gear"></i><span>Settings</span></a>
+
+            <span class="sidebar-label">Ledgers</span>
+            <a class="sidebar-link" asp-controller="Treasurer" asp-action="Ledger"><i class="bi bi-journal-text"></i><span>Cashbook Ledger</span></a>
+            <a class="sidebar-link" asp-controller="Public" asp-action="Ledger"><i class="bi bi-bank"></i><span>Institutional Ledger</span></a>
+            <a class="sidebar-link" asp-controller="Campaigns" asp-action="Index"><i class="bi bi-megaphone"></i><span>Campaigns</span></a>
+          }
+        </nav>
+      </div>
+      <div class="app-sidebar-footer">
+        <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+          <button class="sidebar-link danger" type="submit"><i class="bi bi-box-arrow-left"></i><span>Logout</span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,15 @@
+@model MiniCampaign
+<div class="mini-campaign">
+  <span class="thumb-icon" style="@Model.IconStyle"><i class="bi @Model.Icon"></i></span>
+  <div class="flex-grow-1 min-w-0">
+    <div class="d-flex align-items-center justify-content-between gap-2">
+      <h3 class="mb-0 text-truncate">@Model.Title</h3>
+      <span class="pct @(Model.Percent == 100 ? "text-muted-amanat" : "")">@Model.Percent%</span>
+    </div>
+    <div class="d-flex align-items-center gap-2 mt-1">
+      <span class="badge-amanat @(Model.Percent == 100 ? "badge-neutral" : "badge-verified")">@(Model.Percent == 100 ? "Completed" : "Active")</span>
+      <span class="meta">&bull; @Model.TargetText</span>
+    </div>
+    <div class="progress progress-thin mt-2"><div class="progress-bar" style="width: @Model.Percent%"></div></div>
+  </div>
+</div>

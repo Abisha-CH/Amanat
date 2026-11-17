@@ -1,0 +1,9 @@
+@model ContributionRow
+<tr>
+  <td class="cell-title">@Model.Campaign</td>
+  <td class="cell-mono">@Model.DateText</td>
+  <td class="cell-mono">@Model.Reference</td>
+  <td class="fw-semibold">@Model.AmountText</td>
+  <td><span class="badge-amanat @(Model.Status == "Verified" ? "badge-verified" : "badge-pending")">@Model.Status</span></td>
+  <td class="text-end"><a class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Receipt preview is part of the interactive demo." href="#">View Slip</a></td>
+</tr>

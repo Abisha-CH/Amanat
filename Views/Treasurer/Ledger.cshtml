@@ -1,0 +1,395 @@
+@model Amanat.ViewModels.TreasurerLedgerViewModel
+@{ Layout = "_LedgerLayout"; }
+
+<section class="ledger-hero mb-4">
+  <div class="row g-4 align-items-lg-end">
+    <div class="col-lg-8">
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <span class="ledger-kicker">Fiscal Accounting</span>
+        <span class="d-inline-flex align-items-center gap-1 small text-muted-amanat">
+          <i class="bi bi-patch-check-fill text-forest"></i>
+          Oakridge STEM Initiative &middot; Fund ID #OK-2025-419
+        </span>
+      </div>
+      <h1 class="ledger-title mt-2 mb-1">Treasurer Cashbook &amp; Disbursement Ledger</h1>
+      <p class="text-muted-amanat mb-0" style="max-width: 48rem;">
+        Real-time double-entry civic treasury with multisig audit trails and direct community
+        proof verification.
+      </p>
+    </div>
+    <div class="col-lg-4">
+      <div class="ledger-toolbar d-flex flex-wrap align-items-center justify-content-lg-end gap-2">
+        <span class="d-inline-flex align-items-center gap-2 rounded-3 bg-surface px-3 py-2 small fw-semibold text-ink">
+          <i class="bi bi-calendar3 text-forest"></i> Q1 2025 (Jan &ndash; Mar)
+        </span>
+        <a class="btn btn-sm btn-link text-decoration-none text-muted-amanat js-demo-link"
+           data-demo-message="Prior fiscal years are part of the interactive demo." href="#">
+          <i class="bi bi-clock-history me-1"></i> Prior Fiscal Years
+        </a>
+        <span class="sync-chip ms-lg-auto">
+          <span class="sync-dot"></span> Block #1,842,091 Syncing
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="row g-3 g-lg-4 mb-4">
+  <div class="col-12 col-sm-6 col-xl-3">
+    <div class="metric-tile">
+      <div class="d-flex align-items-start justify-content-between">
+        <div>
+          <span class="metric-label">Total Verified Inflow</span>
+          <div class="metric-value mt-2">Rs. 31,840.00</div>
+        </div>
+        <span class="metric-icon"><i class="bi bi-arrow-down-left"></i></span>
+      </div>
+      <div class="metric-footer">
+        <span class="fw-semibold text-forest"><i class="bi bi-graph-up-arrow me-1"></i>+18.4% vs Q4</span>
+        <span>42 civic backers</span>
+      </div>
+      <div class="metric-strip" style="background: var(--amanat-forest);"></div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 col-xl-3">
+    <div class="metric-tile">
+      <div class="d-flex align-items-start justify-content-between">
+        <div>
+          <span class="metric-label">Total Approved Outflow</span>
+          <div class="metric-value mt-2">Rs. 18,420.00</div>
+        </div>
+        <span class="metric-icon" style="background:#EFF4EF; color: var(--amanat-forest);"><i class="bi bi-arrow-up-right"></i></span>
+      </div>
+      <div class="metric-footer">
+        <span class="fw-semibold"><i class="bi bi-receipt me-1"></i>57.8% of target cap</span>
+        <span>29 vouchers cleared</span>
+      </div>
+      <div class="metric-strip" style="background: var(--amanat-sage);"></div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 col-xl-3">
+    <div class="metric-tile">
+      <div class="d-flex align-items-start justify-content-between">
+        <div>
+          <span class="metric-label">Pending Verification</span>
+          <div class="metric-value mt-2" style="color: var(--amanat-forest);">Rs. 1,650.00</div>
+        </div>
+        <span class="metric-icon" style="background:#FEF2F2; color:#B91C1C;"><i class="bi bi-hourglass-split"></i></span>
+      </div>
+      <div class="metric-footer">
+        <span class="fw-semibold" style="color:#B91C1C;"><span class="badge-dot me-1" style="background:#B91C1C;"></span>4 items require review</span>
+        <a class="text-forest fw-semibold text-decoration-none" href="#pending-queue">Review Queue &rarr;</a>
+      </div>
+      <div class="metric-strip" style="background:#B91C1C;"></div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 col-xl-3">
+    <div class="metric-tile">
+      <div class="d-flex align-items-start justify-content-between">
+        <div>
+          <span class="metric-label">Petty Cash / Bank Drift</span>
+          <div class="metric-value mt-2" style="color: var(--amanat-forest);">Rs. 0.00</div>
+        </div>
+        <span class="metric-icon" style="background:#F1F8F3; color: var(--amanat-forest);"><i class="bi bi-sliders2"></i></span>
+      </div>
+      <div class="metric-footer">
+        <span class="fw-semibold text-forest"><i class="bi bi-check-circle me-1"></i>Zero Discrepancy</span>
+        <span class="mono" style="font-size: 0.62rem;">FIRST-NATL: 9940</span>
+      </div>
+      <div class="metric-strip" style="background: var(--amanat-light);"></div>
+    </div>
+  </div>
+</section>
+
+<section class="ledger-action-bar d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+  <div class="d-flex flex-wrap align-items-center gap-2">
+    <a class="btn btn-forest btn-sm d-inline-flex align-items-center gap-2" asp-controller="Treasurer" asp-action="Dashboard">
+      <i class="bi bi-credit-card-2-front"></i> Log Disbursement / Expense
+    </a>
+    <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Bank statement reconciliation is part of the interactive demo." type="button">
+      <i class="bi bi-bank me-1"></i> Reconcile Bank Statement
+    </button>
+    <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Batch approval is part of the interactive demo." type="button">
+      <i class="bi bi-check2-square me-1"></i> Batch Approve Pledges (8)
+    </button>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Audit sheet export is part of the interactive demo." type="button">
+      <i class="bi bi-download me-1"></i> Export Audit Sheet
+    </button>
+    <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Printing the ledger summary is part of the interactive demo." type="button" title="Print Ledger Summary" aria-label="Print Ledger Summary">
+      <i class="bi bi-printer"></i>
+    </button>
+  </div>
+</section>
+
+<div class="row g-4">
+  <div class="col-xl-8">
+
+    <section class="ledger-panel mb-4" id="pending-queue">
+      <div class="panel-head d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="d-flex align-items-center gap-2">
+          <span class="d-inline-flex rounded-circle" style="width:.55rem; height:.55rem; background:#B91C1C;"></span>
+          <div>
+            <h2 class="h6 fw-bold text-forest mb-0">Pending Approvals Queue</h2>
+            <span class="text-muted-amanat" style="font-size: 0.7rem;">3 disbursements require your verified signature</span>
+          </div>
+        </div>
+        <span class="badge-amanat badge-danger">Action Required: Rs. 1,041.70</span>
+      </div>
+      <div class="p-3 p-lg-4 d-flex flex-column gap-3">
+        @foreach (var item in Model.PendingApprovals)
+        {
+          <div class="pending-card d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+            <div class="d-flex align-items-start gap-3">
+              <span class="metric-icon" style="background:#EFF4EF;"><i class="bi @item.Icon"></i></span>
+              <div>
+                <div class="d-flex flex-wrap align-items-center gap-2">
+                  <span class="fw-semibold text-ink">@item.Title</span>
+                  <span class="badge-amanat badge-neutral mono">@item.Reference</span>
+                </div>
+                <div class="d-flex flex-wrap align-items-center gap-2 text-muted-amanat mt-1" style="font-size: 0.7rem;">
+                  <span><i class="bi bi-person me-1"></i>@item.Submitter</span>
+                  <span>&bull;</span><span>@item.SubmittedText</span><span>&bull;</span>
+                  <a class="text-forest fw-semibold text-decoration-none js-demo-link" data-demo-message="Invoice preview is part of the interactive demo." href="#">
+                    <i class="bi bi-paperclip me-1"></i>@item.Attachment
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between justify-content-md-end gap-3 flex-shrink-0 pt-3 pt-md-0 border-top border-amanat">
+              <span class="fw-bold mono">@item.AmountText</span>
+              <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-forest btn-sm js-sign-btn" type="button" title="Approve and sign">
+                  <i class="bi bi-pen me-1"></i>Approve &amp; Sign
+                </button>
+                <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Clarification request sent to the submitter." type="button" title="Request clarification" aria-label="Request clarification"><i class="bi bi-question-circle"></i></button>
+                <button class="btn btn-outline-forest btn-sm js-reject-btn" type="button" title="Reject disbursement" aria-label="Reject disbursement"><i class="bi bi-x-lg"></i></button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section class="ledger-panel" id="cashbook">
+      <div class="panel-head d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3">
+        <div>
+          <div class="d-flex align-items-center gap-2">
+            <h2 class="h6 fw-bold text-forest mb-0">General Cashbook Ledger</h2>
+            <span class="badge-amanat badge-soft">Immutable Journal</span>
+          </div>
+          <span class="text-muted-amanat" style="font-size: 0.72rem;">All debits and credits verified against community banking records</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <div class="position-relative">
+            <i class="bi bi-funnel position-absolute text-muted-amanat" style="left: .65rem; top: 50%; transform: translateY(-50%); font-size: .8rem;"></i>
+            <select class="form-select form-select-sm bg-surface border-amanat ps-4" id="ledger-category-filter" aria-label="Filter ledger by category">
+              <option value="all">All Categories</option>
+              <option value="hardware">Lab Equipment</option>
+              <option value="software">Educational Licensure</option>
+              <option value="faculty">Stipends &amp; TAs</option>
+              <option value="civic">Donor Inflow</option>
+              <option value="facility">Facility Lease</option>
+            </select>
+          </div>
+          <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Ledger refreshed from the bank feed." type="button" title="Reload transactions" aria-label="Reload transactions">
+            <i class="bi bi-arrow-repeat"></i>
+          </button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-ledger align-middle">
+          <thead>
+            <tr>
+              <th scope="col">Date &amp; Ref</th>
+              <th scope="col">Payee / Contributor</th>
+              <th scope="col">Category</th>
+              <th scope="col" class="text-end">Inflow (+)</th>
+              <th scope="col" class="text-end">Outflow (-)</th>
+              <th scope="col" class="text-center">Proof Doc</th>
+              <th scope="col">Audit Stamp</th>
+              <th scope="col" class="text-end">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var entry in Model.Entries)
+            {
+              @await Html.PartialAsync("_CashbookRow", entry)
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-head d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 border-top" style="border-bottom: 0;">
+        <div class="d-flex flex-wrap align-items-center gap-2 text-muted-amanat" style="font-size: 0.7rem;">
+          <span>Showing <span id="ledger-visible-count">6</span> of 84 ledger vouchers</span>
+          <span>&bull;</span>
+          <span class="mono" style="font-size: 0.62rem;">Merkle Root: 0x7e29...910c</span>
+        </div>
+        <nav class="d-flex align-items-center gap-1" aria-label="Ledger pagination">
+          <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Pagination is part of the interactive demo." type="button" disabled>Prev</button>
+          <button class="btn btn-forest btn-sm js-demo-link" data-demo-message="You are on page 1." type="button" aria-current="page">1</button>
+          <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Pagination is part of the interactive demo." type="button">2</button>
+          <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Pagination is part of the interactive demo." type="button">3</button>
+          <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Pagination is part of the interactive demo." type="button">Next</button>
+        </nav>
+      </div>
+    </section>
+
+    <section class="ledger-panel mt-4">
+      <div class="p-4">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-2 mb-3">
+          <div>
+            <h3 class="h6 fw-bold text-forest mb-1">Expenditure Cap &amp; Budget Envelope</h3>
+            <span class="text-muted-amanat" style="font-size: 0.72rem;">
+              Quarterly Target: Rs. 25,000.00 &middot; Allocated to Date: Rs. 18,420.00 (73.6%)
+            </span>
+          </div>
+          <span class="badge-amanat badge-verified">Under Budget by Rs. 6,580.00</span>
+        </div>
+        <div class="d-flex rounded-pill overflow-hidden bg-surface p-1 gap-1" style="height: 0.9rem;" role="img" aria-label="Budget allocation: hardware 42%, faculty 25%, facility 18%, licensing 15%">
+          <div class="h-100 rounded-pill" style="width: 42%; background: var(--amanat-forest);" title="Lab Hardware &amp; Tools: Rs. 7,736"></div>
+          <div class="h-100" style="width: 25%; background: var(--amanat-sage);" title="Faculty &amp; Instructors: Rs. 4,605"></div>
+          <div class="h-100" style="width: 18%; background: var(--amanat-light);" title="Facility &amp; Utilities: Rs. 3,315"></div>
+          <div class="h-100 rounded-pill" style="width: 15%; background: var(--amanat-blush);" title="Student Licenses: Rs. 2,764"></div>
+        </div>
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3">
+          <span class="budget-legend"><span class="budget-swatch" style="background: var(--amanat-forest);"></span>Lab Hardware &amp; Tools (Rs. 7.7k)</span>
+          <span class="budget-legend"><span class="budget-swatch" style="background: var(--amanat-sage);"></span>Faculty Mentorship (Rs. 4.6k)</span>
+          <span class="budget-legend"><span class="budget-swatch" style="background: var(--amanat-light);"></span>Facility &amp; Space (Rs. 3.3k)</span>
+          <span class="budget-legend"><span class="budget-swatch" style="background: var(--amanat-blush);"></span>Software Licensing (Rs. 2.8k)</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="col-xl-4">
+
+    <section class="ledger-panel mb-4">
+      <div class="p-4">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-shield-lock text-forest"></i>
+            <h3 class="h6 fw-bold text-forest mb-0">Multisig Custody</h3>
+          </div>
+          <span class="badge-amanat badge-soft">2-of-2 Policy</span>
+        </div>
+        <p class="text-muted-amanat mb-3" style="font-size: 0.74rem;">
+          Disbursements over Rs. 250.00 require joint digital authorization from both bonded
+          community treasurers before treasury release.
+        </p>
+        <div class="d-flex flex-column gap-2">
+          <div class="signer-card">
+            <div class="d-flex align-items-center gap-2">
+              <img class="avatar" src="~/assets/images/avatar-nadia.jpg" alt="Nadia Vance">
+              <div>
+                <span class="signer-name d-block">Nadia Vance (You)</span>
+                <span class="signer-role">Lead Treasurer &bull; Key Verified</span>
+              </div>
+            </div>
+            <i class="bi bi-check-circle-fill text-forest"></i>
+          </div>
+          <div class="signer-card">
+            <div class="d-flex align-items-center gap-2">
+              <span class="avatar">TL</span>
+              <div>
+                <span class="signer-name d-block">Tariq Lowenstein</span>
+                <span class="signer-role">Council Trustee &bull; Hardware Key</span>
+              </div>
+            </div>
+            <i class="bi bi-check-circle-fill text-forest"></i>
+          </div>
+        </div>
+        <div class="rounded-3 bg-surface p-3 d-flex align-items-center gap-2 mt-3" style="font-size: 0.74rem;">
+          <i class="bi bi-patch-check-fill text-forest"></i>
+          Quorum active: Disbursal execution enabled
+        </div>
+      </div>
+    </section>
+
+    <section class="ledger-panel mb-4">
+      <div class="p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-cloud-check text-forest"></i>
+            <h3 class="h6 fw-bold text-forest mb-0">Bank Reconciliation</h3>
+          </div>
+          <span class="badge-amanat badge-verified">Live Feed</span>
+        </div>
+        <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-amanat" style="font-size: 0.76rem;">
+          <span class="text-muted-amanat">First National Commercial</span>
+          <span class="fw-bold mono">Rs. 31,840.00</span>
+        </div>
+        <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-amanat" style="font-size: 0.76rem;">
+          <span class="text-muted-amanat">Amanat On-Chain Ledger</span>
+          <span class="fw-bold mono">Rs. 31,840.00</span>
+        </div>
+        <div class="d-flex align-items-center justify-content-between bg-surface rounded-3 px-3 py-2 mt-3 text-forest" style="font-size: 0.76rem;">
+          <span class="fw-semibold"><i class="bi bi-check2-all me-1"></i>Reconciliation Delta</span>
+          <span class="fw-bold mono">Rs. 0.00</span>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-3 text-muted-amanat" style="font-size: 0.7rem;">
+          <span>Last API sync:</span><span class="fw-semibold text-ink">Today, 09:14 AM</span>
+        </div>
+        <div class="d-flex align-items-center justify-content-between text-muted-amanat" style="font-size: 0.7rem;">
+          <span>Unmatched bank rows:</span><span class="fw-semibold text-ink">0 rows</span>
+        </div>
+        <button class="btn btn-outline-forest btn-sm w-100 mt-3 js-demo-link" data-demo-message="Bank statement fetch is part of the interactive demo." type="button">
+          <i class="bi bi-arrow-repeat me-1"></i>Fetch Latest Bank Statement
+        </button>
+      </div>
+    </section>
+
+    <section class="audit-seal mb-4">
+      <div class="position-relative">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <span class="text-uppercase fw-bold" style="font-size: 0.62rem; letter-spacing: 0.14em; color: #B7EED5;">Public Verification</span>
+          <i class="bi bi-shield-lock" style="color: #9AF5C6;"></i>
+        </div>
+        <h3 class="h5 fw-bold mb-2">Generate Public Audit Seal</h3>
+        <p class="mb-3" style="font-size: 0.74rem; color: #D7EADF;">
+          Snapshot current ledger state into an immutable verification certificate. Donors and
+          community auditors can verify with zero registration.
+        </p>
+        <div class="seal-digest d-flex flex-column gap-2 mb-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <span>SHA-256 Digest:</span>
+            <span class="mono" style="font-size: 0.62rem;">9c02...e3bb4</span>
+          </div>
+          <div class="d-flex align-items-center justify-content-between">
+            <span>Seal Validity:</span>
+            <span class="fw-semibold">30 Days (Publicly Discoverable)</span>
+          </div>
+        </div>
+        <button class="btn btn-blush w-100 fw-bold js-demo-link" data-demo-message="Audit seal minting is part of the interactive demo." type="button">
+          <i class="bi bi-patch-check me-1"></i>Mint &amp; Publish Audit Seal
+        </button>
+      </div>
+      <div class="seal-ring" aria-hidden="true"><i class="bi bi-safe2"></i></div>
+    </section>
+
+    <div class="rounded-3 bg-surface p-3 d-flex align-items-start gap-2">
+      <i class="bi bi-journal-text text-forest mt-1"></i>
+      <div>
+        <span class="fw-bold" style="font-size: 0.76rem;">Civic Transparency Bylaw #4</span>
+        <p class="text-muted-amanat mb-0 mt-1" style="font-size: 0.72rem;">
+          All expenditures exceeding Rs. 100.00 are published to the Oakridge community dashboard
+          within 48 hours of treasurer multisig clearing.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="border-top border-amanat bg-white">
+  <div class="container-xxl d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2 py-3 px-3 px-lg-4 small text-muted-amanat">
+    <p class="mb-0">&copy; 2025 AMANAT (امانت) &middot; Oakridge STEM Initiative. All rights reserved.</p>
+    <div class="d-flex flex-wrap gap-3 fw-medium">
+      <a class="footer-link" asp-controller="Campaigns" asp-action="Index">Campaigns</a>
+      <a class="footer-link" asp-controller="Public" asp-action="Ledger">Public Ledger</a>
+      <a class="footer-link" asp-controller="Treasurer" asp-action="Dashboard">Dashboard</a>
+    </div>
+  </div>
+</footer>

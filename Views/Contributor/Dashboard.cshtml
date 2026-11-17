@@ -1,0 +1,129 @@
+@model Amanat.ViewModels.ContributorDashboardViewModel
+@{ Layout = "_DashboardLayout"; ViewData["Shell"] = Model.Shell; }
+
+<div class="mb-4">
+  <h1 class="page-heading">Welcome, @Model.Shell.FullName</h1>
+  <p class="page-subheading mb-0">Track your pledges and contributions.</p>
+</div>
+
+<section class="row g-3 mb-4">
+  @foreach (var stat in Model.Stats)
+  {
+    @await Html.PartialAsync("_StatCard", stat)
+  }
+</section>
+
+<section class="mb-4" id="pledges">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="h5 fw-bold text-ink mb-0">Featured &amp; Active Pledges</h2>
+    <a class="small fw-semibold text-forest text-decoration-none d-inline-flex align-items-center gap-1" asp-controller="Campaigns" asp-action="Index">
+      View All <i class="bi bi-chevron-right"></i>
+    </a>
+  </div>
+  <div class="row g-4">
+    @foreach (var pledge in Model.Pledges)
+    {
+      @await Html.PartialAsync("_PledgeCard", pledge)
+    }
+  </div>
+</section>
+
+<section class="panel p-4 mb-4" id="record-reference-section">
+  <div class="border-bottom border-amanat pb-3 mb-4">
+    <div class="d-flex align-items-center gap-2">
+      <span class="rounded-circle bg-forest" style="width: 0.6rem; height: 0.6rem;"></span>
+      <h2 class="h5 fw-bold text-ink mb-0">Record Payment Reference</h2>
+    </div>
+    <p class="text-muted-amanat small mb-0 mt-1">
+      Transferred funds via Bank Transfer, Raast, or JazzCash/Easypaisa? Submit your transaction ID
+      for treasurer verification.
+    </p>
+  </div>
+  @if (TempData["ReferenceMessage"] is string message)
+  {
+    <p class="alert alert-success py-2 small">@message</p>
+  }
+  <form method="post" asp-controller="Contributor" asp-action="RecordReference" novalidate>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label small fw-bold text-uppercase letter-wide" for="campaign-select">Select Pledge / Campaign</label>
+        <select class="form-select bg-surface" id="campaign-select" name="Campaign">
+          <option value="edu-01" selected>Education for All (Remaining Due: PKR 7,000)</option>
+          <option value="water-02">Clean Water Initiative (General Contribution)</option>
+          <option value="med-03">Medical Aid Fund</option>
+        </select>
+        @Html.ValidationMessage("Campaign", new { @class = "text-danger small" })
+      </div>
+      <div class="col-md-6">
+        <label class="form-label small fw-bold text-uppercase letter-wide" for="amount-input">Amount Transferred (PKR)</label>
+        <div class="input-group">
+          <span class="input-group-text bg-surface fw-bold text-muted-amanat">PKR</span>
+          <input class="form-control bg-surface fw-semibold" id="amount-input" name="Amount" type="number" min="1" placeholder="e.g. 7000" value="7000" required>
+          <div class="invalid-feedback">Please enter the amount transferred.</div>
+        </div>
+        @Html.ValidationMessage("Amount", new { @class = "text-danger small" })
+      </div>
+      <div class="col-md-6">
+        <label class="form-label small fw-bold text-uppercase letter-wide" for="trx-id">Bank Reference / Raast TRX ID</label>
+        <input class="form-control bg-surface mono" id="trx-id" name="TransactionId" type="text" placeholder="e.g. TRX7849201" required>
+        <div class="invalid-feedback">Please enter your transaction reference.</div>
+        @Html.ValidationMessage("TransactionId", new { @class = "text-danger small" })
+      </div>
+      <div class="col-md-6">
+        <label class="form-label small fw-bold text-uppercase letter-wide" for="date-sent">Date Sent</label>
+        <input class="form-control bg-surface" id="date-sent" name="DateSent" type="date" value="2023-10-24">
+      </div>
+      <div class="col-12">
+        <label class="form-label small fw-bold text-uppercase letter-wide" for="notes">Notes or Depositor Name (Optional)</label>
+        <input class="form-control bg-surface" id="notes" name="Notes" type="text"
+          placeholder="e.g. Paid via Meezan Raast app from Hamza Raza Account">
+      </div>
+    </div>
+    <div class="d-flex justify-content-end pt-4">
+      <button class="btn btn-forest d-inline-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto" type="submit">
+        <i class="bi bi-check2"></i> Submit Reference for Verification
+      </button>
+    </div>
+  </form>
+</section>
+
+<section class="panel" id="history-section">
+  <div class="panel-header d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <div>
+      <h2 class="panel-title">My Contribution History</h2>
+      <p class="panel-subtitle mb-0">Complete record of receipts and verification progress.</p>
+    </div>
+    <span class="badge-amanat badge-neutral">Total Records: 3</span>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-amanat">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Campaign</th>
+          <th scope="col">Amount</th>
+          <th scope="col">TRX ID</th>
+          <th scope="col">Verification Status</th>
+          <th scope="col" class="text-end">Receipt</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var contribution in Model.Contributions)
+        {
+          @await Html.PartialAsync("_ContributionRow", contribution)
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="mt-auto py-3 px-4 border-top border-amanat bg-white">
+  <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2 small text-muted-amanat">
+    <p class="mb-0">&copy; 2023 AMANAT (امانت) - Community Fund Transparency. All rights reserved.</p>
+    <div class="d-flex flex-wrap gap-3 fw-medium">
+      <a class="footer-link js-demo-link" data-demo-message="Privacy Policy is part of the interactive demo." href="#">Privacy Policy</a>
+      <a class="footer-link js-demo-link" data-demo-message="Terms of Trust are part of the interactive demo." href="#">Terms of Trust</a>
+      <a class="footer-link js-demo-link" data-demo-message="Help &amp; Audits are part of the interactive demo." href="#">Help &amp; Audits</a>
+    </div>
+  </div>
+</footer>

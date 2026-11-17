@@ -1,0 +1,265 @@
+@model IReadOnlyList<Amanat.Models.Campaign>
+
+    <!-- BEGIN: HeroSection -->
+    <section class="hero-section">
+      <div class="container position-relative">
+        <div class="row align-items-center g-4 g-lg-5">
+          <div class="col-lg-7">
+            <span class="hero-badge mb-4">
+              <span class="pulse-dot"></span>
+              Civic &amp; Student Fund Accountability
+            </span>
+            <h1 class="hero-title mb-4">
+              Every Contribution<br class="d-none d-sm-inline">
+              <em>Deserves Accountability.</em>
+            </h1>
+            <p class="fs-5 text-muted-amanat mb-4" style="max-width: 38rem;">
+              A transparent, non-custodial way to manage community funds, audit direct bank payments,
+              and build unbreakable trust for civic and campus initiatives.
+            </p>
+            <div class="d-flex flex-wrap gap-3 mb-5">
+              <a class="btn btn-forest btn-forest-pill btn-lg d-inline-flex align-items-center gap-2" asp-controller="Campaigns" asp-action="Index">
+                <span>Explore Campaigns</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+              <a class="btn btn-outline-forest btn-lg" asp-area="Identity" asp-page="/Account/Register">Start a Campaign</a>
+            </div>
+            <div class="hero-stats">
+              <div class="row g-3 g-sm-4" style="max-width: 34rem;">
+                <div class="col-4 d-flex align-items-center gap-2 gap-sm-3">
+                  <span class="hero-stat-icon bg-forest-soft">
+                    <i class="bi bi-people"></i>
+                  </span>
+                  <div>
+                    <div class="hero-stat-value">12,500+</div>
+                    <div class="hero-stat-label">Total Contributions</div>
+                  </div>
+                </div>
+                <div class="col-4 d-flex align-items-center gap-2 gap-sm-3">
+                  <span class="hero-stat-icon bg-light-soft">
+                    <i class="bi bi-megaphone"></i>
+                  </span>
+                  <div>
+                    <div class="hero-stat-value">150+</div>
+                    <div class="hero-stat-label">Active Campaigns</div>
+                  </div>
+                </div>
+                <div class="col-4 d-flex align-items-center gap-2 gap-sm-3">
+                  <span class="hero-stat-icon bg-blush">
+                    <i class="bi bi-heart-fill"></i>
+                  </span>
+                  <div>
+                    <div class="hero-stat-value">75+</div>
+                    <div class="hero-stat-label">Communities Helped</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 d-flex justify-content-center position-relative py-4 py-lg-0">
+            <div class="hero-glow bg-light-soft" style="width: 18rem; height: 18rem; top: -1.5rem; left: -1.5rem;"></div>
+            <div class="hero-glow bg-blush" style="width: 16rem; height: 16rem; bottom: -2rem; right: -2rem;"></div>
+            <div class="arch-frame position-relative">
+              <div class="arch-mask">
+                <img src="~/assets/images/hero-seedling.jpg" alt="Hands holding a young plant seedling representing nurtured community investments">
+                <div class="arch-caption d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light-green" style="width: 0.9rem; height: 0.9rem;">
+                      <span class="rounded-circle bg-forest" style="width: 0.45rem; height: 0.45rem;"></span>
+                    </span>
+                    <div>
+                      <p class="mb-0 fw-bold text-forest" style="font-size: 0.72rem;">100% Non-Custodial</p>
+                      <p class="mb-0 text-muted-amanat" style="font-size: 0.65rem;">Public double-entry ledger</p>
+                    </div>
+                  </div>
+                  <span class="badge-amanat badge-cream">Audited</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: HeroSection -->
+
+    <!-- BEGIN: HowItWorks -->
+    <section class="py-5 bg-cream border-top border-bottom border-amanat" id="about">
+      <div class="container py-4">
+        <div class="text-center mx-auto mb-5" style="max-width: 40rem;">
+          <span class="section-kicker mb-2">Zero Hidden Coffers</span>
+          <h2 class="section-title fs-2 mb-2">How Amanat Preserves Trust</h2>
+          <p class="text-muted-amanat mb-0">
+            Every transaction is verified through public receipts. Amanat does not touch your capital;
+            we make every rupee visible.
+          </p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="how-card">
+              <span class="step-number">01</span>
+              <div>
+                <span class="icon-square bg-forest-soft mb-4">
+                  <i class="bi bi-plus-lg fs-5"></i>
+                </span>
+                <h3 class="h5 fw-bold text-forest mb-2">1. Create &amp; Pledge</h3>
+                <p class="text-muted-amanat small mb-0">
+                  Organizers publish clear goals, milestones, and itemized target expenses.
+                  Supporters commit pledges directly to the civic cause.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-top border-amanat small fw-semibold text-sage">
+                Goal Verification Protocol &rarr;
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="how-card">
+              <span class="step-number">02</span>
+              <div>
+                <span class="icon-square bg-light-soft mb-4">
+                  <i class="bi bi-credit-card fs-5"></i>
+                </span>
+                <h3 class="h5 fw-bold text-forest mb-2">2. Direct Bank Transfer</h3>
+                <p class="text-muted-amanat small mb-0">
+                  Donors transfer funds straight to the campaign's official verified account via
+                  Raast, IBFT, or cash slip without third-party escrow delay.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-top border-amanat small fw-semibold text-sage">
+                Peer-to-Peer Settlement &rarr;
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="how-card">
+              <span class="step-number">03</span>
+              <div>
+                <span class="icon-square bg-blush mb-4">
+                  <i class="bi bi-patch-check fs-5"></i>
+                </span>
+                <h3 class="h5 fw-bold text-forest mb-2">3. Verify &amp; Audit</h3>
+                <p class="text-muted-amanat small mb-0">
+                  Appointed Treasurers reconcile transaction reference codes with receipts.
+                  Public dashboards display live expenditure in real time.
+                </p>
+              </div>
+              <div class="mt-4 pt-3 border-top border-amanat small fw-semibold text-sage">
+                Immutable Ledger &rarr;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: HowItWorks -->
+
+    <!-- BEGIN: LiveCampaignsSection -->
+    <section class="py-5" id="campaigns">
+      <div class="container py-4 py-lg-5">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-end gap-3 mb-5">
+          <div>
+            <span class="section-kicker mb-1">Live Initiatives</span>
+            <h2 class="section-title fs-2 mb-1">Featured Campaigns</h2>
+            <p class="text-muted-amanat small mb-0">Explore current initiatives with verified public financial ledgers.</p>
+          </div>
+          <a class="text-decoration-none fw-semibold text-forest d-inline-flex align-items-center gap-2" asp-controller="Campaigns" asp-action="Index">
+            <span>View All Campaigns</span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+        <div class="row g-4">
+          @foreach (var campaign in Model)
+          {
+            @await Html.PartialAsync("_HomeCampaignCard", campaign)
+          }
+        </div>
+      </div>
+    </section>
+    <!-- END: LiveCampaignsSection -->
+
+    <!-- BEGIN: RadicalTransparencyManifesto -->
+    <section class="manifesto py-5" id="transparency">
+      <span class="manifesto-watermark">امانت</span>
+      <div class="container py-4 position-relative" style="z-index: 1;">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <span class="section-kicker text-light-green mb-2">Non-Custodial Architecture</span>
+            <h2 class="font-display fw-bold lh-tight mb-4" style="font-size: clamp(1.8rem, 3.2vw, 2.8rem);">
+              Amanat never touches or holds your funds.
+            </h2>
+            <p class="text-white-50 fs-6 mb-4">
+              Traditional fundraising platforms lock contributions inside third-party bank accounts.
+              Amanat replaces black-box custodianship with open civic ledgering: every donor sends funds
+              directly via banking rails, while every receipt, voucher, and disbursement requires
+              multi-signatory verification.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="chip-dark"><i class="bi bi-check-circle-fill text-light-green"></i> Direct Raast / IBFT</span>
+              <span class="chip-dark"><i class="bi bi-check-circle-fill text-light-green"></i> Itemized Public Invoices</span>
+              <span class="chip-dark"><i class="bi bi-check-circle-fill text-light-green"></i> Dual Role Separation</span>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="d-flex flex-column gap-3">
+              <div class="role-row d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-3">
+                  <span class="role-avatar bg-light-soft text-light-green">O</span>
+                  <div>
+                    <h4 class="h6 fw-bold mb-0">Organizer</h4>
+                    <p class="mb-0 text-white-50" style="font-size: 0.72rem;">Launches scope, posts invoices, requests disbursement</p>
+                  </div>
+                </div>
+                <span class="badge-amanat" style="background: rgba(255,255,255,0.18); color:#fff;">Initiates</span>
+              </div>
+              <div class="role-row d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-3">
+                  <span class="role-avatar bg-blush text-forest">T</span>
+                  <div>
+                    <h4 class="h6 fw-bold mb-0">Treasurer</h4>
+                    <p class="mb-0 text-white-50" style="font-size: 0.72rem;">Reconciles bank statements against claimed donations</p>
+                  </div>
+                </div>
+                <span class="badge-amanat" style="background: rgba(255,255,255,0.18); color:#fff;">Verifies</span>
+              </div>
+              <div class="role-row d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-3">
+                  <span class="role-avatar bg-light-soft text-light-green">C</span>
+                  <div>
+                    <h4 class="h6 fw-bold mb-0">Contributor</h4>
+                    <p class="mb-0 text-white-50" style="font-size: 0.72rem;">Pledges direct support and holds reference numbers</p>
+                  </div>
+                </div>
+                <span class="badge-amanat" style="background: rgba(255,255,255,0.18); color:#fff;">Transfers</span>
+              </div>
+              <div class="role-row d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-3">
+                  <span class="role-avatar" style="background: rgba(255,255,255,0.18); color:#fff;">P</span>
+                  <div>
+                    <h4 class="h6 fw-bold mb-0">Public Visitor</h4>
+                    <p class="mb-0 text-white-50" style="font-size: 0.72rem;">Inspects audit history without needing an account</p>
+                  </div>
+                </div>
+                <span class="badge-amanat" style="background: rgba(255,255,255,0.18); color:#fff;">Audits</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: RadicalTransparencyManifesto -->
+
+    <!-- BEGIN: BrandShowcaseBadge -->
+    <section class="py-5 border-bottom border-amanat text-center">
+      <div class="container" style="max-width: 48rem;">
+        <span class="logo-urdu text-forest d-block mb-2" style="font-size: clamp(4rem, 9vw, 6.5rem);">امانت</span>
+        <span class="d-block fw-bold text-forest mb-4 letter-wider" style="font-size: 0.78rem;">COMMUNITY FUND TRANSPARENCY</span>
+        <div class="d-flex justify-content-center align-items-center gap-2">
+          <span class="swatch" style="background:#FFFFFF;" title="#FFFFFF"></span>
+          <span class="swatch" style="background:#73956F;" title="#73956F Sage"></span>
+          <span class="swatch" style="background:#7BAE7F;" title="#7BAE7F Light Green"></span>
+          <span class="swatch" style="background:#1C4A2E;" title="#1C4A2E Forest Green"></span>
+          <span class="swatch" style="background:#FCEFF9;" title="#FCEFF9 Blush"></span>
+        </div>
+      </div>
+    </section>
+    <!-- END: BrandShowcaseBadge -->

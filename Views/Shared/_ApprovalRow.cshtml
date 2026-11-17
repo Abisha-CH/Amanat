@@ -1,0 +1,20 @@
+@model ApprovalRow
+<tr>
+  <td>
+    <span class="cell-title text-forest">@Model.Id</span>
+    <div class="cell-sub">@Model.Attachment</div>
+  </td>
+  <td>
+    <div class="cell-title">@Model.Vendor</div>
+    <div class="cell-sub">@Model.Detail</div>
+  </td>
+  <td><span class="badge-amanat @Model.CampaignBadgeClass">@Model.Campaign</span></td>
+  <td class="fw-bold">@Model.AmountText</td>
+  <td class="text-center"><span class="badge-amanat badge-pending js-status">@Model.Status</span></td>
+  <td class="text-end">
+    <div class="d-inline-flex gap-2">
+      <button class="btn btn-forest btn-sm js-approve-btn" type="button">Approve Signoff</button>
+      <button class="btn btn-outline-secondary btn-sm js-reject-btn" type="button" style="border-radius:0.55rem;">Reject</button>
+    </div>
+  </td>
+</tr>

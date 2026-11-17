@@ -1,0 +1,17 @@
+@model LedgerFund
+<tr data-ledger-row data-category="@Model.FocusKey">
+  <td>
+    <div class="fw-semibold text-forest">@Model.Name</div>
+    <div class="text-muted-amanat mono" style="font-size: 0.64rem;">Fund ID @Model.FundId</div>
+  </td>
+  <td><span class="badge-amanat badge-neutral">@Model.FocusArea</span></td>
+  <td class="text-end money-in">@Model.InflowText</td>
+  <td class="text-end money-out">@Model.OutflowText</td>
+  <td class="text-end fw-bold">@Model.ReserveText</td>
+  <td class="text-nowrap" style="font-size: 0.7rem;">
+    <i class="bi bi-shield-lock text-forest me-1"></i><span class="mono">@Model.Seal</span>
+  </td>
+  <td class="text-end">
+    <span class="badge-amanat @(Model.IsSealed ? "badge-verified" : "badge-pending")"><span class="badge-dot"></span> @Model.Status</span>
+  </td>
+</tr>

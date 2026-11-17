@@ -1,0 +1,110 @@
+@model Amanat.ViewModels.OrganizerDashboardViewModel
+@{ Layout = "_DashboardLayout"; ViewData["Shell"] = Model.Shell; }
+
+<section class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mb-4">
+  <div>
+    <h1 class="page-heading">Welcome, @Model.Shell.FullName</h1>
+    <p class="page-subheading mb-0">Manage your campaigns and track progress.</p>
+  </div>
+  <button class="btn btn-forest d-inline-flex align-items-center gap-2 js-demo-link"
+    data-demo-message="Campaign creation wizard is part of the interactive demo." type="button">
+    <i class="bi bi-plus-lg"></i><span>Create New Campaign</span>
+  </button>
+</section>
+
+<section class="row g-3 mb-4">
+  @foreach (var stat in Model.Stats)
+  {
+    @await Html.PartialAsync("_StatCard", stat)
+  }
+</section>
+
+<section class="row g-4 mb-4">
+  <div class="col-lg-7">
+    <div class="panel h-100 p-4">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <div>
+          <h2 class="panel-title">Campaign Performance</h2>
+          <p class="panel-subtitle mb-0">Inflow trajectory &amp; monthly trends</p>
+        </div>
+        <div class="d-flex align-items-center gap-2 text-muted-amanat" style="font-size: 0.72rem;">
+          <span class="rounded-circle bg-forest" style="width: 0.55rem; height: 0.55rem;"></span>
+          <span>Total Collections</span>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <svg preserveAspectRatio="none" viewBox="0 0 500 200">
+          <defs>
+            <linearGradient id="gradientInflow" x1="0%" x2="0%" y1="0%" y2="100%">
+              <stop offset="0%" stop-color="#1C4A2E" stop-opacity="0.18"></stop>
+              <stop offset="100%" stop-color="#1C4A2E" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <line stroke="#F1F5F9" stroke-width="1" x1="0" x2="500" y1="30" y2="30"></line>
+          <line stroke="#F1F5F9" stroke-width="1" x1="0" x2="500" y1="80" y2="80"></line>
+          <line stroke="#F1F5F9" stroke-width="1" x1="0" x2="500" y1="130" y2="130"></line>
+          <line stroke="#F1F5F9" stroke-width="1" x1="0" x2="500" y1="180" y2="180"></line>
+          <path d="M 20 160 Q 90 145, 120 120 T 210 130 T 300 95 T 390 85 T 480 35 L 480 180 L 20 180 Z" fill="url(#gradientInflow)"></path>
+          <path d="M 20 160 Q 90 145, 120 120 T 210 130 T 300 95 T 390 85 T 480 35" fill="none" stroke="#1C4A2E" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+          <circle cx="20" cy="160" fill="#7BAE7F" r="4.5" stroke="#FFFFFF" stroke-width="2"></circle>
+          <circle cx="120" cy="120" fill="#7BAE7F" r="4.5" stroke="#FFFFFF" stroke-width="2"></circle>
+          <circle cx="210" cy="130" fill="#7BAE7F" r="4.5" stroke="#FFFFFF" stroke-width="2"></circle>
+          <circle cx="300" cy="95" fill="#7BAE7F" r="4.5" stroke="#FFFFFF" stroke-width="2"></circle>
+          <circle cx="390" cy="85" fill="#7BAE7F" r="4.5" stroke="#FFFFFF" stroke-width="2"></circle>
+          <circle cx="480" cy="35" fill="#1C4A2E" r="5" stroke="#FFFFFF" stroke-width="2.5"></circle>
+        </svg>
+      </div>
+      <div class="chart-months">
+        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="panel h-100 p-4 d-flex flex-column">
+      <div class="d-flex align-items-center justify-content-between pb-3 border-bottom border-amanat">
+        <h2 class="panel-title">Recent Campaigns</h2>
+        <a class="small fw-semibold text-forest text-decoration-none" asp-controller="Campaigns" asp-action="Index">View All &rarr;</a>
+      </div>
+      <div class="flex-grow-1 d-flex flex-column justify-content-around">
+        @foreach (var campaign in Model.RecentCampaigns)
+        {
+          @await Html.PartialAsync("_MiniCampaign", campaign)
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel mb-2" id="approvals">
+  <div class="panel-header d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2">
+    <div>
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <h2 class="panel-title">Pending Expense Approvals</h2>
+        <span class="badge-amanat badge-pending">2 Invoices Awaiting Signoff</span>
+      </div>
+      <p class="panel-subtitle mb-0">Treasurer-submitted invoices requiring organizer authorization for fund release.</p>
+    </div>
+    <a class="small fw-semibold text-forest text-decoration-none js-demo-link"
+      data-demo-message="Full invoice archive is part of the interactive demo." href="#">View All Invoices &rarr;</a>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-amanat" id="expense-approvals-table">
+      <thead>
+        <tr>
+          <th scope="col">Bill / Ref ID</th>
+          <th scope="col">Vendor Name</th>
+          <th scope="col">Campaign</th>
+          <th scope="col">Amount</th>
+          <th scope="col" class="text-center">Treasurer Status</th>
+          <th scope="col" class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var approval in Model.Approvals)
+        {
+          @await Html.PartialAsync("_ApprovalRow", approval)
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

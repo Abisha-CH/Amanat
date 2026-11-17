@@ -1,0 +1,187 @@
+@model string
+@switch (Model)
+{
+    case "Home":
+        <footer class="footer-amanat">
+          <div class="container py-5">
+            <div class="row g-4 mb-4">
+              <div class="col-md-3">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <span class="logo-urdu text-forest" style="font-size: 1.9rem;">امانت</span>
+                  <span class="fw-bold text-forest letter-wide" style="font-size: 0.7rem;">AMANAT</span>
+                </div>
+                <p class="small mb-3">
+                  The civic protocol empowering communities and student councils with peer-audited,
+                  non-custodial financial clarity.
+                </p>
+                <span class="badge-amanat badge-soft">PKR Currency Native</span>
+              </div>
+              <div class="col-md-3">
+                <h5 class="mb-3">Platform</h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                  <li><a class="footer-link" asp-controller="Campaigns" asp-action="Index">Browse Campaigns</a></li>
+                  <li><a class="footer-link" asp-area="Identity" asp-page="/Account/Register">Start an Initiative</a></li>
+                  <li><a class="footer-link" asp-controller="Public" asp-action="Ledger">Ledger Explorer</a></li>
+                  <li><a class="footer-link js-demo-link" data-demo-message="Pricing &amp; Integrity details are part of the interactive demo." href="#">Pricing &amp; Integrity</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h5 class="mb-3">Role Access</h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                  <li><a class="footer-link" asp-controller="Organizer" asp-action="Dashboard">Organizer Workspace</a></li>
+                  <li><a class="footer-link" asp-controller="Treasurer" asp-action="Dashboard">Treasurer Verification Desk</a></li>
+                  <li><a class="footer-link" asp-controller="Contributor" asp-action="Dashboard">Contributor Portal</a></li>
+                  <li><a class="footer-link" asp-controller="Public" asp-action="Ledger">Auditor Reports</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h5 class="mb-3">Accountability</h5>
+                <p class="small mb-2">
+                  Built for universities, societies, and social welfare chapters to eliminate embezzlement and mistrust.
+                </p>
+                <div class="small fw-medium text-sage">support@amanat.community</div>
+              </div>
+            </div>
+            <div class="pt-4 border-top border-amanat d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3 small">
+              <p class="mb-0 footer-muted">&copy; 2025 AMANAT (امانت). All community ledgers are public domain under Civic Open Access.</p>
+              <div class="d-flex flex-wrap gap-3">
+                <a class="footer-link js-demo-link" data-demo-message="Privacy Policy is part of the interactive demo." href="#">Privacy Policy</a>
+                <a class="footer-link js-demo-link" data-demo-message="Terms of Accountability are part of the interactive demo." href="#">Terms of Accountability</a>
+                <a class="footer-link" asp-controller="Public" asp-action="Ledger">Public Security Ledger</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+        break;
+    case "About":
+        <footer class="footer-amanat">
+          <div class="container py-5">
+            <div class="row g-4 pb-4 mb-4 border-bottom border-amanat">
+              <div class="col-md-6">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <span class="logo-urdu text-forest" style="font-size: 2rem;">امانت</span>
+                  <div class="brand-meta">
+                    <strong>Amanat</strong>
+                    <small>Community Fund Transparency</small>
+                  </div>
+                </div>
+                <p class="small mb-0" style="max-width: 24rem;">
+                  The civic protocol establishing non-custodial financial transparency, public ledgers,
+                  and receipt verification for grassroots institutions.
+                </p>
+              </div>
+              <div class="col-md-3">
+                <h5 class="mb-3">Platform</h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                  <li><a class="footer-link" asp-controller="Home" asp-action="Index">Home Overview</a></li>
+                  <li><a class="footer-link fw-semibold text-forest" asp-controller="Home" asp-action="About">About Mission</a></li>
+                  <li><a class="footer-link" asp-controller="Campaigns" asp-action="Index">Public Campaigns</a></li>
+                  <li><a class="footer-link" asp-controller="Public" asp-action="Ledger">Audit Register</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h5 class="mb-3">Integrity &amp; Policy</h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                  <li><a class="footer-link js-demo-link" data-demo-message="Non-Custodial Charter is part of the interactive demo." href="#">Non-Custodial Charter</a></li>
+                  <li><a class="footer-link js-demo-link" data-demo-message="Student Council Bylaws are part of the interactive demo." href="#">Student Council Bylaws</a></li>
+                  <li><a class="footer-link js-demo-link" data-demo-message="Privacy Principles are part of the interactive demo." href="#">Privacy Principles</a></li>
+                  <li><a class="footer-link js-demo-link" data-demo-message="Security Whitepaper is part of the interactive demo." href="#">Security Whitepaper</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3 small">
+              <p class="mb-0 footer-muted">&copy; 2025 Amanat Community Transparency Initiative. All rights reserved.</p>
+              <p class="mb-0 text-center text-sm-end" style="max-width: 26rem;">
+                Amanat does not offer depository or payment custody accounts. All settlements occur on official bank rails.
+              </p>
+            </div>
+          </div>
+        </footer>
+        break;
+    case "Details":
+        <footer class="footer-amanat mt-auto">
+          <div class="container py-5">
+            <div class="row g-4 mb-4">
+              <div class="col-md-6">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <span class="logo-urdu text-forest" style="font-size: 2.1rem;">امانت</span>
+                  <div class="brand-meta">
+                    <strong>AMANAT</strong>
+                    <small>Community Fund Transparency</small>
+                  </div>
+                </div>
+                <p class="small mb-0" style="max-width: 24rem;">
+                  Every contribution deserves accountability. AMANAT provides citizen-led oversight,
+                  transparent public ledgers, and zero-custody verification for community initiatives.
+                </p>
+              </div>
+              <div class="col-6 col-md-3">
+                <h5 class="mb-3">Explore</h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                  <li><a class="footer-link" asp-controller="Campaigns" asp-action="Index">Active Campaigns</a></li>
+                  <li><a class="footer-link" asp-controller="Public" asp-action="Ledger">Public Audit Ledger</a></li>
+                  <li><a class="footer-link" asp-area="Identity" asp-page="/Account/Register">Start a Campaign</a></li>
+                  <li><a class="footer-link js-demo-link" data-demo-message="Volunteer auditor signup is part of the interactive demo." href="#">Volunteer as Auditor</a></li>
+                </ul>
+              </div>
+              <div class="col-6 col-md-3">
+                <h5 class="mb-3">Transparency</h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                  <li><a class="footer-link" asp-controller="Home" asp-action="About">Non-Custodial Model</a></li>
+                  <li><a class="footer-link js-demo-link" data-demo-message="Receipt Validation Rules are part of the interactive demo." href="#">Receipt Validation Rules</a></li>
+                  <li><a class="footer-link js-demo-link" data-demo-message="Terms of Service are part of the interactive demo." href="#">Terms of Service</a></li>
+                  <li><a class="footer-link js-demo-link" data-demo-message="Privacy Policy is part of the interactive demo." href="#">Privacy Policy</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="pt-4 border-top border-amanat d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3 small footer-muted">
+              <p class="mb-0">&copy; 2024 AMANAT (امانت). Developed for public trust and open community governance.</p>
+              <span class="d-inline-flex align-items-center gap-2 text-forest fw-medium">
+                <span class="rounded-circle bg-light-green" style="width: 0.45rem; height: 0.45rem;"></span>
+                All Ledgers Operational &amp; In Sync
+              </span>
+            </div>
+          </div>
+        </footer>
+        break;
+    default:
+        <footer class="footer-amanat">
+          <div class="container py-5">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <span class="logo-urdu text-forest" style="font-size: 1.9rem;">امانت</span>
+                  <span class="fw-bold text-forest letter-wide border-start ps-2" style="font-size: 0.68rem;">Community Fund Transparency</span>
+                </div>
+                <p class="small mb-0" style="max-width: 24rem;">
+                  Eliminating opacity in community and campus crowdfunding through real-time financial tracking,
+                  itemized receipt validation, and dual-custody approval.
+                </p>
+              </div>
+              <div class="col-6 col-md-3">
+                <h5 class="mb-3">Navigation</h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                  <li><a class="footer-link" asp-controller="Home" asp-action="Index">Home Overview</a></li>
+                  <li><a class="footer-link" asp-controller="Campaigns" asp-action="Index">Active Campaigns</a></li>
+                  <li><a class="footer-link" asp-controller="Home" asp-action="About">Audit Methodology</a></li>
+                  <li><a class="footer-link" asp-area="Identity" asp-page="/Account/Login">Treasurer Portal</a></li>
+                </ul>
+              </div>
+              <div class="col-6 col-md-3">
+                <h5 class="mb-3">Integrity &amp; Policies</h5>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                  <li><a class="footer-link js-demo-link" data-demo-message="Public Ledger Terms are part of the interactive demo." href="#">Public Ledger Terms</a></li>
+                  <li><a class="footer-link js-demo-link" data-demo-message="Voucher Verification Policy is part of the interactive demo." href="#">Voucher Verification Policy</a></li>
+                  <li><a class="footer-link js-demo-link" data-demo-message="Whistleblower Support is part of the interactive demo." href="#">Whistleblower Support</a></li>
+                  <li><a class="footer-link js-demo-link" data-demo-message="Contact Oversight Board is part of the interactive demo." href="#">Contact Oversight Board</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mt-4 pt-4 border-top border-amanat d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3 small footer-muted">
+              <p class="mb-0">&copy; 2025 AMANAT (امانت). All public donation ledgers cryptographically verified.</p>
+              <p class="mb-0">Built for transparent student societies, community trusts, and collective welfare.</p>
+            </div>
+          </div>
+        </footer>
+        break;
+}

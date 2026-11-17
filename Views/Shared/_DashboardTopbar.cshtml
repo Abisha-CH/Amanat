@@ -1,0 +1,48 @@
+@model DashboardShell
+<header class="app-topbar">
+  <div class="d-flex align-items-center gap-2 flex-grow-1">
+    <button class="btn btn-outline-forest btn-sm d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-label="Open menu">
+      <i class="bi bi-list"></i>
+    </button>
+    <div class="topbar-search @(Model.ShowSearchOnSmallScreens ? "" : "d-none d-sm-block")" style="@(Model.Role == AmanatRoles.Contributor ? "max-width: 26rem;" : "")">
+      <i class="bi bi-search"></i>
+      <input class="form-control" type="search" aria-label="Search @(Model.Role == AmanatRoles.Treasurer ? "transactions" : "campaigns")" placeholder="@Model.SearchPlaceholder">
+    </div>
+  </div>
+  <div class="d-flex align-items-center gap-2 gap-sm-3">
+    <button class="notif-btn js-demo-link" data-demo-message="You have no new notifications." type="button" aria-label="Notifications">
+      <i class="bi bi-bell"></i><span class="notif-dot"></span>
+    </button>
+    <div class="vr d-none d-sm-block text-secondary opacity-25"></div>
+    <div class="dropdown">
+      <button class="profile-chip dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="avatar">@Model.Initials</span>
+        <span class="d-none d-sm-block">
+          <span class="name d-block">@Model.FullName</span>
+          <span class="role d-block">@Model.Role</span>
+        </span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="font-size: 0.82rem;">
+        <li><a class="dropdown-item js-demo-link" data-demo-message="Profile settings are part of the interactive demo." href="#">Profile</a></li>
+        @if (Model.Role == AmanatRoles.Contributor)
+        {
+          <li><a class="dropdown-item" href="#history-section">Contribution History</a></li>
+        }
+        else if (Model.Role == AmanatRoles.Organizer)
+        {
+          <li><a class="dropdown-item js-demo-link" data-demo-message="Settings are part of the interactive demo." href="#">Settings</a></li>
+        }
+        else
+        {
+          <li><a class="dropdown-item" asp-controller="Treasurer" asp-action="Ledger">Cashbook Ledger</a></li>
+        }
+        <li><hr class="dropdown-divider"></li>
+        <li>
+          <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+            <button class="dropdown-item text-danger" type="submit">Logout</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

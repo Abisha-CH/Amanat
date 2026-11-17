@@ -1,0 +1,55 @@
+@model Campaign
+<div class="col-md-6">
+  <article class="card-amanat card-hover campaign-card"
+    data-campaign
+    data-title="@Model.Title"
+    data-org="@Model.Organization"
+    data-category="@Model.Category"
+    data-raised="@Model.RaisedRaw"
+    data-date="@Model.StartedOnText"
+    data-deadline="@Model.DeadlineText">
+    <div class="campaign-thumb campaign-thumb-lg">
+      <img src="~/@Model.Thumbnail" alt="@Model.ThumbnailAlt">
+      <span class="thumb-category">@Model.ThumbLabel</span>
+      <span class="thumb-badge badge-amanat badge-forest" style="background: var(--amanat-forest); color:#fff; border:0;">
+        <span class="badge-dot bg-light-green"></span> Active
+      </span>
+    </div>
+    <div class="card-body">
+      <div>
+        <p class="text-sage fw-medium text-uppercase letter-wide mb-1" style="font-size: 0.66rem;">@Model.Organization</p>
+        <h2 class="h5 fw-bold text-ink mb-2">@Model.Title</h2>
+        <p class="text-muted-amanat small mb-0">
+          @Model.Summary
+        </p>
+        <div class="mt-4">
+          <div class="d-flex justify-content-between align-items-baseline small mb-2">
+            <span class="fw-bold text-forest">@Model.RaisedText <span class="text-muted-amanat fw-normal" style="font-size: 0.7rem;">raised</span></span>
+            <span class="text-muted-amanat fw-semibold" style="font-size: 0.7rem;">Goal: @Model.GoalText (@Model.ProgressPercent%)</span>
+          </div>
+          <div class="progress progress-thick">
+            <div class="progress-bar" style="width: @Model.ProgressPercent%"></div>
+          </div>
+        </div>
+        <div class="row g-2 mt-3 pt-3 border-top border-amanat small text-muted-amanat">
+          <div class="col-6 d-flex align-items-center gap-2">
+            <i class="bi bi-people text-forest"></i><span><strong>@Model.Contributors</strong> Contributors</span>
+          </div>
+          <div class="col-6 d-flex align-items-center gap-2 justify-content-end">
+            <i class="bi bi-patch-check text-sage"></i><span><strong>@Model.ApprovedCount</strong> @Model.ApprovedLabel</span>
+          </div>
+        </div>
+        <div class="ledger-strip">
+          <span class="fw-medium">@Model.LedgerNote</span>
+          <span class="fw-bold text-uppercase letter-wide text-sage" style="font-size: 0.62rem;">Ledger Live</span>
+        </div>
+      </div>
+      <div class="mt-4">
+        <a class="btn btn-forest w-100 d-inline-flex align-items-center justify-content-center gap-2" asp-controller="Campaigns" asp-action="Details" asp-route-id="@Model.Slug">
+          <span>View Public Ledger &amp; Details</span>
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </article>
+</div>
