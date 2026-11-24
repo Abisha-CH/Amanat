@@ -1,0 +1,16 @@
+=== FIX 1: SQL Injection (Part A) ===
+File: routes/search.ts
+Version/commit: vXX.X.X (fill in from Task 1 step 3)
+Line numbers: (see below)
+Vulnerable snippet:
+(copied from GitHub)
+Why vulnerable:
+(2-3 sentences)
+Secure version:
+(my fix)
+Why the fix works:
+(2-3 sentences)
+
+=== FIX 2: IDOR (Part C) ===
+File: routes/basket.ts
+(same structure)

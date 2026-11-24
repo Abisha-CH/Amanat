@@ -6,7 +6,7 @@
     </button>
     <div class="topbar-search @(Model.ShowSearchOnSmallScreens ? "" : "d-none d-sm-block")" style="@(Model.Role == AmanatRoles.Contributor ? "max-width: 26rem;" : "")">
       <i class="bi bi-search"></i>
-      <input class="form-control" type="search" aria-label="Search @(Model.Role == AmanatRoles.Treasurer ? "transactions" : "campaigns")" placeholder="@Model.SearchPlaceholder">
+      <input class="form-control" type="@(Model.Role == AmanatRoles.Treasurer ? "text" : "search")" aria-label="Search @(Model.Role == AmanatRoles.Treasurer ? "transactions" : "campaigns")" placeholder="@Model.SearchPlaceholder">
     </div>
   </div>
   <div class="d-flex align-items-center gap-2 gap-sm-3">
@@ -23,7 +23,14 @@
         </span>
       </button>
       <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="font-size: 0.82rem;">
-        <li><a class="dropdown-item js-demo-link" data-demo-message="Profile settings are part of the interactive demo." href="#">Profile</a></li>
+        <li>
+          <div class="dropdown-item-text small text-muted-amanat" style="white-space: normal; overflow-wrap: anywhere;">
+            <span class="fw-semibold text-ink">@Model.Role account</span><br>
+            <span>@Model.Email</span>
+          </div>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Profile">Profile</a></li>
         @if (Model.Role == AmanatRoles.Contributor)
         {
           <li><a class="dropdown-item" href="#history-section">Contribution History</a></li>

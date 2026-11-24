@@ -9,8 +9,8 @@
     <div class="text-muted-amanat" style="font-size: 0.66rem;">@Model.Detail</div>
   </td>
   <td class="text-nowrap"><span class="badge-amanat @(Model.CategoryKey == "civic" ? "badge-soft" : "badge-neutral")">@Model.Category</span></td>
-  <td class="text-end text-nowrap money-in">@Model.InflowText</td>
-  <td class="text-end text-nowrap money-out">@Model.OutflowText</td>
+  <td class="text-end text-nowrap @(Model.InflowText == "—" ? "money-muted" : "money-in")">@Model.InflowText</td>
+  <td class="text-end text-nowrap @(Model.OutflowText == "—" ? "money-muted" : "money-out")">@Model.OutflowText</td>
   <td class="text-center text-nowrap">
     <button class="proof-btn js-demo-link" data-demo-message="Document preview is part of the interactive demo." type="button">
       <i class="bi @Model.ProofIcon"></i> @Model.ProofFile

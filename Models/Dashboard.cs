@@ -36,6 +36,8 @@ public sealed class PledgeCard
 
 public sealed class MiniCampaign
 {
+    public int CampaignId { get; set; }
+    public string RowVersion { get; set; } = string.Empty;
     public string Title { get; set; } = string.Empty;
     public int Percent { get; set; }
     public string TargetText { get; set; } = string.Empty;
@@ -50,10 +52,14 @@ public sealed class ContributionRow
     public string Reference { get; set; } = string.Empty;
     public string AmountText { get; set; } = string.Empty;
     public string Status { get; set; } = string.Empty;
+    public bool IsPending { get; set; }
+    public string RowStyle { get; set; } = string.Empty;
 }
 
 public sealed class VerificationRow
 {
+    public long ContributionId { get; set; }
+    public string RowVersion { get; set; } = string.Empty;
     public string Contributor { get; set; } = string.Empty;
     public string AmountText { get; set; } = string.Empty;
     public string Reference { get; set; } = string.Empty;
@@ -61,6 +67,8 @@ public sealed class VerificationRow
 
 public sealed class ApprovalRow
 {
+    public long ExpenseId { get; set; }
+    public string RowVersion { get; set; } = string.Empty;
     public string Id { get; set; } = string.Empty;
     public string Attachment { get; set; } = string.Empty;
     public string Vendor { get; set; } = string.Empty;
@@ -75,6 +83,7 @@ public sealed class DashboardShell
 {
     public string Role { get; set; } = string.Empty;
     public string FullName { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
     public string Initials { get; set; } = string.Empty;
     public string ActiveLink { get; set; } = string.Empty;
     public string SearchPlaceholder { get; set; } = string.Empty;

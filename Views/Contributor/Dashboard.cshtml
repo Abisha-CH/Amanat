@@ -1,5 +1,9 @@
 @model Amanat.ViewModels.ContributorDashboardViewModel
-@{ Layout = "_DashboardLayout"; ViewData["Shell"] = Model.Shell; }
+@{
+  Layout = "_DashboardLayout";
+  ViewData["Shell"] = Model.Shell;
+  var referenceMessage = TempData["ReferenceMessage"] as string;
+}
 
 <div class="mb-4">
   <h1 class="page-heading">Welcome, @Model.Shell.FullName</h1>
@@ -39,18 +43,24 @@
       for treasurer verification.
     </p>
   </div>
-  @if (TempData["ReferenceMessage"] is string message)
+  @if (referenceMessage is string message)
   {
     <p class="alert alert-success py-2 small">@message</p>
   }
-  <form method="post" asp-controller="Contributor" asp-action="RecordReference" novalidate>
+  <p class="alert alert-success py-2 small d-none" id="reference-ajax-alert"></p>
+  @if (!ViewData.ModelState.IsValid)
+  {
+    <div class="alert alert-danger py-2 small">@Html.ValidationSummary(false, string.Empty, new { @class = "mb-0" })</div>
+  }
+  <form class="needs-validation" method="post" asp-controller="Contributor" asp-action="RecordReference" data-form="pledge" data-mvc-submit="true" data-ajax-submit="true" data-ajax-url="@Url.Action("RecordReferenceJson", "Contributor")" data-toast-message="@referenceMessage" novalidate>
     <div class="row g-3">
       <div class="col-md-6">
         <label class="form-label small fw-bold text-uppercase letter-wide" for="campaign-select">Select Pledge / Campaign</label>
-        <select class="form-select bg-surface" id="campaign-select" name="Campaign">
-          <option value="edu-01" selected>Education for All (Remaining Due: PKR 7,000)</option>
-          <option value="water-02">Clean Water Initiative (General Contribution)</option>
-          <option value="med-03">Medical Aid Fund</option>
+        <select class="form-select bg-surface" id="campaign-select" name="Campaign" required>
+          @foreach (var campaign in Model.CampaignOptions)
+          {
+            <option value="@campaign.Slug" selected="@(Model.Reference.Campaign == campaign.Slug ? "selected" : null)">@campaign.Title</option>
+          }
         </select>
         @Html.ValidationMessage("Campaign", new { @class = "text-danger small" })
       </div>
@@ -58,29 +68,29 @@
         <label class="form-label small fw-bold text-uppercase letter-wide" for="amount-input">Amount Transferred (PKR)</label>
         <div class="input-group">
           <span class="input-group-text bg-surface fw-bold text-muted-amanat">PKR</span>
-          <input class="form-control bg-surface fw-semibold" id="amount-input" name="Amount" type="number" min="1" placeholder="e.g. 7000" value="7000" required>
+          <input class="form-control bg-surface fw-semibold" id="amount-input" name="Amount" type="number" min="1" placeholder="e.g. 7000" value="@(Model.Reference.Amount > 0 ? Model.Reference.Amount.ToString() : "7000")" required>
           <div class="invalid-feedback">Please enter the amount transferred.</div>
         </div>
         @Html.ValidationMessage("Amount", new { @class = "text-danger small" })
       </div>
       <div class="col-md-6">
         <label class="form-label small fw-bold text-uppercase letter-wide" for="trx-id">Bank Reference / Raast TRX ID</label>
-        <input class="form-control bg-surface mono" id="trx-id" name="TransactionId" type="text" placeholder="e.g. TRX7849201" required>
+        <input class="form-control bg-surface mono" id="trx-id" name="TransactionId" type="text" placeholder="e.g. TRX7849201" value="@Model.Reference.TransactionId" required>
         <div class="invalid-feedback">Please enter your transaction reference.</div>
         @Html.ValidationMessage("TransactionId", new { @class = "text-danger small" })
       </div>
       <div class="col-md-6">
         <label class="form-label small fw-bold text-uppercase letter-wide" for="date-sent">Date Sent</label>
-        <input class="form-control bg-surface" id="date-sent" name="DateSent" type="date" value="2023-10-24">
+        <input class="form-control bg-surface" id="date-sent" name="DateSent" type="date" value="@(string.IsNullOrWhiteSpace(Model.Reference.DateSent) ? "2023-10-24" : Model.Reference.DateSent)">
       </div>
       <div class="col-12">
         <label class="form-label small fw-bold text-uppercase letter-wide" for="notes">Notes or Depositor Name (Optional)</label>
         <input class="form-control bg-surface" id="notes" name="Notes" type="text"
-          placeholder="e.g. Paid via Meezan Raast app from Hamza Raza Account">
+          placeholder="e.g. Paid via Meezan Raast app from Hamza Raza Account" value="@Model.Reference.Notes">
       </div>
     </div>
     <div class="d-flex justify-content-end pt-4">
-      <button class="btn btn-forest d-inline-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto" type="submit">
+      <button class="btn btn-forest d-inline-flex align-items-center justify-content-center gap-2 w-100 w-sm-auto" id="reference-submit" type="submit">
         <i class="bi bi-check2"></i> Submit Reference for Verification
       </button>
     </div>
@@ -93,7 +103,7 @@
       <h2 class="panel-title">My Contribution History</h2>
       <p class="panel-subtitle mb-0">Complete record of receipts and verification progress.</p>
     </div>
-    <span class="badge-amanat badge-neutral">Total Records: 3</span>
+    <span class="badge-amanat badge-neutral">Total Records: @Model.Contributions.Count</span>
   </div>
   <div class="table-responsive">
     <table class="table table-amanat">
@@ -117,13 +127,15 @@
   </div>
 </section>
 
-<footer class="mt-auto py-3 px-4 border-top border-amanat bg-white">
-  <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2 small text-muted-amanat">
-    <p class="mb-0">&copy; 2023 AMANAT (امانت) - Community Fund Transparency. All rights reserved.</p>
-    <div class="d-flex flex-wrap gap-3 fw-medium">
-      <a class="footer-link js-demo-link" data-demo-message="Privacy Policy is part of the interactive demo." href="#">Privacy Policy</a>
-      <a class="footer-link js-demo-link" data-demo-message="Terms of Trust are part of the interactive demo." href="#">Terms of Trust</a>
-      <a class="footer-link js-demo-link" data-demo-message="Help &amp; Audits are part of the interactive demo." href="#">Help &amp; Audits</a>
+@section Footer {
+  <footer class="mt-auto py-3 px-4 border-top border-amanat bg-white">
+    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2 small text-muted-amanat">
+      <p class="mb-0">&copy; 2023 AMANAT (امانت) - Community Fund Transparency. All rights reserved.</p>
+      <div class="d-flex flex-wrap gap-3 fw-medium">
+        <a class="footer-link js-demo-link" data-demo-message="Privacy Policy is part of the interactive demo." href="#">Privacy Policy</a>
+        <a class="footer-link js-demo-link" data-demo-message="Terms of Trust are part of the interactive demo." href="#">Terms of Trust</a>
+        <a class="footer-link js-demo-link" data-demo-message="Help &amp; Audits are part of the interactive demo." href="#">Help &amp; Audits</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
+}

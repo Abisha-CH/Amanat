@@ -33,7 +33,7 @@ public sealed class PaymentReferenceInput
     public string TransactionId { get; set; } = string.Empty;
 
     public string DateSent { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Notes { get; set; } = string.Empty;
 }
 
 public sealed class ExpenseInput
@@ -48,5 +48,56 @@ public sealed class ExpenseInput
     [Required]
     public string PayeeName { get; set; } = string.Empty;
 
+    [Required(ErrorMessage = "Please describe the expense.")]
+    [StringLength(500, ErrorMessage = "Description must be at most 500 characters.")]
     public string Description { get; set; } = string.Empty;
+}
+
+public sealed class CampaignCreateInput
+{
+    [Required]
+    [StringLength(100)]
+    public string Slug { get; set; } = string.Empty;
+
+    [Required]
+    [StringLength(200)]
+    public string Title { get; set; } = string.Empty;
+
+    [Required]
+    [StringLength(200)]
+    public string Organization { get; set; } = string.Empty;
+
+    [Required]
+    [StringLength(100)]
+    public string Category { get; set; } = string.Empty;
+
+    [Required]
+    [StringLength(50)]
+    public string FocusKey { get; set; } = string.Empty;
+
+    [Required]
+    [Range(1, 100000000)]
+    public decimal Goal { get; set; }
+
+    [Required]
+    public DateTime StartedOn { get; set; } = DateTime.Today;
+
+    [Required]
+    public DateTime Deadline { get; set; } = DateTime.Today.AddMonths(3);
+
+    [StringLength(500)]
+    public string Summary { get; set; } = string.Empty;
+}
+
+public sealed class CampaignUpdateInput
+{
+    [Required]
+    public int CampaignId { get; set; }
+
+    [Required]
+    [StringLength(200)]
+    public string Title { get; set; } = string.Empty;
+
+    [Required]
+    public string Body { get; set; } = string.Empty;
 }

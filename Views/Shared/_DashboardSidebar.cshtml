@@ -27,7 +27,7 @@
             <p class="text-muted-amanat text-uppercase letter-wide mb-0 mt-2" style="font-size: 0.55rem;">Community Fund Transparency</p>
           }
         </div>
-        <nav class="app-nav" aria-label="Main Navigation">
+        <nav class="app-nav" aria-label="@(Model.Role == AmanatRoles.Treasurer ? "Sidebar Navigation" : "Main Navigation")">
           @if (Model.Role == AmanatRoles.Contributor)
           {
             <span class="sidebar-label">My Portal</span>

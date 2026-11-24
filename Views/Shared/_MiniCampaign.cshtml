@@ -10,6 +10,6 @@
       <span class="badge-amanat @(Model.Percent == 100 ? "badge-neutral" : "badge-verified")">@(Model.Percent == 100 ? "Completed" : "Active")</span>
       <span class="meta">&bull; @Model.TargetText</span>
     </div>
-    <div class="progress progress-thin mt-2"><div class="progress-bar" style="width: @Model.Percent%"></div></div>
+    <div class="progress progress-thin mt-2"><div class="progress-bar @(Model.Percent == 100 ? "bg-forest" : "")" style="width: @Model.Percent%"></div></div>
   </div>
 </div>

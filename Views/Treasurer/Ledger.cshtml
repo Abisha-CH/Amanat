@@ -40,13 +40,14 @@
       <div class="d-flex align-items-start justify-content-between">
         <div>
           <span class="metric-label">Total Verified Inflow</span>
-          <div class="metric-value mt-2">Rs. 31,840.00</div>
-        </div>
-        <span class="metric-icon"><i class="bi bi-arrow-down-left"></i></span>
-      </div>
-      <div class="metric-footer">
-        <span class="fw-semibold text-forest"><i class="bi bi-graph-up-arrow me-1"></i>+18.4% vs Q4</span>
-        <span>42 civic backers</span>
+           <div class="metric-value mt-2">Rs. @Model.Summary.TotalVerifiedContributions.ToString("N2")</div>
+         </div>
+         <span class="metric-icon"><i class="bi bi-arrow-down-left"></i></span>
+       </div>
+       <div class="metric-footer">
+         <span class="fw-semibold text-forest"><i class="bi bi-graph-up-arrow me-1"></i>Verified credits</span>
+         <span>@Model.Summary.VerifiedContributionCount receipts</span>
+
       </div>
       <div class="metric-strip" style="background: var(--amanat-forest);"></div>
     </div>
@@ -56,13 +57,14 @@
       <div class="d-flex align-items-start justify-content-between">
         <div>
           <span class="metric-label">Total Approved Outflow</span>
-          <div class="metric-value mt-2">Rs. 18,420.00</div>
-        </div>
-        <span class="metric-icon" style="background:#EFF4EF; color: var(--amanat-forest);"><i class="bi bi-arrow-up-right"></i></span>
-      </div>
-      <div class="metric-footer">
-        <span class="fw-semibold"><i class="bi bi-receipt me-1"></i>57.8% of target cap</span>
-        <span>29 vouchers cleared</span>
+           <div class="metric-value mt-2">Rs. @Model.Summary.TotalApprovedExpenses.ToString("N2")</div>
+         </div>
+         <span class="metric-icon" style="background:#EFF4EF; color: var(--amanat-forest);"><i class="bi bi-arrow-up-right"></i></span>
+       </div>
+       <div class="metric-footer">
+         <span class="fw-semibold"><i class="bi bi-receipt me-1"></i>Approved disbursements</span>
+         <span>@Model.Summary.ApprovedExpenseCount vouchers cleared</span>
+
       </div>
       <div class="metric-strip" style="background: var(--amanat-sage);"></div>
     </div>
@@ -72,12 +74,13 @@
       <div class="d-flex align-items-start justify-content-between">
         <div>
           <span class="metric-label">Pending Verification</span>
-          <div class="metric-value mt-2" style="color: var(--amanat-forest);">Rs. 1,650.00</div>
-        </div>
-        <span class="metric-icon" style="background:#FEF2F2; color:#B91C1C;"><i class="bi bi-hourglass-split"></i></span>
-      </div>
-      <div class="metric-footer">
-        <span class="fw-semibold" style="color:#B91C1C;"><span class="badge-dot me-1" style="background:#B91C1C;"></span>4 items require review</span>
+           <div class="metric-value mt-2" style="color: var(--amanat-forest);">Rs. @Model.PendingTotal.ToString("N2")</div>
+         </div>
+         <span class="metric-icon" style="background:#FEF2F2; color:#B91C1C;"><i class="bi bi-hourglass-split"></i></span>
+       </div>
+       <div class="metric-footer">
+         <span class="fw-semibold" style="color:#B91C1C;"><span class="badge-dot me-1" style="background:#B91C1C;"></span>@Model.PendingCount items require review</span>
+
         <a class="text-forest fw-semibold text-decoration-none" href="#pending-queue">Review Queue &rarr;</a>
       </div>
       <div class="metric-strip" style="background:#B91C1C;"></div>
@@ -132,10 +135,10 @@
           <span class="d-inline-flex rounded-circle" style="width:.55rem; height:.55rem; background:#B91C1C;"></span>
           <div>
             <h2 class="h6 fw-bold text-forest mb-0">Pending Approvals Queue</h2>
-            <span class="text-muted-amanat" style="font-size: 0.7rem;">3 disbursements require your verified signature</span>
+            <span class="text-muted-amanat" style="font-size: 0.7rem;">@Model.PendingCount disbursements require your verified signature</span>
           </div>
         </div>
-        <span class="badge-amanat badge-danger">Action Required: Rs. 1,041.70</span>
+        <span class="badge-amanat badge-danger">Action Required: Rs. @Model.PendingTotal.ToString("N2")</span>
       </div>
       <div class="p-3 p-lg-4 d-flex flex-column gap-3">
         @foreach (var item in Model.PendingApprovals)
@@ -151,7 +154,7 @@
                 <div class="d-flex flex-wrap align-items-center gap-2 text-muted-amanat mt-1" style="font-size: 0.7rem;">
                   <span><i class="bi bi-person me-1"></i>@item.Submitter</span>
                   <span>&bull;</span><span>@item.SubmittedText</span><span>&bull;</span>
-                  <a class="text-forest fw-semibold text-decoration-none js-demo-link" data-demo-message="Invoice preview is part of the interactive demo." href="#">
+                  <a class="text-forest fw-semibold text-decoration-none js-demo-link" data-demo-message="@item.DemoMessage" href="#">
                     <i class="bi bi-paperclip me-1"></i>@item.Attachment
                   </a>
                 </div>
@@ -163,7 +166,7 @@
                 <button class="btn btn-forest btn-sm js-sign-btn" type="button" title="Approve and sign">
                   <i class="bi bi-pen me-1"></i>Approve &amp; Sign
                 </button>
-                <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Clarification request sent to the submitter." type="button" title="Request clarification" aria-label="Request clarification"><i class="bi bi-question-circle"></i></button>
+                <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Clarification requests are part of the interactive demo." type="button" title="Request clarification" aria-label="Request clarification"><i class="bi bi-question-circle"></i></button>
                 <button class="btn btn-outline-forest btn-sm js-reject-btn" type="button" title="Reject disbursement" aria-label="Reject disbursement"><i class="bi bi-x-lg"></i></button>
               </div>
             </div>
@@ -193,7 +196,7 @@
               <option value="facility">Facility Lease</option>
             </select>
           </div>
-          <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Ledger refreshed from the bank feed." type="button" title="Reload transactions" aria-label="Reload transactions">
+          <button class="btn btn-outline-forest btn-sm js-demo-link" data-demo-message="Ledger refresh is part of the interactive demo." type="button" title="Reload transactions" aria-label="Reload transactions">
             <i class="bi bi-arrow-repeat"></i>
           </button>
         </div>
@@ -222,7 +225,7 @@
       </div>
       <div class="panel-head d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 border-top" style="border-bottom: 0;">
         <div class="d-flex flex-wrap align-items-center gap-2 text-muted-amanat" style="font-size: 0.7rem;">
-          <span>Showing <span id="ledger-visible-count">6</span> of 84 ledger vouchers</span>
+          <span>Showing <span id="ledger-visible-count">@Model.Entries.Count</span> of @Model.Entries.Count ledger vouchers</span>
           <span>&bull;</span>
           <span class="mono" style="font-size: 0.62rem;">Merkle Root: 0x7e29...910c</span>
         </div>
@@ -319,11 +322,11 @@
         </div>
         <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-amanat" style="font-size: 0.76rem;">
           <span class="text-muted-amanat">First National Commercial</span>
-          <span class="fw-bold mono">Rs. 31,840.00</span>
+          <span class="fw-bold mono">Rs. @Model.Summary.TotalVerifiedContributions.ToString("N2")</span>
         </div>
         <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-amanat" style="font-size: 0.76rem;">
           <span class="text-muted-amanat">Amanat On-Chain Ledger</span>
-          <span class="fw-bold mono">Rs. 31,840.00</span>
+          <span class="fw-bold mono">Rs. @Model.Summary.TotalVerifiedContributions.ToString("N2")</span>
         </div>
         <div class="d-flex align-items-center justify-content-between bg-surface rounded-3 px-3 py-2 mt-3 text-forest" style="font-size: 0.76rem;">
           <span class="fw-semibold"><i class="bi bi-check2-all me-1"></i>Reconciliation Delta</span>
@@ -383,13 +386,15 @@
   </div>
 </div>
 
-<footer class="border-top border-amanat bg-white">
-  <div class="container-xxl d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2 py-3 px-3 px-lg-4 small text-muted-amanat">
-    <p class="mb-0">&copy; 2025 AMANAT (امانت) &middot; Oakridge STEM Initiative. All rights reserved.</p>
-    <div class="d-flex flex-wrap gap-3 fw-medium">
-      <a class="footer-link" asp-controller="Campaigns" asp-action="Index">Campaigns</a>
-      <a class="footer-link" asp-controller="Public" asp-action="Ledger">Public Ledger</a>
-      <a class="footer-link" asp-controller="Treasurer" asp-action="Dashboard">Dashboard</a>
+@section Footer {
+  <footer class="border-top border-amanat bg-white">
+    <div class="container-xxl d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2 py-3 px-3 px-lg-4 small text-muted-amanat">
+      <p class="mb-0">&copy; 2025 AMANAT (امانت) &middot; Oakridge STEM Initiative. All rights reserved.</p>
+      <div class="d-flex flex-wrap gap-3 fw-medium">
+        <a class="footer-link" asp-controller="Campaigns" asp-action="Index">Campaigns</a>
+        <a class="footer-link" asp-controller="Public" asp-action="Ledger">Public Ledger</a>
+        <a class="footer-link" asp-controller="Treasurer" asp-action="Dashboard">Dashboard</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
+}

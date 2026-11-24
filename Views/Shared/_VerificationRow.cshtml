@@ -4,5 +4,18 @@
   <td class="fw-medium">@Model.AmountText</td>
   <td class="cell-mono">@Model.Reference</td>
   <td><span class="badge-amanat badge-pending js-status">Pending</span></td>
-  <td class="text-end"><button class="btn btn-forest btn-sm js-verify-btn" data-label="@Model.Contributor's contribution" type="button">Verify</button></td>
+  <td class="text-end">
+    <div class="d-inline-flex gap-2">
+      <form method="post" asp-controller="Treasurer" asp-action="VerifyContribution" data-ajax-decision="true" data-decision="Verified" data-ajax-url="@Url.Action("DecideContributionJson", "Treasurer")">
+        <input type="hidden" name="ContributionId" value="@Model.ContributionId">
+        <input type="hidden" name="RowVersion" value="@Model.RowVersion">
+        <button class="btn btn-forest btn-sm js-verify-btn" data-mvc-submit="true" data-label="@Model.Contributor's contribution" type="submit">Verify</button>
+      </form>
+      <form method="post" asp-controller="Treasurer" asp-action="RejectContribution" data-ajax-decision="true" data-decision="Rejected" data-ajax-url="@Url.Action("DecideContributionJson", "Treasurer")">
+        <input type="hidden" name="ContributionId" value="@Model.ContributionId">
+        <input type="hidden" name="RowVersion" value="@Model.RowVersion">
+        <button class="btn btn-outline-secondary btn-sm js-reject-btn" data-mvc-submit="true" style="border-radius:0.55rem;">Reject</button>
+      </form>
+    </div>
+  </td>
 </tr>

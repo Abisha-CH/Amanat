@@ -61,6 +61,10 @@ public sealed class RegisterModel : PageModel
         {
             ModelState.AddModelError("Input.Role", "Please select a valid access role.");
         }
+        else if (Input.Role != AmanatRoles.Contributor)
+        {
+            ModelState.AddModelError("Input.Role", "Organizer and Treasurer accounts are assigned by an administrator. Register as a Contributor.");
+        }
 
         if (!Input.Terms)
         {
@@ -91,7 +95,17 @@ public sealed class RegisterModel : PageModel
             return Page();
         }
 
-        await _userManager.AddToRoleAsync(user, Input.Role);
+        var roleResult = await _userManager.AddToRoleAsync(user, Input.Role);
+        if (!roleResult.Succeeded)
+        {
+            foreach (var error in roleResult.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return Page();
+        }
+
         await _signInManager.SignInAsync(user, isPersistent: false);
 
         return LocalRedirect(await AccountRedirect.DashboardPathAsync(_userManager, user));

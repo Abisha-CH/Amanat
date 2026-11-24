@@ -1,6 +1,9 @@
 using Amanat.Data;
 using Amanat.Models;
+using Amanat.Repositories;
+using Amanat.Repositories.Interfaces;
 using Amanat.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +23,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.User.RequireUniqueEmail = true;
     options.SignIn.RequireConfirmedAccount = false;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.AllowedForNewUsers = true;
 })
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
@@ -30,13 +36,24 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LogoutPath = "/Identity/Account/Logout";
     options.AccessDeniedPath = "/Home/AccessDenied";
     options.ReturnUrlParameter = "returnUrl";
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SameSite = SameSiteMode.Lax;
+    options.Cookie.SecurePolicy = builder.Environment.IsDevelopment()
+        ? CookieSecurePolicy.SameAsRequest
+        : CookieSecurePolicy.Always;
 });
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddScoped<ICampaignService, SampleCampaignService>();
-builder.Services.AddScoped<ILedgerService, SampleLedgerService>();
-builder.Services.AddScoped<IDashboardService, SampleDashboardService>();
+builder.Services.AddSingleton<IDbConnectionFactory, SqlConnectionFactory>();
+builder.Services.AddScoped<ICampaignRepository, CampaignRepository>();
+builder.Services.AddScoped<IContributionRepository, ContributionRepository>();
+builder.Services.AddScoped<IExpenseRepository, ExpenseRepository>();
+builder.Services.AddScoped<ILedgerRepository, LedgerRepository>();
+builder.Services.AddScoped<ICampaignService, SqlCampaignService>();
+builder.Services.AddScoped<ILedgerService, SqlLedgerService>();
+builder.Services.AddScoped<IDashboardService, SqlDashboardService>();
+builder.Services.AddScoped<IDomainMutationService, SqlDomainMutationService>();
 
 var app = builder.Build();
 
@@ -46,13 +63,16 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     await db.Database.EnsureCreatedAsync();
-    await RoleSeeder.SeedAsync(scope.ServiceProvider);
+    await RoleSeeder.SeedAsync(scope.ServiceProvider, builder.Configuration);
 }
+
+await DomainSeeder.SeedAsync(app.Services);
 
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
+    app.UseHttpsRedirection();
 }
 
 app.UseStaticFiles();

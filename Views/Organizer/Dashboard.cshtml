@@ -1,4 +1,5 @@
 @model Amanat.ViewModels.OrganizerDashboardViewModel
+@using System.Linq
 @{ Layout = "_DashboardLayout"; ViewData["Shell"] = Model.Shell; }
 
 <section class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mb-4">
@@ -6,10 +7,9 @@
     <h1 class="page-heading">Welcome, @Model.Shell.FullName</h1>
     <p class="page-subheading mb-0">Manage your campaigns and track progress.</p>
   </div>
-  <button class="btn btn-forest d-inline-flex align-items-center gap-2 js-demo-link"
-    data-demo-message="Campaign creation wizard is part of the interactive demo." type="button">
+  <a class="btn btn-forest d-inline-flex align-items-center gap-2" href="#campaign-management-section">
     <i class="bi bi-plus-lg"></i><span>Create New Campaign</span>
-  </button>
+  </a>
 </section>
 
 <section class="row g-3 mb-4">
@@ -17,6 +17,116 @@
   {
     @await Html.PartialAsync("_StatCard", stat)
   }
+</section>
+
+@if (TempData["CampaignMessage"] is string campaignMessage)
+{
+  <p class="alert alert-success py-2 small">@campaignMessage</p>
+}
+@if (TempData["CampaignError"] is string campaignError)
+{
+  <p class="alert alert-danger py-2 small">@campaignError</p>
+}
+@if (TempData["ApprovalMessage"] is string approvalMessage)
+{
+  <p class="alert alert-success py-2 small">@approvalMessage</p>
+}
+@if (TempData["ApprovalError"] is string approvalError)
+{
+  <p class="alert alert-danger py-2 small">@approvalError</p>
+}
+@if (!ViewData.ModelState.IsValid)
+{
+  <div class="alert alert-danger py-2 small">@Html.ValidationSummary(false, string.Empty, new { @class = "mb-0" })</div>
+}
+
+<section class="panel p-4 mb-4" id="campaign-management-section">
+  <div class="border-bottom border-amanat pb-3 mb-4">
+    <h2 class="panel-title">Campaign Management</h2>
+    <p class="panel-subtitle mb-0">Create campaigns, publish updates, and archive completed collections.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <h3 class="h6 fw-bold text-ink mb-3">Create Campaign</h3>
+      <form method="post" asp-controller="Organizer" asp-action="CreateCampaign" class="vstack gap-3" novalidate>
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <label class="form-label small fw-semibold" for="campaign-slug">URL Slug</label>
+            <input class="form-control form-control-sm bg-surface" id="campaign-slug" name="NewCampaign.Slug" value="@Model.NewCampaign.Slug" required>
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label small fw-semibold" for="campaign-title">Title</label>
+            <input class="form-control form-control-sm bg-surface" id="campaign-title" name="NewCampaign.Title" value="@Model.NewCampaign.Title" required>
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label small fw-semibold" for="campaign-organization">Organization</label>
+            <input class="form-control form-control-sm bg-surface" id="campaign-organization" name="NewCampaign.Organization" value="@Model.NewCampaign.Organization" required>
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label small fw-semibold" for="campaign-category">Category</label>
+            <input class="form-control form-control-sm bg-surface" id="campaign-category" name="NewCampaign.Category" value="@Model.NewCampaign.Category" required>
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label small fw-semibold" for="campaign-focus">Focus Key</label>
+            <input class="form-control form-control-sm bg-surface" id="campaign-focus" name="NewCampaign.FocusKey" value="@Model.NewCampaign.FocusKey" required>
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label small fw-semibold" for="campaign-goal">Goal (PKR)</label>
+            <input class="form-control form-control-sm bg-surface" id="campaign-goal" name="NewCampaign.Goal" type="number" min="1" value="@(Model.NewCampaign.Goal > 0 ? Model.NewCampaign.Goal.ToString() : null)" required>
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label small fw-semibold" for="campaign-start">Start Date</label>
+            <input class="form-control form-control-sm bg-surface" id="campaign-start" name="NewCampaign.StartedOn" type="date" value="@Model.NewCampaign.StartedOn.ToString("yyyy-MM-dd")" required>
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label small fw-semibold" for="campaign-deadline">Deadline</label>
+            <input class="form-control form-control-sm bg-surface" id="campaign-deadline" name="NewCampaign.Deadline" type="date" value="@Model.NewCampaign.Deadline.ToString("yyyy-MM-dd")" required>
+          </div>
+          <div class="col-12">
+            <label class="form-label small fw-semibold" for="campaign-summary">Summary</label>
+            <textarea class="form-control form-control-sm bg-surface" id="campaign-summary" name="NewCampaign.Summary" rows="2" required>@Model.NewCampaign.Summary</textarea>
+          </div>
+        </div>
+        <div><button class="btn btn-forest btn-sm" type="submit">Create Campaign</button></div>
+      </form>
+    </div>
+    <div class="col-lg-6">
+      <h3 class="h6 fw-bold text-ink mb-3">Publish Campaign Update</h3>
+      <form method="post" asp-controller="Organizer" asp-action="AddUpdate" class="vstack gap-3" novalidate>
+        <div>
+          <label class="form-label small fw-semibold" for="update-campaign">Campaign</label>
+          <select class="form-select form-select-sm bg-surface" id="update-campaign" name="NewUpdate.CampaignId" required>
+            @foreach (var campaign in Model.CampaignOptions)
+            {
+              <option value="@campaign.CampaignId">@campaign.Title</option>
+            }
+          </select>
+        </div>
+        <div>
+          <label class="form-label small fw-semibold" for="update-title">Update Title</label>
+          <input class="form-control form-control-sm bg-surface" id="update-title" name="NewUpdate.Title" value="@Model.NewUpdate.Title" required>
+        </div>
+        <div>
+          <label class="form-label small fw-semibold" for="update-body">Public Update</label>
+          <textarea class="form-control form-control-sm bg-surface" id="update-body" name="NewUpdate.Body" rows="3" required>@Model.NewUpdate.Body</textarea>
+        </div>
+        <div><button class="btn btn-outline-forest btn-sm" type="submit">Publish Update</button></div>
+      </form>
+
+      <h3 class="h6 fw-bold text-ink mt-4 mb-3">Archive Campaign</h3>
+      <div class="d-flex flex-column gap-2">
+        @foreach (var campaign in Model.CampaignOptions.Where(c => c.Status == "Active"))
+        {
+          <form method="post" asp-controller="Organizer" asp-action="ArchiveCampaign" class="d-flex align-items-center justify-content-between gap-3 border rounded-3 p-2">
+            <input type="hidden" name="CampaignId" value="@campaign.CampaignId">
+            <input type="hidden" name="RowVersion" value="@campaign.RowVersion">
+            <span class="small fw-semibold text-ink">@campaign.Title</span>
+            <button class="btn btn-outline-secondary btn-sm" type="submit">Archive</button>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="row g-4 mb-4">
@@ -80,7 +190,7 @@
     <div>
       <div class="d-flex flex-wrap align-items-center gap-2">
         <h2 class="panel-title">Pending Expense Approvals</h2>
-        <span class="badge-amanat badge-pending">2 Invoices Awaiting Signoff</span>
+        <span class="badge-amanat badge-pending">@Model.Approvals.Count Invoices Awaiting Signoff</span>
       </div>
       <p class="panel-subtitle mb-0">Treasurer-submitted invoices requiring organizer authorization for fund release.</p>
     </div>

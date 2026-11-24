@@ -67,17 +67,27 @@
     var forms = document.querySelectorAll('form.needs-validation');
     Array.prototype.forEach.call(forms, function (form) {
       form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-
         if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
           form.classList.add('was-validated');
           return;
         }
 
         form.classList.add('was-validated');
+        if (form.dataset.mvcSubmit === 'true') return;
+
+        event.preventDefault();
+        event.stopPropagation();
         handleFormSuccess(form);
       });
+    });
+  }
+
+  function initAutoToasts() {
+    var forms = document.querySelectorAll('form[data-toast-message]');
+    Array.prototype.forEach.call(forms, function (form) {
+      if (form.dataset.toastMessage) showToast(form.dataset.toastMessage);
     });
   }
 
@@ -291,8 +301,9 @@
   function initActionButtons() {
     Array.prototype.forEach.call(document.querySelectorAll('.js-verify-btn'), function (btn) {
       btn.addEventListener('click', function () {
+        if (btn.dataset.mvcSubmit === 'true') return;
         var label = btn.dataset.label || 'Entry';
-        showToast(label + ' verified and posted to the ledger.');
+        showToast(label + ' verified (demo state only).');
         var row = btn.closest('tr');
         if (row) {
           var badge = row.querySelector('.js-status');
@@ -308,7 +319,8 @@
 
     Array.prototype.forEach.call(document.querySelectorAll('.js-approve-btn'), function (btn) {
       btn.addEventListener('click', function () {
-        showToast('Pledge approved and published.');
+        if (btn.dataset.mvcSubmit === 'true') return;
+        showToast('Expense approved (demo state only).');
         var row = btn.closest('tr');
         if (row) {
           var badge = row.querySelector('.js-status');
@@ -322,7 +334,8 @@
 
     Array.prototype.forEach.call(document.querySelectorAll('.js-reject-btn'), function (btn) {
       btn.addEventListener('click', function () {
-        showToast('Pledge rejected.', 'error');
+        if (btn.dataset.mvcSubmit === 'true') return;
+        showToast('Expense rejected (demo state only).', 'error');
         var row = btn.closest('tr');
         if (row) {
           var badge = row.querySelector('.js-status');
@@ -340,7 +353,7 @@
         btn.classList.remove('btn-forest');
         btn.classList.add('btn-outline-forest');
         btn.innerHTML = '<i class="bi bi-check2-circle me-1"></i>Signed';
-        showToast('Signature applied. Entries awaiting co-signature remain pending.');
+        showToast('Signature applied (demo state only).');
       });
     });
 
@@ -447,6 +460,7 @@
      ------------------------------------------------------------------ */
   ready(function () {
     initValidation();
+    initAutoToasts();
     initPasswordToggles();
     initPasswordMatch();
     initRoleSelector();

@@ -52,7 +52,13 @@ public sealed class LoginModel : PageModel
         }
 
         var result = await _signInManager.PasswordSignInAsync(
-            Input.Email, Input.Password, Input.Remember, lockoutOnFailure: false);
+            Input.Email, Input.Password, Input.Remember, lockoutOnFailure: true);
+
+        if (result.IsLockedOut)
+        {
+            ModelState.AddModelError(string.Empty, "Your account is locked. Please try again later.");
+            return Page();
+        }
 
         if (!result.Succeeded)
         {

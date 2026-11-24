@@ -10,3 +10,5 @@ Data/*.db-shm
 Data/*.db-wal
 .DS_Store
 Thumbs.db
+playwright-report/
+test-results/

@@ -8,12 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.100" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.23" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.23" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="tests/**" />
     <Content Remove="index.html;about.html;campaigns.html;campaign-details.html;login.html;signup.html;contributor/**;organizer/**;treasurer/**;public/**" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(PublishDir)' != ''">
+    <Content Remove="appsettings.Development.json;tests/**;test-results/**;package.json;package-lock.json" />
   </ItemGroup>
 
 </Project>

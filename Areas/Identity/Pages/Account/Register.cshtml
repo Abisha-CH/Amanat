@@ -98,7 +98,7 @@
               <div class="col-4">
                 <label class="role-card h-100">
                   <span class="d-flex align-items-center gap-2">
-                    <input class="form-check-input mt-0" type="radio" asp-for="Input.Role" value="@AmanatRoles.Organizer">
+                    <input class="form-check-input mt-0" type="radio" asp-for="Input.Role" value="@AmanatRoles.Organizer" disabled>
                     <span class="small fw-semibold text-ink">Organizer</span>
                   </span>
                   <span class="d-none d-sm-block mt-1 text-muted-amanat" style="font-size: 0.64rem;">Initiate &amp; lead campaigns</span>
@@ -107,7 +107,7 @@
               <div class="col-4">
                 <label class="role-card h-100">
                   <span class="d-flex align-items-center gap-2">
-                    <input class="form-check-input mt-0" type="radio" asp-for="Input.Role" value="@AmanatRoles.Treasurer">
+                    <input class="form-check-input mt-0" type="radio" asp-for="Input.Role" value="@AmanatRoles.Treasurer" disabled>
                     <span class="small fw-semibold text-ink">Treasurer</span>
                   </span>
                   <span class="d-none d-sm-block mt-1 text-muted-amanat" style="font-size: 0.64rem;">Audit &amp; verify receipts</span>
@@ -124,6 +124,7 @@
               </div>
             </div>
             <span asp-validation-for="Input.Role" class="text-danger small"></span>
+            <p class="small text-muted-amanat mt-1 mb-0">Organizer and Treasurer access is assigned by an administrator.</p>
           </div>
 
           <div class="d-flex align-items-start pt-1">

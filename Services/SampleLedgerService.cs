@@ -25,9 +25,9 @@ public sealed class SampleLedgerService : ILedgerService
 
     private static readonly IReadOnlyList<PendingApproval> PendingApprovals =
     [
-        new() { Title = "MakerBot 3D Printer Filament (8 Spools)", Reference = "EXP-2025-081", Icon = "bi-printer", Submitter = "Marcus Vance (Lab Mentor)", SubmittedText = "Submitted 2h ago", Attachment = "Invoice_MakerBot.pdf (842 KB)", AmountText = "Rs. 284.50" },
-        new() { Title = "Circuit Board PCB Prototype Fabrication", Reference = "EXP-2025-082", Icon = "bi-cpu", Submitter = "Aria Chen (Hardware Lead)", SubmittedText = "Submitted 5h ago", Attachment = "JLCPCB_Receipt_883.pdf (1.2 MB)", AmountText = "Rs. 612.00" },
-        new() { Title = "Workshop Safety Goggles (Bulk Pack of 30)", Reference = "EXP-2025-083", Icon = "bi-shield-check", Submitter = "Julian Ross (Lab Manager)", SubmittedText = "Submitted Yesterday", Attachment = "Safety_Goggles_INV.pdf (640 KB)", AmountText = "Rs. 145.20" }
+        new() { Title = "MakerBot 3D Printer Filament (8 Spools)", Reference = "EXP-2025-081", Icon = "bi-printer", Submitter = "Marcus Vance (Lab Mentor)", SubmittedText = "Submitted 2h ago", Attachment = "Invoice_MakerBot.pdf (842 KB)", DemoMessage = "Invoice preview is part of the interactive demo.", AmountText = "Rs. 284.50" },
+        new() { Title = "Circuit Board PCB Prototype Fabrication", Reference = "EXP-2025-082", Icon = "bi-cpu", Submitter = "Aria Chen (Hardware Lead)", SubmittedText = "Submitted 5h ago", Attachment = "JLCPCB_Receipt_883.pdf (1.2 MB)", DemoMessage = "Receipt preview is part of the interactive demo.", AmountText = "Rs. 612.00" },
+        new() { Title = "Workshop Safety Goggles (Bulk Pack of 30)", Reference = "EXP-2025-083", Icon = "bi-shield-check", Submitter = "Julian Ross (Lab Manager)", SubmittedText = "Submitted Yesterday", Attachment = "AmazonCommercial_Inv.pdf (410 KB)", DemoMessage = "Invoice preview is part of the interactive demo.", AmountText = "Rs. 145.20" }
     ];
 
     public string PublicSealDigest => "9c02a7be...e3bb4";

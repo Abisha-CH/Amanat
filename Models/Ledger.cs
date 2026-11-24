@@ -45,5 +45,6 @@ public sealed class PendingApproval
     public string Submitter { get; set; } = string.Empty;
     public string SubmittedText { get; set; } = string.Empty;
     public string Attachment { get; set; } = string.Empty;
+    public string DemoMessage { get; set; } = string.Empty;
     public string AmountText { get; set; } = string.Empty;
 }

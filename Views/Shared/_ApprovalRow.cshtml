@@ -13,8 +13,16 @@
   <td class="text-center"><span class="badge-amanat badge-pending js-status">@Model.Status</span></td>
   <td class="text-end">
     <div class="d-inline-flex gap-2">
-      <button class="btn btn-forest btn-sm js-approve-btn" type="button">Approve Signoff</button>
-      <button class="btn btn-outline-secondary btn-sm js-reject-btn" type="button" style="border-radius:0.55rem;">Reject</button>
+      <form method="post" asp-controller="Organizer" asp-action="ApproveExpense" data-ajax-decision="true" data-decision="Approved" data-ajax-url="@Url.Action("DecideExpenseJson", "Organizer")">
+        <input type="hidden" name="ExpenseId" value="@Model.ExpenseId">
+        <input type="hidden" name="RowVersion" value="@Model.RowVersion">
+        <button class="btn btn-forest btn-sm js-approve-btn" data-mvc-submit="true" type="submit">Approve Signoff</button>
+      </form>
+      <form method="post" asp-controller="Organizer" asp-action="RejectExpense" data-ajax-decision="true" data-decision="Rejected" data-ajax-url="@Url.Action("DecideExpenseJson", "Organizer")">
+        <input type="hidden" name="ExpenseId" value="@Model.ExpenseId">
+        <input type="hidden" name="RowVersion" value="@Model.RowVersion">
+        <button class="btn btn-outline-secondary btn-sm js-reject-btn" data-mvc-submit="true" style="border-radius:0.55rem;">Reject</button>
+      </form>
     </div>
   </td>
 </tr>

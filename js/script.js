@@ -292,7 +292,7 @@
     Array.prototype.forEach.call(document.querySelectorAll('.js-verify-btn'), function (btn) {
       btn.addEventListener('click', function () {
         var label = btn.dataset.label || 'Entry';
-        showToast(label + ' verified and posted to the ledger.');
+        showToast(label + ' verified (demo state only).');
         var row = btn.closest('tr');
         if (row) {
           var badge = row.querySelector('.js-status');
@@ -308,7 +308,7 @@
 
     Array.prototype.forEach.call(document.querySelectorAll('.js-approve-btn'), function (btn) {
       btn.addEventListener('click', function () {
-        showToast('Pledge approved and published.');
+        showToast('Expense approved (demo state only).');
         var row = btn.closest('tr');
         if (row) {
           var badge = row.querySelector('.js-status');
@@ -322,7 +322,7 @@
 
     Array.prototype.forEach.call(document.querySelectorAll('.js-reject-btn'), function (btn) {
       btn.addEventListener('click', function () {
-        showToast('Pledge rejected.', 'error');
+        showToast('Expense rejected (demo state only).', 'error');
         var row = btn.closest('tr');
         if (row) {
           var badge = row.querySelector('.js-status');
@@ -340,7 +340,7 @@
         btn.classList.remove('btn-forest');
         btn.classList.add('btn-outline-forest');
         btn.innerHTML = '<i class="bi bi-check2-circle me-1"></i>Signed';
-        showToast('Signature applied. Entries awaiting co-signature remain pending.');
+        showToast('Signature applied (demo state only).');
       });
     });
 

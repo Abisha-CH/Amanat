@@ -4,6 +4,8 @@ namespace Amanat.Models;
 
 public sealed class Campaign
 {
+    public int CampaignId { get; set; }
+    public string RowVersion { get; set; } = string.Empty;
     public string Slug { get; set; } = string.Empty;
     public string Title { get; set; } = string.Empty;
     public string Organization { get; set; } = string.Empty;
@@ -19,7 +21,10 @@ public sealed class Campaign
     public string DetailsImage { get; set; } = string.Empty;
     public string DetailsImageAlt { get; set; } = string.Empty;
     public decimal Raised { get; set; }
+    public decimal ApprovedExpenses { get; set; }
+    public decimal Balance { get; set; }
     public decimal Goal { get; set; }
+    public string Status { get; set; } = "Active";
     public int Contributors { get; set; }
     public int ApprovedCount { get; set; }
     public string ApprovedLabel { get; set; } = string.Empty;
@@ -27,12 +32,22 @@ public sealed class Campaign
     public DateTime StartedOn { get; set; }
     public DateTime Deadline { get; set; }
 
+    public static string AmountText(decimal amount) => "PKR " + amount.ToString("N0", CultureInfo.InvariantCulture);
+
     public int ProgressPercent => Goal == 0 ? 0 : (int)Math.Round(Raised * 100m / Goal);
     public string RaisedRaw => Raised.ToString("0", CultureInfo.InvariantCulture);
     public string RaisedText => "PKR " + Raised.ToString("N0", CultureInfo.InvariantCulture);
     public string GoalText => "PKR " + Goal.ToString("N0", CultureInfo.InvariantCulture);
     public string StartedOnText => StartedOn.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
     public string DeadlineText => Deadline.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+}
+
+public sealed class CampaignUpdateView
+{
+    public string Title { get; set; } = string.Empty;
+    public string Body { get; set; } = string.Empty;
+    public string Author { get; set; } = string.Empty;
+    public string CreatedText { get; set; } = string.Empty;
 }
 
 public sealed class Receipt

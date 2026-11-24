@@ -1,5 +1,8 @@
 @model Amanat.ViewModels.CampaignDetailsViewModel
 @using Microsoft.AspNetCore.Mvc.Rendering
+@{
+  var pledge = ViewData["PledgeInput"] as PledgeInput;
+}
 
     <!-- BEGIN: BreadcrumbAndStatus -->
     <section class="container pt-4">
@@ -10,8 +13,8 @@
           <span class="text-ink fw-medium">@Model.Campaign.Title</span>
         </nav>
         <div class="d-flex align-items-center gap-2">
-          <span class="badge-amanat badge-verified">
-            <span class="badge-dot"></span> Active Campaign
+          <span class="badge-amanat @(Model.Campaign.Status == "Active" ? "badge-verified" : "badge-pending")" id="campaign-status-badge">
+            <span class="badge-dot"></span> <span id="campaign-status-text">@Model.Campaign.Status Campaign</span>
           </span>
           <span class="text-muted-amanat" style="font-size: 0.72rem;">ID: #ED-2024-91</span>
         </div>
@@ -36,28 +39,26 @@
               <span class="text-muted-amanat fw-medium" style="font-size: 0.72rem;">Verified Community Group</span>
             </div>
             <h1 class="fw-bold text-ink lh-tight mb-2" style="font-size: clamp(1.9rem, 3.4vw, 2.6rem);">@Model.Campaign.Title</h1>
-            <p class="text-muted-amanat mb-0">
-              Supporting quality education, modern desks, and classroom supplies for 120 underprivileged
-              children across twin-city community centers.
-            </p>
+            <p class="text-muted-amanat mb-0">@Model.Campaign.Summary</p>
           </div>
-          <div class="finance-panel mt-4">
+          <div class="finance-panel mt-4" data-campaign-summary="@Model.Campaign.Slug" data-campaign-summary-url="@Url.Action("Summary", "Campaigns", new { id = Model.Campaign.Slug })">
             <div class="d-flex justify-content-between align-items-baseline mb-2">
               <div>
                 <span class="section-kicker">Raised</span>
-                <div class="text-forest fw-bold" style="font-size: 1.9rem; letter-spacing: -0.03em;">@Model.Campaign.RaisedText</div>
+                <div class="text-forest fw-bold" id="summary-raised" style="font-size: 1.9rem; letter-spacing: -0.03em;">@Model.Campaign.RaisedText</div>
               </div>
               <div class="text-end">
                 <span class="section-kicker">Target</span>
-                <div class="fw-bold text-ink" style="font-size: 1.4rem;">@Model.Campaign.GoalText</div>
+                  <div class="fw-bold text-ink" id="summary-goal" style="font-size: 1.4rem;">@Model.Campaign.GoalText</div>
+
               </div>
             </div>
             <div class="progress progress-thick mt-2">
-              <div class="progress-bar" style="width: @Model.Campaign.ProgressPercent%"></div>
+              <div class="progress-bar" id="summary-progress-bar" style="width: @Model.Campaign.ProgressPercent%"></div>
             </div>
             <div class="d-flex justify-content-between align-items-center mt-2 small fw-semibold">
-              <span class="text-forest">@Model.Campaign.ProgressPercent% Funded</span>
-              <span class="text-muted-amanat">PKR @((Model.Campaign.Goal - Model.Campaign.Raised).ToString("N0")) Remaining</span>
+              <span class="text-forest" id="summary-funded">@Model.Campaign.ProgressPercent% Funded</span>
+              <span class="text-muted-amanat" id="summary-remaining">@(Model.Campaign.Goal > Model.Campaign.Raised ? Amanat.Models.Campaign.AmountText(Model.Campaign.Goal - Model.Campaign.Raised) : Amanat.Models.Campaign.AmountText(0m)) Remaining</span>
             </div>
             <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
               <a class="btn btn-forest flex-grow-1 d-inline-flex align-items-center justify-content-center gap-2" href="#pledge-section">
@@ -91,10 +92,10 @@
                 <span class="stat-label">Total Received</span>
                 <span class="icon-square-sm bg-forest-soft text-forest fw-bold" style="font-size: 0.6rem;">PKR</span>
               </div>
-              <div class="fs-4 fw-bold text-forest">@Model.Campaign.RaisedText</div>
+              <div class="fs-4 fw-bold text-forest" id="summary-total-received">@Model.Campaign.RaisedText</div>
               <div class="mt-2 small text-muted-amanat d-flex align-items-center gap-2">
                 <i class="bi bi-check-circle-fill text-light-green"></i>
-                <span>From <strong>@Model.Campaign.Contributors verified backers</strong></span>
+                <span>From <strong id="summary-contributors">@Model.Campaign.Contributors verified backers</strong></span>
               </div>
             </div>
           </div>
@@ -104,10 +105,10 @@
                 <span class="stat-label">Approved Expenses</span>
                 <span class="icon-square-sm badge-blush text-forest fw-bold" style="font-size: 0.55rem;">EXP</span>
               </div>
-              <div class="fs-4 fw-bold text-ink">PKR 110,000</div>
+              <div class="fs-4 fw-bold text-ink" id="summary-approved-expenses">@Amanat.Models.Campaign.AmountText(Model.Campaign.ApprovedExpenses)</div>
               <div class="mt-2 small text-muted-amanat d-flex align-items-center gap-2">
                 <i class="bi bi-file-earmark-text text-forest"></i>
-                <span>Across <strong>@Model.Campaign.ApprovedCount audited invoices</strong></span>
+                <span>Across <strong id="summary-approved-count">@Model.Campaign.ApprovedCount audited invoices</strong></span>
               </div>
             </div>
           </div>
@@ -117,7 +118,7 @@
                 <span class="stat-label">Remaining Balance</span>
                 <span class="icon-square-sm bg-blush text-forest fw-bold" style="font-size: 0.55rem;">BAL</span>
               </div>
-              <div class="fs-4 fw-bold text-sage">PKR 40,000</div>
+              <div class="fs-4 fw-bold text-sage" id="summary-balance">@Amanat.Models.Campaign.AmountText(Model.Campaign.Balance)</div>
               <div class="mt-2 small text-muted-amanat d-flex align-items-center gap-2">
                 <span class="rounded-circle bg-success" style="width: 0.45rem; height: 0.45rem;"></span>
                 <span>Safely held in verified escrow IBFT</span>
@@ -186,22 +187,22 @@
               <h4 class="h6 fw-bold text-ink mb-1">Record Your Transaction</h4>
               <p class="text-muted-amanat mb-3" style="font-size: 0.72rem;">Pledge will be marked 'Verified' once treasurer validates bank statement.</p>
               <form asp-controller="Campaigns" asp-action="Details" method="post" class="vstack gap-3" id="pledge-form" novalidate>
-                <input type="hidden" name="CampaignSlug" value="@Model.Campaign.Slug">
+                <input type="hidden" name="CampaignSlug" value="@(pledge?.CampaignSlug ?? Model.Campaign.Slug)">
                 <div>
                   <label class="form-label small fw-semibold" for="pledge-name">Your Full Name</label>
-                  <input class="form-control form-control-sm" id="pledge-name" name="FullName" type="text" placeholder="e.g. Tariq Mehmood" required>
+                  <input class="form-control form-control-sm" id="pledge-name" name="FullName" type="text" placeholder="e.g. Tariq Mehmood" value="@pledge?.FullName" required>
                   <div class="invalid-feedback">Please enter your name.</div>
                   @Html.ValidationMessage("FullName", new { @class = "text-danger small" })
                 </div>
                 <div>
                   <label class="form-label small fw-semibold" for="pledge-amount">Amount (PKR)</label>
-                  <input class="form-control form-control-sm" id="pledge-amount" name="Amount" type="number" min="1" placeholder="5,000" required>
+                  <input class="form-control form-control-sm" id="pledge-amount" name="Amount" type="number" min="1" placeholder="5,000" value="@(pledge?.Amount > 0 ? pledge.Amount.ToString() : null)" required>
                   <div class="invalid-feedback">Please enter a valid amount.</div>
                   @Html.ValidationMessage("Amount", new { @class = "text-danger small" })
                 </div>
                 <div>
                   <label class="form-label small fw-semibold" for="pledge-ref">Transaction Ref / TRX ID</label>
-                  <input class="form-control form-control-sm" id="pledge-ref" name="TransactionRef" type="text" placeholder="e.g. TRX89341" required>
+                  <input class="form-control form-control-sm" id="pledge-ref" name="TransactionRef" type="text" placeholder="e.g. TRX89341" value="@pledge?.TransactionRef" required>
                   <div class="invalid-feedback">Please enter your transaction reference.</div>
                   @Html.ValidationMessage("TransactionRef", new { @class = "text-danger small" })
                 </div>
@@ -250,26 +251,19 @@
             <div>
               <div class="d-flex align-items-center justify-content-between mb-3">
                 <h3 class="h5 fw-bold text-ink mb-0">Campaign Updates</h3>
-                <span class="badge-amanat badge-soft">2 Dispatched</span>
+                <span class="badge-amanat badge-soft">@Model.Updates.Count Dispatched</span>
               </div>
               <div class="timeline">
-                <div class="timeline-item">
-                  <span class="timeline-dot"></span>
-                  <span class="text-muted-amanat fw-semibold" style="font-size: 0.68rem;">2 days ago &bull; Posted by Organizer</span>
-                  <h5 class="h6 fw-bold text-ink mt-1 mb-1">New classroom block desk delivery complete!</h5>
-                  <p class="text-muted-amanat mb-0" style="font-size: 0.74rem;">
-                    First batch of 30 double-desks has arrived from Master Woodcraft. Assembled and placed
-                    in Room 3 &amp; 4. Verified receipt #REC-4109 uploaded.
-                  </p>
-                </div>
-                <div class="timeline-item">
-                  <span class="timeline-dot light"></span>
-                  <span class="text-muted-amanat fw-semibold" style="font-size: 0.68rem;">10 days ago &bull; Posted by Organizer</span>
-                  <h5 class="h6 fw-bold text-ink mt-1 mb-1">Stationery bulk procurement finished</h5>
-                  <p class="text-muted-amanat mb-0" style="font-size: 0.74rem;">
-                    Procured 120 notebook bundles &amp; geometry sets from National Book Foundation at student rate.
-                  </p>
-                </div>
+                @{ var updateIndex = 0; }
+                @foreach (var update in Model.Updates)
+                {
+                  <div class="timeline-item">
+                    <span class="timeline-dot @(updateIndex++ % 2 == 1 ? "light" : null)"></span>
+                    <span class="text-muted-amanat fw-semibold" style="font-size: 0.68rem;">@update.CreatedText &bull; Posted by @update.Author</span>
+                    <h5 class="h6 fw-bold text-ink mt-1 mb-1">@update.Title</h5>
+                    <p class="text-muted-amanat mb-0" style="font-size: 0.74rem;">@update.Body</p>
+                  </div>
+                }
               </div>
             </div>
             <div class="mt-4 pt-3 border-top border-amanat d-flex align-items-center gap-3 bg-surface p-3 rounded-3">

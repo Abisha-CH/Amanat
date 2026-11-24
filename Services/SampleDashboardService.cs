@@ -5,9 +5,11 @@ namespace Amanat.Services;
 
 public sealed class SampleDashboardService : IDashboardService
 {
-    private static DashboardShell BuildShell(ApplicationUser user, string role, string fallbackName, string active)
+    private static DashboardShell BuildShell(ApplicationUser user, string role, string active)
     {
-        var displayName = string.IsNullOrWhiteSpace(user.FullName) ? fallbackName : user.FullName;
+        var displayName = string.IsNullOrWhiteSpace(user.FullName)
+            ? (!string.IsNullOrWhiteSpace(user.Email) ? user.Email : user.UserName ?? role)
+            : user.FullName;
         var parts = displayName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         var initials = parts.Length == 0
             ? "AM"
@@ -17,6 +19,7 @@ public sealed class SampleDashboardService : IDashboardService
         {
             Role = role,
             FullName = displayName,
+            Email = user.Email ?? user.UserName ?? string.Empty,
             Initials = initials,
             ActiveLink = active,
             SearchPlaceholder = role == AmanatRoles.Treasurer ? "Search transactions..." : "Search campaigns...",
@@ -30,7 +33,7 @@ public sealed class SampleDashboardService : IDashboardService
     {
         var model = new ContributorDashboardViewModel
         {
-            Shell = BuildShell(user, AmanatRoles.Contributor, "Hamza Raza", "pledges"),
+            Shell = BuildShell(user, AmanatRoles.Contributor, "pledges"),
             Stats =
             [
                 new StatCard { Label = "Total Pledged", Value = "PKR 25,000", Icon = "bi-cash-stack", IconColor = "text-forest", SmallValue = true },
@@ -78,9 +81,9 @@ public sealed class SampleDashboardService : IDashboardService
             ],
             Contributions =
             [
-                new ContributionRow { Campaign = "Clean Water Initiative", DateText = "Mar 02, 2025", Reference = "TRX78452", AmountText = "PKR 10,000", Status = "Verified" },
-                new ContributionRow { Campaign = "Education for All", DateText = "Feb 18, 2025", Reference = "TRX78431", AmountText = "PKR 8,000", Status = "Verified" },
-                new ContributionRow { Campaign = "Medical Aid Fund", DateText = "Jan 27, 2025", Reference = "TRX78390", AmountText = "PKR 5,000", Status = "Pending" }
+                new ContributionRow { Campaign = "Clean Water Initiative", DateText = "Oct 20, 2023", Reference = "TRX78452", AmountText = "PKR 10,000", Status = "Verified by Treasurer" },
+                new ContributionRow { Campaign = "Education for All", DateText = "Oct 12, 2023", Reference = "TRX78419", AmountText = "PKR 8,000", Status = "Verified by Treasurer" },
+                new ContributionRow { Campaign = "Education for All", DateText = "Oct 24, 2023", Reference = "TRX78492", AmountText = "PKR 7,000", Status = "Under Review", IsPending = true, RowStyle = "background: rgba(255,247,237,0.35);" }
             ]
         };
 
@@ -91,7 +94,7 @@ public sealed class SampleDashboardService : IDashboardService
     {
         var model = new OrganizerDashboardViewModel
         {
-            Shell = BuildShell(user, AmanatRoles.Organizer, "Ayesha Khan", "overview"),
+            Shell = BuildShell(user, AmanatRoles.Organizer, "overview"),
             Stats =
             [
                 new StatCard { Label = "Total Campaigns", Value = "5", Icon = "bi-clipboard", IconColor = "text-forest" },
@@ -119,7 +122,7 @@ public sealed class SampleDashboardService : IDashboardService
     {
         var model = new TreasurerDashboardViewModel
         {
-            Shell = BuildShell(user, AmanatRoles.Treasurer, "Tariq Saeed", "verifications"),
+            Shell = BuildShell(user, AmanatRoles.Treasurer, "verifications"),
             Stats =
             [
                 new StatCard { Label = "Total Received", Value = "PKR 285,000", Icon = "bi-cash-coin", IconColor = "#2563EB", SmallValue = true },

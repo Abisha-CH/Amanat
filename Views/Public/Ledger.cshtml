@@ -24,7 +24,8 @@
     </div>
     <div class="ledger-strip">
       <span><i class="bi bi-broadcast me-1"></i> Snapshots are immutable once sealed and published</span>
-      <span class="fw-semibold">5 institutional funds</span>
+        <span class="fw-semibold">@Model.Funds.Count institutional funds</span>
+
     </div>
   </div>
 </section>
@@ -34,29 +35,32 @@
     <div class="col-12 col-sm-6 col-xl-3">
       <div class="metric-tile">
         <span class="metric-label">Consolidated Inflow</span>
-        <div class="metric-value mt-2">PKR 3.42M</div>
-        <div class="metric-footer">
-          <span class="fw-semibold text-forest"><i class="bi bi-arrow-down-left me-1"></i>Verified credits</span>
-          <span>142 receipts</span>
-        </div>
+         <div class="metric-value mt-2">PKR @Model.Summary.TotalVerifiedContributions.ToString("N0")</div>
+         <div class="metric-footer">
+           <span class="fw-semibold text-forest"><i class="bi bi-arrow-down-left me-1"></i>Verified credits</span>
+           <span>@Model.Summary.VerifiedContributionCount receipts</span>
+         </div>
+
         <div class="metric-strip" style="background: var(--amanat-forest);"></div>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-xl-3">
       <div class="metric-tile">
         <span class="metric-label">Approved Outflow</span>
-        <div class="metric-value mt-2">PKR 2.18M</div>
-        <div class="metric-footer">
-          <span class="fw-semibold"><i class="bi bi-receipt me-1"></i>Dual-signed</span>
-          <span>96 vouchers</span>
-        </div>
+         <div class="metric-value mt-2">PKR @Model.Summary.TotalApprovedExpenses.ToString("N0")</div>
+         <div class="metric-footer">
+           <span class="fw-semibold"><i class="bi bi-receipt me-1"></i>Dual-signed</span>
+           <span>@Model.Summary.ApprovedExpenseCount vouchers</span>
+         </div>
+
         <div class="metric-strip" style="background: var(--amanat-sage);"></div>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-xl-3">
       <div class="metric-tile">
         <span class="metric-label">Cash Reserves</span>
-        <div class="metric-value mt-2">PKR 1.24M</div>
+         <div class="metric-value mt-2">PKR @Model.Summary.Balance.ToString("N0")</div>
+
         <div class="metric-footer">
           <span class="fw-semibold text-forest"><i class="bi bi-bank me-1"></i>Bank matched</span>
           <span>0 unmatched rows</span>
@@ -67,7 +71,8 @@
     <div class="col-12 col-sm-6 col-xl-3">
       <div class="metric-tile">
         <span class="metric-label">Receipt Coverage</span>
-        <div class="metric-value mt-2">100%</div>
+         <div class="metric-value mt-2">@Model.ReceiptCoveragePercent%</div>
+
         <div class="metric-footer">
           <span class="fw-semibold text-forest"><i class="bi bi-patch-check me-1"></i>Itemized proof</span>
           <span>ISO 26000</span>
@@ -128,7 +133,7 @@
     </div>
     <div class="panel-head d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2" style="border-bottom: 0; border-top: 1px solid #EEF1EE;">
       <span class="text-muted-amanat" style="font-size: 0.7rem;">
-        Showing <span id="ledger-visible-count">5</span> of 5 institutional funds
+        Showing <span id="ledger-visible-count">@Model.Funds.Count</span> of @Model.Funds.Count institutional funds
       </span>
       <span class="text-muted-amanat" style="font-size: 0.7rem;">
         Last public snapshot: 14 Mar 2025, 09:14 AM PKT
@@ -194,7 +199,7 @@
           </div>
           <h2 class="h5 fw-bold mb-2">Latest Consolidated Audit Seal</h2>
           <p class="mb-3" style="font-size: 0.76rem; color: #D7EADF;">
-            A single snapshot covering all five registered institutional funds as of Q1 2025.
+            A single snapshot covering all @Model.Funds.Count registered institutional funds.
           </p>
           <div class="seal-digest d-flex flex-column gap-2 mb-3">
             <div class="d-flex align-items-center justify-content-between gap-2">
